@@ -19,15 +19,18 @@ import com.practice.webapp.dao.TeacherInfoAdminDAO;
 public class TeacherInfoAdminController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 
-	//後臺獲取專任教師信息，還需要修改
 	@RequestMapping(value = "/teacherManage", method = RequestMethod.GET)
 	public ModelAndView getTeacherList() {
 		ModelAndView model = new ModelAndView("teacherManage");
 		TeacherInfoDAO teacherInfoDAO = (TeacherInfoDAO) context.getBean("teacherInfoDAO");
-		List<TeacherBasicInfo> teacherList = new ArrayList<TeacherBasicInfo>();
-		teacherList = teacherInfoDAO.getProTeacherInfoList();
-		model.addObject("teacherList", teacherList);
-
+		//專任教師
+		List<TeacherBasicInfo> proTeacherList = new ArrayList<TeacherBasicInfo>();
+		proTeacherList = teacherInfoDAO.getProTeacherInfoList();
+		model.addObject("proTeacherList", proTeacherList);
+		//兼任教師
+		List<TeacherBasicInfo> partTeacherList = new ArrayList<TeacherBasicInfo>();
+		partTeacherList = teacherInfoDAO.getPartTeacherInfoList();
+		model.addObject("partTeacherList", partTeacherList);
 		return model;
 	}
 

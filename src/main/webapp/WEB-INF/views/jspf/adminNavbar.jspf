@@ -32,7 +32,7 @@
 
 						<li><span>師資陣容</span>
 							<ul>
-								<li><a href="#">現任教師</a></li>
+								<li><a href="teacherManage">教師管理</a></li>
 								<li><a href="#">教學成果</a></li>
 							</ul></li>
 
