@@ -1,0 +1,10 @@
+整個專案的框架，運行後可使用網站首頁、登錄界面、管理頁面首頁。
+請先將login.sql匯入fju資料庫中。
+views/jspf文件夾中存放的是網站的header和footer模板。
+網站前端統一模板部分請參照MISwebsiteIndex.jsp，將<div id="carousel-example" class="carousel slide" data-ride="carousel">.....<!-- End Carousel Controls -->這部分刪除即可。
+網站後臺管理統一模板部分請參照adminIndex.jsp，直接複製下來即可。
+頁面之間跳轉連接請寫在jspf的*Navbar文件中。
+enetity的部分請另開package寫在其中，例如com.practice.webapp.entity.teacher中存放所有關於教師模塊的entity。
+模板的使用，請參照從網上下載下來的說明網頁。
+
+最後，大家加油啦~~~
