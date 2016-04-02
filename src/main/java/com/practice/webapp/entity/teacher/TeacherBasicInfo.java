@@ -3,8 +3,8 @@ package com.practice.webapp.entity.teacher;
 public class TeacherBasicInfo {
 	private String teaPic;//教師圖片
 	private String teaCode;//教師編號
-	private String teaName;//教師名字
-	private String teaENName;//教師名字英文
+	private String teaName;//教師姓名
+	private String teaENName;//教師英文姓名
 	private String teaPos;//教師職稱
 	private String teaTel;//教師聯絡電話
 	private String teaEmail;//教師聯絡郵箱
