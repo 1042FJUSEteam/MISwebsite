@@ -6,6 +6,7 @@ public class TeacherAwardInfo {
 	private String teaAwaYear;//獎勵年份
 	private String teaAwaDep;//獎勵單位
 	private String teaAwa;//獎勵名稱
+	private String teaAwaCode;
 	
 	public String getName() {
 		return name;
@@ -36,6 +37,12 @@ public class TeacherAwardInfo {
 	}
 	public void setTeaAwa(String teaAwa) {
 		this.teaAwa = teaAwa;
+	}
+	public String getTeaAwaCode() {
+		return teaAwaCode;
+	}
+	public void setTeaAwaCode(String teaAwaCode) {
+		this.teaAwaCode = teaAwaCode;
 	}
 	
 }

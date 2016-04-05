@@ -7,6 +7,7 @@ public class TeacherExpInfo {
 	private String teaExpUnit;//單位
 	private String teaExpDep;//部門
 	private String teaExpTitle;//職稱
+	private String teaExpCode;
 		
 	public String getName() {
 		return name;
@@ -43,5 +44,11 @@ public class TeacherExpInfo {
 	}
 	public void setTeaExpTitle(String teaExpTitle) {
 		this.teaExpTitle = teaExpTitle;
+	}
+	public String getTeaExpCode() {
+		return teaExpCode;
+	}
+	public void setTeaExpCode(String teaExpCode) {
+		this.teaExpCode = teaExpCode;
 	}	
 }

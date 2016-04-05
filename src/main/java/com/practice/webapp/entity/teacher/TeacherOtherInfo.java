@@ -5,6 +5,7 @@ public class TeacherOtherInfo {
 	private boolean flag;//用於判定資料庫中是否有資料
 	private String teaDataPer;//發生時間
 	private String teaDataCont;//資料明細
+	private String teaDataContCode;
 	
 	public String getName() {
 		return name;
@@ -29,5 +30,11 @@ public class TeacherOtherInfo {
 	}
 	public void setTeaDataCont(String teaDataCont) {
 		this.teaDataCont = teaDataCont;
+	}
+	public String getTeaDataContCode() {
+		return teaDataContCode;
+	}
+	public void setTeaDataContCode(String teaDataContCode) {
+		this.teaDataContCode = teaDataContCode;
 	}
 }

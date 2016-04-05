@@ -4,6 +4,7 @@ public class TeacherSpeInfo {
 	private String name;//詳細資料類別名稱
 	private boolean flag;//用於判斷資料庫內是否有資料
 	private String teaSpe;//教師專長 
+	private String teaSpeCode;
 	
 	public String getName() {
 		return name;
@@ -22,6 +23,12 @@ public class TeacherSpeInfo {
 	}
 	public void setTeaSpe(String teaSpe) {
 		this.teaSpe = teaSpe;
+	}
+	public String getTeaSpeCode() {
+		return teaSpeCode;
+	}
+	public void setTeaSpeCode(String teaSpeCode) {
+		this.teaSpeCode = teaSpeCode;
 	}
 	
 }

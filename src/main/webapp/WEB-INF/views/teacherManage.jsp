@@ -48,7 +48,7 @@
 							<div class="tab-pane fade active in" id="proTeacherManage">
 								<div class="col-md-12">
 									<a class="btn btn-default"
-										href="changeViewSort?type=proTeacher">更改前端顯示順序</a>
+										href="rankTeacherList?type=T">更改前端顯示順序</a>
 									<p>此处添加搜索功能
 									<div class="row margin-top-20"></div>
 
@@ -104,7 +104,7 @@
 							<div class="tab-pane fade" id="partTeacherManage">
 								<div class="col-md-12">
 									<a class="btn btn-default"
-										href="changeViewSort?type=proTeacher">更改前端顯示順序</a>
+										href="rankTeacherList?type=B">更改前端顯示順序</a>
 									<p>此处添加搜索功能
 									<div class="row margin-top-20"></div>
 
@@ -162,7 +162,7 @@
 									<form method="post" action="newTeacherBasicInfo"
 										id="newTeacherForm" class="signup-page">
 										<input type="hidden" name="teaCode" value="">
-										<!-- 新增的教師圖片先用girl.jpg代替 -->
+										新增的教師圖片先用girl.jpg代替
 										<input type="hidden" name="teaPic" value="girl.jpg"> <input
 											type="hidden" name="teaSort" value="">
 
@@ -293,7 +293,6 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/additional-methods.js"></script>
 <script type="text/javascript" src="js/messages_zh_TW.js"></script>

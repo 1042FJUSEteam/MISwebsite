@@ -463,7 +463,7 @@
 										<tbody>
 											<tr>
 												<td>${teacherPlanInfo.teaPlanPer}</td>
-												<td>${teacherPlanInfo.teaPanLeader}</td>
+												<td>${teacherPlanInfo.teaPlanLeader}</td>
 												<td>${teacherPlanInfo.teaPlanName}</td>
 												<td>${teacherPlanInfo.teaPlanSpon}</td>
 												<td>${teacherPlanInfo.teaPlanMon}</td>

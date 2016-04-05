@@ -5,6 +5,7 @@ public class TeacherStuTopic {
 	private boolean flag;//用於判定資料庫中是否有資料
 	private String teaStuYear;//年份
 	private String teaStuName;//學生專題名稱
+	private String topicID;//不重複值
 	
 	public String getName() {
 		return name;
@@ -29,5 +30,11 @@ public class TeacherStuTopic {
 	}
 	public void setTeaStuName(String teaStuName) {
 		this.teaStuName = teaStuName;
+	}
+	public String getTopicID() {
+		return topicID;
+	}
+	public void setTopicID(String topicID) {
+		this.topicID = topicID;
 	}
 }

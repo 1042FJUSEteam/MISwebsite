@@ -6,6 +6,7 @@ public class TeacherStuPaper {
 	private String teaStuYear;//年份
 	private String teaStuName;//學生名字
 	private String TeaStuPaperName;//論文標題
+	private String paperID;//不重複值
 	
 	public String getName() {
 		return name;
@@ -36,5 +37,11 @@ public class TeacherStuPaper {
 	}
 	public void setTeaStuPaperName(String teaStuPaperName) {
 		TeaStuPaperName = teaStuPaperName;
+	}
+	public String getPaperID() {
+		return paperID;
+	}
+	public void setPaperID(String paperID) {
+		this.paperID = paperID;
 	}
 }

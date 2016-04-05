@@ -304,7 +304,7 @@ public class TeacherInfoDAOImpl implements TeacherInfoDAO {
 				teacherPlanInfo.setName("¬ã¨s­p¹º");
 				teacherPlanInfo.setFlag(true);
 				teacherPlanInfo.setTeaPlanPer(rs.getString("TEA_PLAN_PER"));
-				teacherPlanInfo.setTeaPanLeader(rs.getString("TEA_PLAN_LEADER"));
+				teacherPlanInfo.setTeaPlanLeader(rs.getString("TEA_PLAN_LEADER"));
 				teacherPlanInfo.setTeaPlanName(rs.getString("TEA_PLAN_NAME"));
 				teacherPlanInfo.setTeaPlanSpon(rs.getString("TEA_PLAN_SPON"));
 				teacherPlanInfo.setTeaPlanMon(rs.getString("TEA_PLAN_MON"));

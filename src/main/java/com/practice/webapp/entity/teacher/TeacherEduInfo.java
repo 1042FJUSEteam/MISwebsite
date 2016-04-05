@@ -1,11 +1,12 @@
 package com.practice.webapp.entity.teacher;
 
 public class TeacherEduInfo {
-	private String name;//¸Ô²Ó¸ê®ÆÃş§O¦WºÙ
-	private boolean flag;//¥Î©ó§P©w¸ê®Æ®w¤¤¬O§_¦³¸ê®Æ
-	private String teaSch;//¾Ç®Õ
-	private String teaDep;//¨t©Ò
-	private String teaDeg;//¾Ç¦ì
+	private String name;//è©³ç´°è³‡æ–™é¡åˆ¥åç¨±
+	private boolean flag;//ç”¨æ–¼åˆ¤å®šè³‡æ–™åº«ä¸­æ˜¯å¦æœ‰è³‡æ–™
+	private String teaSch;//å­¸æ ¡
+	private String teaDep;//ç³»æ‰€
+	private String teaDeg;//å­¸ä½
+	private String teaEduCode;//åœ¨è³‡æ–™åº«ä¸­çš„ç·¨è™Ÿ
 	
 	public String getName() {
 		return name;
@@ -36,6 +37,12 @@ public class TeacherEduInfo {
 	}
 	public void setTeaDeg(String teaDeg) {
 		this.teaDeg = teaDeg;
+	}
+	public String getTeaEduCode() {
+		return teaEduCode;
+	}
+	public void setTeaEduCode(String teaEduCode) {
+		this.teaEduCode = teaEduCode;
 	}
 	
 }
