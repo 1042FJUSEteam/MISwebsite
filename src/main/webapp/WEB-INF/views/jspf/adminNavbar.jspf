@@ -19,15 +19,15 @@
 
 						<li><span>系所介紹</span>
 							<ul>
-								<li><a href="#">系所沿革</a></li>
-								<li><a href="#">行政同仁</a></li>
-								<li><a href="#">系歌</a></li>
-								<li><a href="#">教學目標</a></li>
-								<li><a href="#">圖書空間與實驗室</a></li>
-								<li><a href="#">系大事紀</a></li>
-								<li><a href="#">系所法規</a></li>
-								<li><a href="#">得獎記錄</a></li>
-								<li><a href="#">職涯CVHS暨畢業生未來發展</a></li>
+								<li><a href="back_imintro">系所沿革</a></li>
+								<li><a href="back_updateass">行政同仁</a></li>
+								<li><a href="back_imintro">系歌</a></li>
+								<li><a href="back_imintro">教學目標</a></li>
+								<li><a href="back_imintro">圖書空間與實驗室</a></li>
+								<li><a href="back_imintro">系大事紀</a></li>
+								<li><a href="back_imintro">系所法規</a></li>
+								<li><a href="back_award">得獎記錄</a></li>
+								<li><a href="back_imintro">職涯CVHS暨畢業生未來發展</a></li>
 							</ul></li>
 
 						<li><span>師資陣容</span>

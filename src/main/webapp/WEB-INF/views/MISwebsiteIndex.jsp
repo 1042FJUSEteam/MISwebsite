@@ -30,7 +30,7 @@
 </head>
 <body>
 	<%@include file="jspf/MISwebsiteNavbar.jspf"%>
-
+	
 	<div id="content" class="container">
 		<div class="row margin-top-10"></div><!-- 用于控制与navbar间距 -->
 		<div id="carousel-example" class="carousel slide" data-ride="carousel">
