@@ -167,12 +167,13 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
-	@RequestMapping(value = "/deleteTeaEdu", method = RequestMethod.POST)
-	public ModelAndView deleteTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+	//¾Ç¾ú
+	@RequestMapping(value = "/newTeaEdu", method = RequestMethod.POST)
+	public ModelAndView newTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherEduInfo eduInfo) {
 		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.deleteTeaEdu(teaInfo, eduInfo);
+		teacherInfoAdminDAO.newTeaEdu(teaInfo, eduInfo);
 		return model;
 	}
 
@@ -185,12 +186,40 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/newTeaEdu", method = RequestMethod.POST)
-	public ModelAndView newTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+	@RequestMapping(value = "/deleteTeaEdu", method = RequestMethod.POST)
+	public ModelAndView deleteTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherEduInfo eduInfo) {
 		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.newTeaEdu(teaInfo, eduInfo);
+		teacherInfoAdminDAO.deleteTeaEdu(teaInfo, eduInfo);
+		return model;
+	}
+	
+	//¸g¾ú
+	@RequestMapping(value = "/newTeaExp", method = RequestMethod.POST)
+	public ModelAndView newTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+			@ModelAttribute TeacherExpInfo expInfo) {
+		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		teacherInfoAdminDAO.newTeaExp(teaInfo, expInfo);
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateTeaExp", method = RequestMethod.POST)
+	public ModelAndView updateTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+			@ModelAttribute TeacherExpInfo expInfo) {
+		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		teacherInfoAdminDAO.updateTeaExp(teaInfo, expInfo);
+		return model;
+	}
+	
+	@RequestMapping(value = "/deleteTeaExp", method = RequestMethod.POST)
+	public ModelAndView deleteTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+			@ModelAttribute TeacherExpInfo expInfo) {
+		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		teacherInfoAdminDAO.deleteTeaExp(teaInfo, expInfo);
 		return model;
 	}
 }

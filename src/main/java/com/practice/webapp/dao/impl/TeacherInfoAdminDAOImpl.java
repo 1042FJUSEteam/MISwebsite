@@ -333,7 +333,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	// 自動產生一個新的教師排序編號，先統一生成該教師類別中的最大值，再通過“更改排序”按鈕進行修改
 	private String newTeaSort(TeacherBasicInfoAdmin newInfo) {
 		String teaSort = "";
-		String sql = "select max(TEA_SORT) as TEA_SORT from teacher, members_class where Teachertype=?";
+		String sql = "select max(TEA_SORT) as TEA_SORT from teacher where Teachertype=?";
 
 		try {
 			conn = dataSource.getConnection();
@@ -522,18 +522,18 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 
 	@Override
 	public void newTeaEdu(TeacherBasicInfoAdmin teaInfo, TeacherEduInfo eduInfo) {
-		// 默認將最新添加的內容放在最前面，下同
-		refreshTeaEduCode(teaInfo);
+		String newEduCode = newTeaEduCode(teaInfo);
 
-		String sql = "insert into tea_edu(TEA_CODE, TEA_EDU_CODE, TEA_SCH, TEA_DEP, TEA_DEG) values(?, '1', ?, ?, ?)";
+		String sql = "insert into tea_edu(TEA_CODE, TEA_EDU_CODE, TEA_SCH, TEA_DEP, TEA_DEG) values(?, ?, ?, ?, ?)";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
-			smt.setString(2, eduInfo.getTeaSch());
-			smt.setString(3, eduInfo.getTeaDep());
-			smt.setString(4, eduInfo.getTeaDeg());
+			smt.setString(2, newEduCode);
+			smt.setString(3, eduInfo.getTeaSch());
+			smt.setString(4, eduInfo.getTeaDep());
+			smt.setString(5, eduInfo.getTeaDeg());
 			smt.executeUpdate();
 			smt.close();
 
@@ -551,22 +551,18 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 
 	}
 
-	private void refreshTeaEduCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_EDU_CODE from tea_edu where TEA_CODE = ? order by TEA_EDU_CODE desc";
+	private String newTeaEduCode(TeacherBasicInfoAdmin teaInfo) {
+		String newEduCode = "";
+		String sql = "select max(TEA_EDU_CODE) as TEA_EDU_CODE from tea_edu where TEA_CODE = ? ";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				int i = rs.getInt("TEA_EDU_CODE");
-				String newSql = "update tea_edu set TEA_EDU_CODE = ? where TEA_CODE = ? " + "and TEA_EDU_CODE = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+				i++;
+				newEduCode = Integer.toString(i);
 			}
 			rs.close();
 			smt.close();
@@ -583,6 +579,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			}
 		}
 
+		return newEduCode;
 	}
 
 	@Override

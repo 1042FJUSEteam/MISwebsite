@@ -16,8 +16,9 @@
 			</div>
 			<form id="updateTeaEduForm" action="updateTeaEdu" method="post">
 				<div class="modal-body">
-					<input name="teaCode" id="updateEduTeaCode"> <input
-						name="teaEduCode" id="updateEduCode">
+					<input type="hidden" name="teaCode" id="updateEduTeaCode"> <input
+						type="hidden" name="teaEduCode" id="updateEduCode">
+						
 					<div class="form-group">
 						<label>學校</label> <input type="text" name="teaSch"
 							id="updateEduTeaSch" class="form-control margin-buttom-10"
@@ -33,6 +34,52 @@
 							id="updateEduTeaDeg" class="form-control margin-buttom-10"
 							required>
 					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary">確認</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 更新教師經歷信息 -->
+<div class="modal fade bs-example-modal-sm" id="updateTeaExp"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">修改經歷信息</h4>
+			</div>
+			<form id="updateTeaExpForm" action="updateTeaExp" method="post">
+				<div class="modal-body">
+					<input type="hidden" name="teaCode" id="updateExpTeaCode"> <input
+						type="hidden" name="teaExpCode" id="updateTeaExpCode">
+					
+					<div class="form-group">
+						<label>期間</label> <input type="text" name="teaExpPer"
+							id="updateTeaExpPer" class="form-control margin-buttom-10" required>
+					</div>
+					<div class="form-group">
+						<label>單位</label> <input type="text" name="teaExpUnit"
+							id="updateTeaExpUnit" class="form-control margin-buttom-10" required>
+					</div>
+					<div class="form-group">
+						<label>部門</label> <input type="text" name="teaExpDep"
+							id="updateTeaExpDep" class="form-control margin-buttom-10" required>
+					</div>
+					
+					<div class="form-group">
+						<label>職稱</label> <input type="text" name="teaExpTitle"
+							id="updateTeaExpTitle" class="form-control margin-buttom-10" required>
+					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

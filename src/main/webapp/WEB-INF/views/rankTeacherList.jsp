@@ -42,7 +42,8 @@
 
 				</div>
 				<div class="panel-body">
-					<form method="post" action="changeTeacherRank" id="changeTeacherRankForm">
+					<!--  method="post" action="changeTeacherRank" id="changeTeacherRankForm" -->
+					<form>
 						<table class="table table-hover" width="100%">
 							<c:forEach items="${info}" var="info">
 								<tr>
@@ -92,13 +93,12 @@
 							}));
 					//alert(data);
 					var rank = JSON.stringify(JSON.parse(data));
- 					$.ajax({
-						type:"POST",
-						URL:"/changeTeacherRank",
-						contentType:"application/json",
-						data: rank
-					}); 
-					//$("#changeRankForm").validate();
+					$.ajax({
+						type : "POST",
+						URL : "/changeTeacherRank",
+						contentType : "application/json",
+						data : rank
+					});
 				})
 	</script>
 	<script>
