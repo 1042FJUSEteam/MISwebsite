@@ -42,7 +42,7 @@
 
 				</div>
 				<div class="panel-body">
-					<form method="post" action="changeTeacherRank" id="changeRankForm">
+					<form method="post" action="changeTeacherRank" id="changeTeacherRankForm">
 						<table class="table table-hover" width="100%">
 							<c:forEach items="${info}" var="info">
 								<tr>

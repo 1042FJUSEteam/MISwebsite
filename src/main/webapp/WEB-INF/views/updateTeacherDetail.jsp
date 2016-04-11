@@ -63,8 +63,9 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="teaEdu">
-								<a class="btn btn-default new" href="#" data-toggle="modal"
-									data-target="#newTeaEdu" data-teaCode="${teacher.teaCode}">新增</a>
+								<a class="btn btn-default" href="#" data-toggle="modal"
+									id="newEduInfo" data-target="#newTeaEdu"
+									data-newEduTeaCode="${teacher.teaCode}">新增</a>
 
 								<div class="row margin-top-20"></div>
 
@@ -84,23 +85,63 @@
 											<td><a class="btn btn-sm btn-default" href="#"
 												id="updateTeaEduInfo" data-toggle="modal"
 												data-target="#updateTeaEdu"
-												data-teaCode="${teacher.teaCode}"
-												data-eduCode="${teacherEduInfo.teaEduCode}"
-												data-sch="${teacherEduInfo.teaSch}"
-												data-dep="${teacherEduInfo.teaDep}"
-												data-deg="${teacherEduInfo.teaDeg}">修改</a> <a
+												data-updateEduTeaCode="${teacher.teaCode}"
+												data-UpdateEduCode="${teacherEduInfo.teaEduCode}"
+												data-eduSch="${teacherEduInfo.teaSch}"
+												data-eduDep="${teacherEduInfo.teaDep}"
+												data-eduDeg="${teacherEduInfo.teaDeg}">修改</a> <a
 												class="btn btn-sm btn-danger deleteBtn" href="#"
 												id="deleteTeaEduInfo" data-toggle="modal"
 												data-target="#deleteTeaEdu"
-												data-teaCode="${teacher.teaCode}"
-												data-eduCode="${teacherEduInfo.teaEduCode}">刪除</a></td>
+												data-deleteEduTeaCode="${teacher.teaCode}"
+												data-deleteEduCode="${teacherEduInfo.teaEduCode}">刪除</a></td>
 											<td>暫未開發</td>
 										</tr>
 									</c:forEach>
 								</table>
 								<div class="clearfix"></div>
 							</div>
+
 							<div class="tab-pane fade" id="teaExp">
+								<a class="btn btn-default" href="#" data-toggle="modal"
+									id="newEduInfo" data-target="#newTeaExp"
+									data-newExpTeaCode="${teacher.teaCode}">新增</a>
+
+								<div class="row margin-top-20"></div>
+
+								<table class="table table-hover" width="100%">
+									<tr>
+										<th>期间</th>
+										<th>单位</th>
+										<th>部门</th>
+										<th>职称</th>
+										<th>編輯</th>
+										<th>更改顯示位置</th>
+									</tr>
+									<c:forEach items="${teacherExpInfo}" var="teacherExpInfo">
+										<tr>
+											<td>${teacherExpInfo.teaExpPer}</td>
+											<td>${teacherExpInfo.teaExpUnit}</td>
+											<td>${teacherExpInfo.teaExpDep}</td>
+											<td>${teacherExpInfo.teaExpTitle}</td>
+											<td><a class="btn btn-sm btn-default" href="#"
+												id="updateTeaExpInfo" data-toggle="modal"
+												data-target="#updateTeaExp"
+												data-updateExpTeaCode="${teacher.teaCode}"
+												data-UpdateTeaExpCode="${teacherExpInfo.teaExpCode}"
+												data-per="${teacherExpInfo.teaExpPer}"
+												data-unit="${teacherExpInfo.teaExpUnit}"
+												data-dep="${teacherExpInfo.teaExpDep}"
+												data-title="${teacherExpInfo.teaExpTitle }">修改</a> <a
+												class="btn btn-sm btn-danger deleteBtn" href="#"
+												id="deleteTeaExpInfo" data-toggle="modal"
+												data-target="#deleteTeaExp"
+												data-deleteExpTeaCode="${teacher.teaCode}"
+												data-deleteTeaExpCode="${teacherExpInfo.teaExpCode}">刪除</a></td>
+											<td>暫未開發</td>
+										</tr>
+									</c:forEach>
+								</table>
 
 								<div class="clearfix"></div>
 							</div>
@@ -237,155 +278,18 @@
 			</div>
 		</div>
 
-		<!-- 所有删除动作皆在此处 -->
-		<div class="modal fade bs-example-modal-sm" id="deleteTeaEdu"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">刪除學歷信息</h4>
-					</div>
-					<div class="modal-body">
-						<p>該條學歷信息刪除後，將不可恢復</p>
-					</div>
-					<div class="modal-footer">
-						<form id="deleteTeaEduForm" action="deleteTeaEdu" method="post">
-							<input name="teaCode" id="teaCode"> <input
-								name="teaEduCode" id="teaEduCode">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-							<button type="submit" class="btn btn-danger">確認</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- 所有修改动作皆在此处 -->
-		<div class="modal fade bs-example-modal-sm" id="updateTeaEdu"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">修改學歷信息</h4>
-					</div>
-					<form id="updateTeaEduForm" action="updateTeaEdu" method="post">
-						<div class="modal-body">
-							<input name="teaCode" id="teaCode"> <input
-								name="teaEduCode" id="teaEduCode">
-							<div class="form-group">
-								<label>學校</label> <input type="text" name="teaSch" id="teaSch"
-									class="form-control margin-buttom-10" required>
-							</div>
-							<div class="form-group">
-								<label>系所</label> <input type="text" name="teaDep" id="teaDep"
-									class="form-control margin-buttom-10" required>
-							</div>
-							<div class="form-group">
-								<label>學位</label> <input type="text" name="teaDeg" id="teaDeg"
-									class="form-control margin-buttom-10" required>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-							<button type="submit" class="btn btn-primary">確認</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<!-- 所有新增动作皆在此处 -->
-		<div class="modal fade bs-example-modal-sm" id="newTeaEdu"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">修改學歷信息</h4>
-					</div>
-					<form id="newTeaEduForm" action="newTeaEdu" method="post">
-						<div class="modal-body">
-							<input name="teaCode" id="teaCode">
-							<div class="form-group">
-								<label>學校</label> <input type="text" name="teaSch" id="teaSch"
-									class="form-control margin-buttom-10" required>
-							</div>
-							<div class="form-group">
-								<label>系所</label> <input type="text" name="teaDep" id="teaDep"
-									class="form-control margin-buttom-10" required>
-							</div>
-							<div class="form-group">
-								<label>學位</label> <input type="text" name="teaDeg" id="teaDeg"
-									class="form-control margin-buttom-10" required>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-							<button type="submit" class="btn btn-primary">確認</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		<%@include file="jspf/deleteTeacherDetailInfo.jspf"%>
+		<%@include file="jspf/updateTeacherDetailInfo.jspf"%>
+		<%@include file="jspf/newTeacherDetailInfo.jspf"%>
 
 	</div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- 所有刪除內容在此 -->
-	<script>
-		$(function() {
-			//只能取到最頂端的值，不會變
-			$("#deleteTeaEduInfo").click(function() {
-				$("#teaCode").val($(this).attr("data-teaCode"));
-				$("#teaEduCode").val($(this).attr("data-eduCode"));
-			});
-		});
-	</script>
-
-	<!-- 所有更新內容在此 -->
-	<script>
-		$(function() {
-			//前兩個值不顯示
-			$("#updateTeaEduInfo").click(function() {
-				$("#teaCode").val($(this).attr("data-teaCode"));
-				$("#teaEduCode").val($(this).attr("data-eduCode"));
-				$("#teaSch").val($(this).attr("data-sch"));
-				$("#teaDep").val($(this).attr("data-dep"));
-				$("#teaDeg").val($(this).attr("data-deg"));
-			});
-		});
-	</script>
-
-	<!-- 所有新增內容在此 -->
-	<script>
-		$(function() {
-			//前兩個值不顯示
-			$(".new").click(function() {
-				$("#teaCode").val($(this).attr("data-teaCode"));
-			});
-		});
-	</script>
 </body>
 
 <!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/editTeacherDetailInfo.js"></script>
+
 <script type="text/javascript" src="js/jquery.min.js"
 	type="text/javascript"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"

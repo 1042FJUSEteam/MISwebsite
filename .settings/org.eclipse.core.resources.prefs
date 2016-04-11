@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/practice/webapp/dao/TeacherInfoAdminDAO.java=UTF-8
 encoding//src/main/java/com/practice/webapp/entity/teacher/TeacherBasicInfo.java=UTF-8
 encoding//src/main/java/com/practice/webapp/entity/teacher/TeacherEduInfo.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/jspf/newTeacherDetailInfo.jspf=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8
