@@ -16,16 +16,13 @@ $(function() {
 });
 
 $(function() {
-	$(".deleteTeaEduInfo").click(
-			function() {
-				$("#deleteEduTeaCode").val(
-						 $(this).attr("data-deleteEduTeaCode"));
-				$("#deleteEduCode").val(
-						 $(this).attr("data-deleteEduCode"));
-			});
+	$(".deleteTeaEduInfo").click(function() {
+		$("#deleteEduTeaCode").val($(this).attr("data-deleteEduTeaCode"));
+		$("#deleteEduCode").val($(this).attr("data-deleteEduCode"));
+	});
 });
 
-//經歷
+// 經歷
 $(function() {
 	$("#newTeaExpInfo").click(function() {
 		$("#newExpTeaCode").val($(this).attr("data-newExpTeaCode"));
@@ -44,11 +41,30 @@ $(function() {
 });
 
 $(function() {
-	$(".deleteTeaExpInfo").click(
-			function() {
-				$("#deleteExpTeaCode").val(
-						 $(this).attr("data-deleteExpTeaCode"));
-				$("#deleteTeaExpCode").val(
-						 $(this).attr("data-deleteTeaExpCode"));
-			});
+	$(".deleteTeaExpInfo").click(function() {
+		$("#deleteExpTeaCode").val($(this).attr("data-deleteExpTeaCode"));
+		$("#deleteTeaExpCode").val($(this).attr("data-deleteTeaExpCode"));
+	});
+});
+
+// 專長
+$(function() {
+	$("#newSpeInfo").click(function() {
+		$("#newSpeTeaCode").val($(this).attr("data-newSpeTeaCode"));
+	});
+});
+
+$(function() {
+	$(".updateTeaSpeInfo").click(function() {
+		$("#updateSpeTeaCode").val($(this).attr("data-updateSpeTeaCode"));
+		$("#updateTeaSpeCode").val($(this).attr("data-updateTeaSpeCode"));
+		$("#updateTeaSpe").val($(this).attr("data-updateTeaSpe"));
+	});
+});
+
+$(function() {
+	$(".deleteTeaSpeInfo").click(function() {
+		$("#deleteExpTeaCode").val($(this).attr("data-deleteExpTeaCode"));
+		$("#deleteTeaExpCode").val($(this).attr("data-deleteTeaExpCode"));
+	});
 });

@@ -151,7 +151,7 @@
 
 								<a class="btn btn-default" href="#" data-toggle="modal"
 									id="newSpeInfo" data-target="#newSpeExp"
-									data-newExpTeaCode="${teacher.teaCode}">新增</a>
+									data-newSpeTeaCode="${teacher.teaCode}">新增</a>
 
 								<div class="row margin-top-20"></div>
 
@@ -168,8 +168,8 @@
 												id="updateTeaSpeInfo" data-toggle="modal"
 												data-target="#updateTeaSpe"
 												data-updateSpeTeaCode="${teacher.teaCode}"
-												data-UpdateTeaSpeCode="${teacherSpeInfo.teaSpeCode}"
-												data-spe="${teacherSpeInfo.teaSpe}">修改</a> <a
+												data-updateTeaSpeCode="${teacherSpeInfo.teaSpeCode}"
+												data-updateTeaSpe="${teacherSpeInfo.teaSpe}">修改</a> <a
 												class="btn btn-sm btn-danger deleteBtn" href="#"
 												id="deleteTeaSpeInfo" data-toggle="modal"
 												data-target="#deleteTeaSpe"

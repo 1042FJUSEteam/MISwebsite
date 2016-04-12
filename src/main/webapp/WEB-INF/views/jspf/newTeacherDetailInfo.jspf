@@ -48,7 +48,7 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">新增经历信息</h4>
+				<h4 class="modal-title" id="myModalLabel">新增經歷信息</h4>
 			</div>
 			<form id="newTeaExpForm" action="newTeaExp" method="post">
 				<div class="modal-body">
@@ -71,6 +71,36 @@
 							id="newTeaExpTitle" class="form-control margin-buttom-10" required>
 					</div>
 					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary">確認</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- 新增教師專長信息 -->
+<div class="modal fade bs-example-modal-sm" id="newSpeExp" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">新增專長信息</h4>
+			</div>
+			<form id="newTeaSpeForm" action="newTeaSpe" method="post">
+				<div class="modal-body">
+					<input type="hidden" name="teaCode" id="newSpeTeaCode">
+					<div class="form-group">
+						<label>專長</label> <input type="text" name="teaSpe"
+							id="newTeaSpe" class="form-control margin-buttom-10" required>
+					</div>
+				
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

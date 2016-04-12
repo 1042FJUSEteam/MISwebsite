@@ -167,7 +167,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
-	//學歷
+	// 學歷
 	@RequestMapping(value = "/newTeaEdu", method = RequestMethod.POST)
 	public ModelAndView newTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherEduInfo eduInfo) {
@@ -185,7 +185,7 @@ public class TeacherInfoAdminController {
 		teacherInfoAdminDAO.updateTeaEdu(teaInfo, eduInfo);
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/deleteTeaEdu", method = RequestMethod.POST)
 	public ModelAndView deleteTeaEdu(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherEduInfo eduInfo) {
@@ -194,8 +194,8 @@ public class TeacherInfoAdminController {
 		teacherInfoAdminDAO.deleteTeaEdu(teaInfo, eduInfo);
 		return model;
 	}
-	
-	//經歷
+
+	// 經歷
 	@RequestMapping(value = "/newTeaExp", method = RequestMethod.POST)
 	public ModelAndView newTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherExpInfo expInfo) {
@@ -204,7 +204,7 @@ public class TeacherInfoAdminController {
 		teacherInfoAdminDAO.newTeaExp(teaInfo, expInfo);
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/updateTeaExp", method = RequestMethod.POST)
 	public ModelAndView updateTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherExpInfo expInfo) {
@@ -213,13 +213,32 @@ public class TeacherInfoAdminController {
 		teacherInfoAdminDAO.updateTeaExp(teaInfo, expInfo);
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/deleteTeaExp", method = RequestMethod.POST)
 	public ModelAndView deleteTeaExp(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
 			@ModelAttribute TeacherExpInfo expInfo) {
 		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
 		teacherInfoAdminDAO.deleteTeaExp(teaInfo, expInfo);
+		return model;
+	}
+
+	// 專長
+	@RequestMapping(value = "/newTeaSpe", method = RequestMethod.POST)
+	public ModelAndView newTeaSpe(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+			@ModelAttribute TeacherSpeInfo speInfo) {
+		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		teacherInfoAdminDAO.newTeaSpe(teaInfo, speInfo);
+		return model;
+	}
+	
+	@RequestMapping(value = "/updateTeaSpe", method = RequestMethod.POST)
+	public ModelAndView updateTeaSpe(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
+			@ModelAttribute TeacherSpeInfo speInfo) {
+		ModelAndView model = new ModelAndView("redirect:/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		teacherInfoAdminDAO.updateTeaSpe(teaInfo, speInfo);
 		return model;
 	}
 }
