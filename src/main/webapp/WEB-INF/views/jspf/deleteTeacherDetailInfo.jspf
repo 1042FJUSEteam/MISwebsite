@@ -46,9 +46,261 @@
 				<p>該條經歷信息刪除後，將不可恢復</p>
 			</div>
 			<div class="modal-footer">
-				<form id="#deleteTeaExpForm" action="deleteTeaExp" method="post">
+				<form id="deleteTeaExpForm" action="deleteTeaExp" method="post">
 					<input type="hidden" name="teaCode" id="deleteExpTeaCode">
 					<input type="hidden" name="teaExpCode" id="deleteTeaExpCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師專長信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteTeaSpe"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除專長信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條專長信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteTeaSpeForm" action="deleteTeaSpe" method="post">
+					<input  type="hidden" name="teaCode" id="deleteSpeTeaCode">
+					<input  type="hidden" name="teaSpeCode" id="deleteTeaSpeCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師期刊論文信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteIssuePaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除期刊論文信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條期刊論文信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteIssuePaperForm" action="deleteIssuePaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteIssuePaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteIssuePaperCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師研討會論文信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteMeetingPaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除研討會論文信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條研討會論文信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteMeetingPaperForm" action="deleteMeetingPaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteMeetingPaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteMeetingPaperCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師書籍信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteBooks"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除書籍信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條書籍信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteBooksForm" action="deleteBooks" method="post">
+					<input type="hidden" name="teaCode" id="deleteBooksTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteBooksCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師技術報告信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteTechReport"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除技術報告信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條技術報告信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteTechReportForm" action="deleteTechReport" method="post">
+					<input type="hidden" name="teaCode" id="deleteTechReportTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteTechReportCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師畢業論文信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteTeacherPaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除畢業論文信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條畢業論文信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteTeacherPaperForm" action="deleteTeacherPaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteTeacherPaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteTeacherPaperCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師在資訊相關雜誌上近幾年發表之文章信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteMagazinePaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除在資訊相關雜誌上近幾年發表之文章信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條在資訊相關雜誌上近幾年發表之文章信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteMagazinePaperForm" action="deleteMagazinePaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteMagazinePaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteMagazinePaperCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師期刊審查中論文信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteWaitingPaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除期刊審查中論文信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條期刊審查中論文信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteWaitingPaperForm" action="deleteWaitingPaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteWaitingPaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteWaitingPaperCode">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-danger">確認</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 刪除教師學術著作信息 -->
+<div class="modal fade bs-example-modal-sm" id="deleteScholarPaper"
+	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">刪除期刊審查中論文信息</h4>
+			</div>
+			<div class="modal-body">
+				<p>該條期刊審查中論文信息刪除後，將不可恢復</p>
+			</div>
+			<div class="modal-footer">
+				<form id="deleteScholarPaperForm" action="deleteScholarPaper" method="post">
+					<input type="hidden" name="teaCode" id="deleteScholarPaperTeaCode">
+					<input type="hidden" name="teaDataContCode" id="deleteScholarPaperCode">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 					<button type="submit" class="btn btn-danger">確認</button>
 				</form>

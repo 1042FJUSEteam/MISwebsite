@@ -300,7 +300,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		}
 	}
 
-	// ¶€∞ ≤£•Õ§@≠”∑s™∫±–ÆvΩs∏π
+	// Ëá™ÂãïÁî¢Áîü‰∏ÄÂÄãÊñ∞ÁöÑÊïôÂ∏´Á∑®Ëôü
 	private String newTeaCode() {
 		String teaCode = "";
 		String sql = "select max(TEA_CODE) as TEA_CODE from teacher";
@@ -330,7 +330,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return teaCode;
 	}
 
-	// ¶€∞ ≤£•Õ§@≠”∑s™∫±–Æv±∆ß«Ωs∏π°A•˝≤Œ§@•Õ¶®∏”±–Æv√˛ßO§§™∫≥Ã§j≠»°A¶A≥qπL°ßßÛßÔ±∆ß«°®´ˆ∂s∂i¶Ê≠◊ßÔ
+	// Ëá™ÂãïÁî¢Áîü‰∏ÄÂÄãÊñ∞ÁöÑÊïôÂ∏´ÊéíÂ∫èÁ∑®ËôüÔºåÂÖàÁµ±‰∏ÄÁîüÊàêË©≤ÊïôÂ∏´È°ûÂà•‰∏≠ÁöÑÊúÄÂ§ßÂÄºÔºåÂÜçÈÄöÈÅé‚ÄúÊõ¥ÊîπÊéíÂ∫è‚ÄùÊåâÈàïÈÄ≤Ë°å‰øÆÊîπ
 	private String newTeaSort(TeacherBasicInfoAdmin newInfo) {
 		String teaSort = "";
 		String sql = "select max(TEA_SORT) as TEA_SORT from teacher where Teachertype=?";
@@ -404,7 +404,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return info;
 	}
 
-	// ¡Ÿ®S¶≥≥QΩ’•Œ
+	// ÈÇÑÊ≤íÊúâË¢´Ë™øÁî®
 	@Override
 	public void changeTeacherRank(TeacherBasicInfoAdmin changeInfo) {
 		String sql = "Update teacher set TEA_SORT = ? where TEA_CODE = ?";
@@ -443,7 +443,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherEduInfo teacherEduInfo = new TeacherEduInfo();
-				teacherEduInfo.setName("æ«æ˙");
+				teacherEduInfo.setName("Â≠∏Ê≠∑");
 				teacherEduInfo.setFlag(true);
 				teacherEduInfo.setTeaEduCode(rs.getString("TEA_EDU_CODE"));
 				teacherEduInfo.setTeaSch(rs.getString("TEA_SCH"));
@@ -595,7 +595,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherExpInfo teacherExpInfo = new TeacherExpInfo();
-				teacherExpInfo.setName("∏gæ˙");
+				teacherExpInfo.setName("Á∂ìÊ≠∑");
 				teacherExpInfo.setFlag(true);
 				teacherExpInfo.setTeaExpCode(rs.getString("TEA_EXP_CODE"));
 				teacherExpInfo.setTeaExpPer(rs.getString("TEA_EXP_PER"));
@@ -709,24 +709,34 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTeaExpCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_EXP_CODE from tea_exp where TEA_CODE = ? order by TEA_EXP_CODE desc";
+		// Áï∂ÊéíÂ∫èÁ∑®ËôüÊúâ1ÊôÇÈÄ≤Ë°åÂà∑Êñ∞Âãï‰ΩúÔºåËã•Ê≤íÊúâÔºåÂâáÁõ¥Êé•ËºâÂÖ•1Âç≥ÂèØÔºå‰∏ãÂêå
+		String sql = "select * from tea_exp where TEA_CODE = ? and TEA_EXP_CODE = '1'";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_EXP_CODE");
-				String newSql = "update tea_exp set TEA_EXP_CODE = ? where TEA_CODE = ? " + "and TEA_EXP_CODE = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				smt.close();
+				rs.close();
+
+				sql = "select TEA_EXP_CODE from tea_exp where TEA_CODE = ? order by TEA_EXP_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_EXP_CODE");
+					String newSql = "update tea_exp set TEA_EXP_CODE = ? where TEA_CODE = ? " + "and TEA_EXP_CODE = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -744,7 +754,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	@Override
 	public List<TeacherSpeInfo> getTeacherSpeInfo(String teaCode) {
 		List<TeacherSpeInfo> out = new ArrayList<TeacherSpeInfo>();
-		String sql = "select TEA_SPE_CODE, TEA_SPE from tea_spe where TEA_CODE = ? group by TEA_SPE_CODE";
+		String sql = "select TEA_SPE_CODE, TEA_SPE from tea_spe where TEA_CODE = ? order by TEA_SPE_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -753,7 +763,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherSpeInfo teacherSpeInfo = new TeacherSpeInfo();
-				teacherSpeInfo.setName("±M™¯");
+				teacherSpeInfo.setName("Â∞àÈï∑");
 				teacherSpeInfo.setFlag(true);
 				teacherSpeInfo.setTeaSpeCode(rs.getString("TEA_SPE_CODE"));
 				teacherSpeInfo.setTeaSpe(rs.getString("TEA_SPE"));
@@ -778,7 +788,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 
 	@Override
 	public void deleteTeaSpe(TeacherBasicInfoAdmin teaInfo, TeacherSpeInfo speInfo) {
-		String sql = "delete from tea_spe where TEA_CODE = ? and TEA_EXP_CODE = ?";
+		String sql = "delete from tea_spe where TEA_CODE = ? and TEA_SPE_CODE = ?";
 
 		try {
 			conn = dataSource.getConnection();
@@ -854,25 +864,35 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshSpeCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_SPE_CODE from tea_spe where TEA_CODE = ? order by TEA_SPE_CODE desc";
+		String sql = "select * from tea_spe where TEA_CODE = ? and TEA_SPE_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_SPE_CODE");
-				String newSql = "update tea_spe set TEA_SPE_CODE = ? where TEA_CODE = ? " + "and TEA_SPE_CODE = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				smt.close();
+				rs.close();
+
+				sql = "select TEA_SPE_CODE from tea_spe where TEA_CODE = ? order by TEA_SPE_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_SPE_CODE");
+					String newSql = "update tea_spe set TEA_SPE_CODE = ? where TEA_CODE = ? "
+							+ "and TEA_SPE_CODE = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -891,7 +911,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherAwardInfo> getTeacherAwardInfo(String teaCode) {
 		List<TeacherAwardInfo> out = new ArrayList<TeacherAwardInfo>();
 		String sql = "select TEA_AWA_CODE, TEA_AWA_YEAR, TEA_AWA_DEP, TEA_AWA from tea_award "
-				+ "where TEA_CODE = ? group by TEA_AWA_CODE";
+				+ "where TEA_CODE = ? order by TEA_AWA_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -900,7 +920,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherAwardInfo teacherAwardInfo = new TeacherAwardInfo();
-				teacherAwardInfo.setName("¨„®sº˙¿y");
+				teacherAwardInfo.setName("Á†îÁ©∂ÁçéÂãµ");
 				teacherAwardInfo.setFlag(true);
 				teacherAwardInfo.setTeaAwaCode(rs.getString("TEA_AWA_CODE"));
 				teacherAwardInfo.setTeaAwaYear(rs.getString("TEA_AWA_YEAR"));
@@ -1011,26 +1031,35 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTeaAwaCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_AWA_CODE from tea_award where TEA_CODE = ? order by TEA_AWA_CODE desc";
+		String sql = "select * from tea_award where TEA_CODE = ? and TEA_AWA_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_AWA_CODE");
-				String newSql = "update tea_award set TEA_AWA_CODE = ? where TEA_CODE = ? " + "and TEA_AWA_CODE = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
-			}
-			rs.close();
-			smt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
 
+				sql = "select TEA_AWA_CODE from tea_award where TEA_CODE = ? order by TEA_AWA_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_AWA_CODE");
+					String newSql = "update tea_award set TEA_AWA_CODE = ? where TEA_CODE = ? "
+							+ "and TEA_AWA_CODE = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 
@@ -1057,7 +1086,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherPlanInfo teacherPlanInfo = new TeacherPlanInfo();
-				teacherPlanInfo.setName("¨„®s≠pπ∫");
+				teacherPlanInfo.setName("Á†îÁ©∂Ë®àÂäÉ");
 				teacherPlanInfo.setFlag(true);
 				teacherPlanInfo.setTeaPlanCode(rs.getString("TEA_PLAN_CODE"));
 				teacherPlanInfo.setTeaPlanPer(rs.getString("TEA_PLAN_PER"));
@@ -1175,25 +1204,35 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTeaPlanCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_PLAN_CODE from tea_plan where TEA_CODE = ? order by TEA_PLAN_CODE desc";
+		String sql = "select * from tea_plan where TEA_CODE = ? and TEA_PLAN_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_PLAN_CODE");
-				String newSql = "update tea_plan set TEA_PLAN_CODE = ? where TEA_CODE = ? " + "and TEA_PLAN_CODE = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_PLAN_CODE from tea_plan where TEA_CODE = ? order by TEA_PLAN_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_PLAN_CODE");
+					String newSql = "update tea_plan set TEA_PLAN_CODE = ? where TEA_CODE = ? "
+							+ "and TEA_PLAN_CODE = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1212,7 +1251,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherStuPaper> getTeacherStuPaper(String teaCode) {
 		List<TeacherStuPaper> out = new ArrayList<TeacherStuPaper>();
 		String sql = "select PaperID, TEA_STU_YEAR, TEA_STU_NAME, TEA_STU_PAPER_NAME "
-				+ "from tea_stu_paper where TEA_CODE = ? group by PaperID";
+				+ "from tea_stu_paper where TEA_CODE = ? order by PaperID";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1221,7 +1260,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherStuPaper teacherStuPaper = new TeacherStuPaper();
-				teacherStuPaper.setName("¨„®s©“Ω◊§Â´¸æ…");
+				teacherStuPaper.setName("Á†îÁ©∂ÊâÄË´ñÊñáÊåáÂ∞é");
 				teacherStuPaper.setFlag(true);
 				teacherStuPaper.setPaperID(rs.getString("PaperID"));
 				teacherStuPaper.setTeaStuYear(rs.getString("TEA_STU_YEAR"));
@@ -1332,23 +1371,31 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTeaStuPaperID() {
-		String sql = "select PaperID from tea_stu_paper order by PaperID desc";
+		String sql = "select * from tea_stu_paper where PaperID = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("PaperID");
-				String newSql = "update tea_stu_paper set PaperID = ? where PaperID = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select PaperID from tea_stu_paper order by PaperID desc";
+				smt = conn.prepareStatement(sql);
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("PaperID");
+					String newSql = "update tea_stu_paper set PaperID = ? where PaperID = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1367,7 +1414,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherStuTopic> getTeacherStuTopic(String teaCode) {
 		List<TeacherStuTopic> out = new ArrayList<TeacherStuTopic>();
 		String sql = "select TopicID, TEA_STU_YEAR, TEA_STU_NAME from tea_stu_topic "
-				+ "where TEA_CODE = ? group by TopicID";
+				+ "where TEA_CODE = ? order by TopicID";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1376,7 +1423,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherStuTopic teacherStuTopic = new TeacherStuTopic();
-				teacherStuTopic.setName("§jæ«±M√D´¸æ…");
+				teacherStuTopic.setName("Â§ßÂ≠∏Â∞àÈ°åÊåáÂ∞é");
 				teacherStuTopic.setFlag(true);
 				teacherStuTopic.setTopicID(rs.getString("TopicID"));
 				teacherStuTopic.setTeaStuYear(rs.getString("TEA_STU_YEAR"));
@@ -1481,23 +1528,31 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTeaStuTopicID() {
-		String sql = "select TopicID from tea_stu_topic order by TopicID desc";
+		String sql = "select * from tea_stu_topic where TopicID = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TopicID");
-				String newSql = "update tea_stu_topic set TopicID = ? where TopicID = ?";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TopicID from tea_stu_topic order by TopicID desc";
+				smt = conn.prepareStatement(sql);
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TopicID");
+					String newSql = "update tea_stu_topic set TopicID = ? where TopicID = ?";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1516,7 +1571,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getIssuePaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1525,7 +1580,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("¥¡•ZΩ◊§Â");
+				teacherOtherInfo.setName("ÊúüÂàäË´ñÊñá");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -1633,27 +1688,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshIssuePaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1672,7 +1737,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getMeetingPaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAB' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAB' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1681,7 +1746,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("¨„∞Q∑|Ω◊§Â");
+				teacherOtherInfo.setName("Á†îË®éÊúÉË´ñÊñá");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -1790,27 +1855,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshMeetingPaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAB' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAB' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAB'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAB' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAB'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1829,7 +1904,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getBooks(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAC' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAC' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1838,7 +1913,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("Æ—ƒy");
+				teacherOtherInfo.setName("Êõ∏Á±ç");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -1946,27 +2021,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshBookCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAC' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAC' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAC'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAC' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAC'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -1985,7 +2070,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getTechReport(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAD' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAD' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -1994,7 +2079,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("ßﬁ≥N≥¯ßi");
+				teacherOtherInfo.setName("ÊäÄË°ìÂ†±Âëä");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2102,27 +2187,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTechReportCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAD' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAD' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAD'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAD' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAD'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2141,7 +2236,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getTecherPaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAE' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAE' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2150,7 +2245,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("≤¶∑~Ω◊§Â");
+				teacherOtherInfo.setName("Áï¢Ê•≠Ë´ñÊñá");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2258,27 +2353,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshTecherPaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAE' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAE' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAE'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAE' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAE'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2297,7 +2402,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getMagazinePaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAF' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAF' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2306,7 +2411,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("¶b∏Í∞T¨€√ˆ¬¯ªx§W™Ò¥X¶~µo™Ì§ß§Â≥π");
+				teacherOtherInfo.setName("Âú®Ë≥áË®äÁõ∏ÈóúÈõúË™å‰∏äËøëÂπæÂπ¥ÁôºË°®‰πãÊñáÁ´†");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2414,27 +2519,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshMagazinePaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAF' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAF' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAF'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAF' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAF'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2453,7 +2568,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getWaitingPaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAG' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAG' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2462,7 +2577,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("¥¡•Zºf¨d§§Ω◊§Â");
+				teacherOtherInfo.setName("ÊúüÂàäÂØ©Êü•‰∏≠Ë´ñÊñá");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2570,27 +2685,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshWaitingPaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAG' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAG' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAG'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAG' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAG'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2609,7 +2734,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getScholarPaper(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAH' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BAH' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2618,7 +2743,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("æ«≥Nµ€ß@");
+				teacherOtherInfo.setName("Â≠∏Ë°ìËëó‰Ωú");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2726,27 +2851,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshScholarPaperCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BAH' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BAH' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAH'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BAH' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BAH'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2765,7 +2900,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getPracticeReach(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BDA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'BDA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2774,7 +2909,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("πÍ∞»¨„®s§∫Æe");
+				teacherOtherInfo.setName("ÂØ¶ÂãôÁ†îÁ©∂ÂÖßÂÆπ");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -2882,27 +3017,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshPracticeReachCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'BDA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'BDA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BDA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'BDA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'BDA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -2921,7 +3066,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getOtherExp(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'CCA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'CCA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -2930,7 +3075,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("®‰•L±–æ«∏g≈Á");
+				teacherOtherInfo.setName("ÂÖ∂‰ªñÊïôÂ≠∏Á∂ìÈ©ó");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -3038,27 +3183,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshOtherExpCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'CCA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'CCA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'CCA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'CCA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'CCA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -3077,7 +3232,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getInSchService(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DAA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DAA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -3086,7 +3241,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("Æ’§∫™A∞»§∫Æe");
+				teacherOtherInfo.setName("Ê†°ÂÖßÊúçÂãôÂÖßÂÆπ");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -3194,27 +3349,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshInSchServiceCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'DAA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'DAA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DAA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'DAA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DAA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -3233,7 +3398,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getOutSchService(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DBA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DBA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -3242,7 +3407,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("Æ’•~™A∞»§∫Æe");
+				teacherOtherInfo.setName("Ê†°Â§ñÊúçÂãôÂÖßÂÆπ");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -3350,27 +3515,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshOutSchServiceCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'DBA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'DBA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DBA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'DBA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DBA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -3389,7 +3564,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getAsCommitMem(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DCA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DCA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -3398,7 +3573,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("æ·•Ù©e≠˚§∫Æe");
+				teacherOtherInfo.setName("Êìî‰ªªÂßîÂì°ÂÖßÂÆπ");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -3506,27 +3681,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshAsCommitMemCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'DCA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'DCA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DCA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'DCA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DCA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -3545,7 +3730,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public List<TeacherOtherInfo> getScholarExp(String teaCode) {
 		List<TeacherOtherInfo> out = new ArrayList<TeacherOtherInfo>();
 		String sql = "select TEA_DATA_CONT_CODE, TEA_DATA_CONT, TEA_DATA_PER from tea_data_per_cont "
-				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DDA' group by TEA_DATA_CONT_CODE";
+				+ "where TEA_CODE = ? and TEA_DATA_SUB_CODE = 'DDA' order by TEA_DATA_CONT_CODE";
 
 		try {
 			conn = dataSource.getConnection();
@@ -3554,7 +3739,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherOtherInfo teacherOtherInfo = new TeacherOtherInfo();
-				teacherOtherInfo.setName("æ«≥N∏g≈Á§∫Æe");
+				teacherOtherInfo.setName("Â≠∏Ë°ìÁ∂ìÈ©óÂÖßÂÆπ");
 				teacherOtherInfo.setFlag(true);
 				teacherOtherInfo.setTeaDataContCode(rs.getString("TEA_DATA_CONT_CODE"));
 				teacherOtherInfo.setTeaDataCont(rs.getString("TEA_DATA_CONT"));
@@ -3662,27 +3847,37 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	private void refreshScholarExpCode(TeacherBasicInfoAdmin teaInfo) {
-		String sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
-				+ "and TEA_DATA_SUB_CODE = 'DDA' order by TEA_DATA_CONT_CODE desc";
+		String sql = "select * from tea_data_per_cont where TEA_CODE = ? "
+				+ "and TEA_DATA_SUB_CODE = 'DDA' and TEA_DATA_CONT_CODE = '1'";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
 			smt.setString(1, teaInfo.getTeaCode());
 			rs = smt.executeQuery();
-			while (rs.next()) {
-				int i = rs.getInt("TEA_DATA_CONT_CODE");
-				String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
-						+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DDA'";
-				PreparedStatement newSmt = conn.prepareStatement(newSql);
-				newSmt.setString(1, Integer.toString(i + 1));
-				newSmt.setString(2, teaInfo.getTeaCode());
-				newSmt.setString(3, Integer.toString(i));
-				newSmt.executeUpdate();
-				newSmt.close();
+			if (rs.next()) {
+				rs.close();
+				smt.close();
+
+				sql = "select TEA_DATA_CONT_CODE from tea_data_per_cont where TEA_CODE = ? "
+						+ "and TEA_DATA_SUB_CODE = 'DDA' order by TEA_DATA_CONT_CODE desc";
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, teaInfo.getTeaCode());
+				rs = smt.executeQuery();
+				while (rs.next()) {
+					int i = rs.getInt("TEA_DATA_CONT_CODE");
+					String newSql = "update tea_data_per_cont set TEA_DATA_CONT_CODE = ? where " + "TEA_CODE = ? "
+							+ "and TEA_DATA_CONT_CODE = ? and TEA_DATA_SUB_CODE = 'DDA'";
+					PreparedStatement newSmt = conn.prepareStatement(newSql);
+					newSmt.setString(1, Integer.toString(i + 1));
+					newSmt.setString(2, teaInfo.getTeaCode());
+					newSmt.setString(3, Integer.toString(i));
+					newSmt.executeUpdate();
+					newSmt.close();
+				}
+				rs.close();
+				smt.close();
 			}
-			rs.close();
-			smt.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
