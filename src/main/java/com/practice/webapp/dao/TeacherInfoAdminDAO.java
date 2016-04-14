@@ -2,6 +2,7 @@ package com.practice.webapp.dao;
 
 import java.util.List;
 
+import com.practice.webapp.entity.teacher.RankInfo;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfoAdmin;
@@ -22,7 +23,7 @@ public interface TeacherInfoAdminDAO {
 	public void changeView(TeacherBasicInfoAdmin changeInfo);//更改教師信息是否顯示在前端
 	public void newTeacherBasicInfo(TeacherBasicInfoAdmin newInfo);//新增教師基本信息
 	public List<TeacherBasicInfoAdmin> teacherShowList(String teaType);//顯示目前教師在前端的顯示順序
-	public void changeTeacherRank(TeacherBasicInfoAdmin changeInfo);//修改教師的前端順序
+	public void changeTeacherRank(List<RankInfo> rankInfo);//修改教師的前端順序
 	
 	public List<TeacherEduInfo> getTeacherEduInfo(String teaCode);//獲取特定教師的學歷資料
 	public void deleteTeaEdu(TeacherBasicInfoAdmin teaInfo, TeacherEduInfo eduInfo);//刪除指定學歷資料

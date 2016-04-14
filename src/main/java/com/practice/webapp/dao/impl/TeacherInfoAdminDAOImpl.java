@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.practice.webapp.dao.TeacherInfoAdminDAO;
+import com.practice.webapp.entity.teacher.RankInfo;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfoAdmin;
 import com.practice.webapp.entity.teacher.TeacherEduInfo;
@@ -404,19 +405,22 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return info;
 	}
 
-	// 還沒有被調用
 	@Override
-	public void changeTeacherRank(TeacherBasicInfoAdmin changeInfo) {
-		String sql = "Update teacher set TEA_SORT = ? where TEA_CODE = ?";
-
+	public void changeTeacherRank(List<RankInfo> rankInfo) {
+		RankInfo info = null;
 		try {
 			conn = dataSource.getConnection();
-			smt = conn.prepareStatement(sql);
-			smt.setString(1, changeInfo.getTeaSort());
-			smt.setString(2, changeInfo.getTeaCode());
-			smt.executeUpdate();
-			smt.close();
+			for (int i = 0; i < rankInfo.size(); i++) {
+				info = rankInfo.get(i);
 
+				String sql = "Update teacher set TEA_SORT = ? where TEA_CODE = ?";
+
+				smt = conn.prepareStatement(sql);
+				smt.setString(1, info.getSort());
+				smt.setString(2, info.getTeaCode());
+				smt.executeUpdate();
+				smt.close();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 
@@ -881,8 +885,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 				rs = smt.executeQuery();
 				while (rs.next()) {
 					int i = rs.getInt("TEA_SPE_CODE");
-					String newSql = "update tea_spe set TEA_SPE_CODE = ? where TEA_CODE = ? "
-							+ "and TEA_SPE_CODE = ?";
+					String newSql = "update tea_spe set TEA_SPE_CODE = ? where TEA_CODE = ? " + "and TEA_SPE_CODE = ?";
 					PreparedStatement newSmt = conn.prepareStatement(newSql);
 					newSmt.setString(1, Integer.toString(i + 1));
 					newSmt.setString(2, teaInfo.getTeaCode());

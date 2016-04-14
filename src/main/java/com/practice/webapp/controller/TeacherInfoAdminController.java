@@ -110,9 +110,12 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/rankTeacherList", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView changeTeacherRank(@RequestBody String rank) {
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<LinkedHashMap<String, Object>> rankList = null;
 		List<RankInfo> rankInfo = new ArrayList<RankInfo>();
@@ -121,15 +124,24 @@ public class TeacherInfoAdminController {
 			// 獲取json包的大小
 			// System.out.println(rankList.size());
 			for (int i = 0; i < rankList.size(); i++) {
+				RankInfo info = new RankInfo();
 				Map<String, Object> map = rankList.get(i);
 				Set<String> set = map.keySet();
 				Iterator<String> it = set.iterator();
 				while (it.hasNext()) {
 					String key = it.next();
-					System.out.println(key + ":" + map.get(key));
-					//怎麼把這些值封裝到list中？
+					// System.out.println(key + ":" + map.get(key));
+					// 把這些值封裝到list中
+					if (key == "teaSort") {
+						info.setSort(map.get(key).toString());
+					}
+					if (key == "teaCode") {
+						info.setTeaCode(map.get(key).toString());
+					}
 				}
+				rankInfo.add(info);
 			}
+			teacherInfoAdminDAO.changeTeacherRank(rankInfo);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

@@ -25,9 +25,4 @@ public class RankInfo {
 		this.sort = sort;
 	}
 
-	public RankInfo(String teaCode, String sort) {
-		super();
-		this.teaCode = teaCode;
-		this.sort = sort;
-	}
 }
