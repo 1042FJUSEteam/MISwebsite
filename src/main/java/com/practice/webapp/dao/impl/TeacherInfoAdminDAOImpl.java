@@ -1150,9 +1150,9 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			smt.setString(1, planInfo.getTeaPlanPer());
 			smt.setString(2, planInfo.getTeaPlanLeader());
 			smt.setString(3, planInfo.getTeaPlanSpon());
-			smt.setString(5, planInfo.getTeaPlanMon());
-			smt.setString(6, planInfo.getTeaPlanPos());
-			smt.setString(7, teaInfo.getTeaCode());
+			smt.setString(4, planInfo.getTeaPlanMon());
+			smt.setString(5, planInfo.getTeaPlanPos());
+			smt.setString(6, teaInfo.getTeaCode());
 			smt.setString(7, planInfo.getTeaPlanCode());
 			smt.executeUpdate();
 			smt.close();
@@ -1503,7 +1503,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	public void newTeaStuTopic(TeacherBasicInfoAdmin teaInfo, TeacherStuTopic teaStuTopic) {
 		refreshTeaStuTopicID();
 
-		String sql = "insert intotea_stu_topic(TopicID, TEA_CODE, TEA_STU_YEAR, TEA_STU_NAME) " + "values('1',?,?,?)";
+		String sql = "insert into tea_stu_topic(TopicID, TEA_CODE, TEA_STU_YEAR, TEA_STU_NAME) " + "values('1',?,?,?)";
 
 		try {
 			conn = dataSource.getConnection();

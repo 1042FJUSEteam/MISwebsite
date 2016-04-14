@@ -164,15 +164,13 @@
 									<c:forEach items="${teacherSpeInfo}" var="teacherSpeInfo">
 										<tr>
 											<td>${teacherSpeInfo.teaSpe}</td>
-											<td><a class="btn btn-sm btn-default updateTeaSpeInfo" href="#"
-												data-toggle="modal"
-												data-target="#updateTeaSpe"
+											<td><a class="btn btn-sm btn-default updateTeaSpeInfo"
+												href="#" data-toggle="modal" data-target="#updateTeaSpe"
 												data-updateSpeTeaCode="${teacher.teaCode}"
 												data-updateTeaSpeCode="${teacherSpeInfo.teaSpeCode}"
 												data-updateTeaSpe="${teacherSpeInfo.teaSpe}">修改</a> <a
-												class="btn btn-sm btn-danger deleteBtn deleteTeaSpeInfo" href="#"
-												data-toggle="modal"
-												data-target="#deleteTeaSpe"
+												class="btn btn-sm btn-danger deleteBtn deleteTeaSpeInfo"
+												href="#" data-toggle="modal" data-target="#deleteTeaSpe"
 												data-deleteSpeTeaCode="${teacher.teaCode}"
 												data-deleteSpeExpCode="${teacherSpeInfo.teaSpeCode}">刪除</a></td>
 											<td>暫未開發</td>
@@ -236,15 +234,17 @@
 													<tr>
 														<td>${teacherIssuePaper.teaDataPer}</td>
 														<td>${teacherIssuePaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateIssuePaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateIssuePaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateIssuePaper"
 															data-updateIssuePaperTeaCode="${teacher.teaCode}"
 															data-updateIssuePaperCode="${teacherIssuePaper.teaDataContCode}"
 															data-IssuePaperDataPer="${teacherIssuePaper.teaDataPer}"
 															data-IssuePaperDataCont="${teacherIssuePaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteIssuePaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteIssuePaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteIssuePaper"
 															data-deleteIssuePaperTeaCode="${teacher.teaCode}"
 															data-deleteIssuePaperCode="${teacherIssuePaper.teaDataContCode}">刪除</a></td>
@@ -279,15 +279,17 @@
 													<tr>
 														<td>${teacherMeetingPaper.teaDataPer}</td>
 														<td>${teacherMeetingPaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateMeetingPaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateMeetingPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateMeetingPaper"
 															data-updateMeetingPaperTeaCode="${teacher.teaCode}"
 															data-updateMeetingPaperCode="${teacherMeetingPaper.teaDataContCode}"
 															data-MeetingPaperDataPer="${teacherMeetingPaper.teaDataPer}"
 															data-MeetingPaperDataCont="${teacherMeetingPaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteMeetingPaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteMeetingPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteMeetingPaper"
 															data-deleteMeetingPaperTeaCode="${teacher.teaCode}"
 															data-deleteMeetingPaperCode="${teacherMeetingPaper.teaDataContCode}">刪除</a></td>
@@ -321,16 +323,14 @@
 													<tr>
 														<td>${teacherBooks.teaDataPer}</td>
 														<td>${teacherBooks.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateBooksInfo" href="#"
-															data-toggle="modal"
-															data-target="#updateBooks"
+														<td><a class="btn btn-sm btn-default updateBooksInfo"
+															href="#" data-toggle="modal" data-target="#updateBooks"
 															data-updateBooksTeaCode="${teacher.teaCode}"
 															data-updateBooksCode="${teacherBooks.teaDataContCode}"
 															data-BooksDataPer="${teacherBooks.teaDataPer}"
 															data-BooksDataCont="${teacherBooks.teaDataCont}">修改</a> <a
-															class="btn btn-sm btn-danger deleteBtn deleteBooksInfo" href="#"
-															data-toggle="modal"
-															data-target="#deleteBooks"
+															class="btn btn-sm btn-danger deleteBtn deleteBooksInfo"
+															href="#" data-toggle="modal" data-target="#deleteBooks"
 															data-deleteBooksTeaCode="${teacher.teaCode}"
 															data-deleteBooksCode="${teacherBooks.teaDataContCode}">刪除</a></td>
 														<td>暫未開發</td>
@@ -364,15 +364,17 @@
 													<tr>
 														<td>${teacherTechReport.teaDataPer}</td>
 														<td>${teacherTechReport.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateTechReportInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateTechReportInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateTechReport"
 															data-updateTechReportTeaCode="${teacher.teaCode}"
 															data-updateTechReportCode="${teacherTechReport.teaDataContCode}"
 															data-TechReportDataPer="${teacherTechReport.teaDataPer}"
 															data-TechReportDataCont="${teacherTechReport.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteTechReportInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteTechReportInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteTechReport"
 															data-deleteTechReportTeaCode="${teacher.teaCode}"
 															data-deleteTechReportCode="${teacherTechReport.teaDataContCode}">刪除</a></td>
@@ -406,15 +408,17 @@
 													<tr>
 														<td>${teacherPaper.teaDataPer}</td>
 														<td>${teacherPaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateTeacherPaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateTeacherPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateTeacherPaper"
 															data-updateTeacherPaperTeaCode="${teacher.teaCode}"
 															data-updateTeacherPaperCode="${teacherPaper.teaDataContCode}"
 															data-TeacherPaperDataPer="${teacherPaper.teaDataPer}"
 															data-TeacherPaperDataCont="${teacherPaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteTeacherPaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteTeacherPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteTeacherPaper"
 															data-deleteTeacherPaperTeaCode="${teacher.teaCode}"
 															data-deleteTeacherPaperCode="${teacherPaper.teaDataContCode}">刪除</a></td>
@@ -449,15 +453,17 @@
 													<tr>
 														<td>${teacherMagazinePaper.teaDataPer}</td>
 														<td>${teacherMagazinePaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateMagazinePaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateMagazinePaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateMagazinePaper"
 															data-updateMagazinePaperTeaCode="${teacher.teaCode}"
 															data-updateMagazinePaperCode="${teacherMagazinePaper.teaDataContCode}"
 															data-MagazinePaperDataPer="${teacherMagazinePaper.teaDataPer}"
 															data-MagazinePaperDataCont="${teacherMagazinePaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteMagazinePaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteMagazinePaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteMagazinePaper"
 															data-deleteMagazinePaperTeaCode="${teacher.teaCode}"
 															data-deleteMagazinePaperCode="${teacherMagazinePaper.teaDataContCode}">刪除</a></td>
@@ -492,15 +498,17 @@
 													<tr>
 														<td>${teacherWaitingPaper.teaDataPer}</td>
 														<td>${teacherWaitingPaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateWaitingPaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateWaitingPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateWaitingPaper"
 															data-updateWaitingPaperTeaCode="${teacher.teaCode}"
 															data-updateWaitingPaperCode="${teacherWaitingPaper.teaDataContCode}"
 															data-WaitingPaperDataPer="${teacherWaitingPaper.teaDataPer}"
 															data-WaitingPaperDataCont="${teacherWaitingPaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteWaitingPaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteWaitingPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteWaitingPaper"
 															data-deleteWaitingPaperTeaCode="${teacher.teaCode}"
 															data-deleteWaitingPaperCode="${teacherWaitingPaper.teaDataContCode}">刪除</a></td>
@@ -535,15 +543,17 @@
 													<tr>
 														<td>${teacherScholarPaper.teaDataPer}</td>
 														<td>${teacherScholarPaper.teaDataCont}</td>
-														<td><a class="btn btn-sm btn-default updateScholarPaperInfo" href="#"
-															data-toggle="modal"
+														<td><a
+															class="btn btn-sm btn-default updateScholarPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#updateScholarPaper"
 															data-updateScholarPaperTeaCode="${teacher.teaCode}"
 															data-updateScholarPaperCode="${teacherScholarPaper.teaDataContCode}"
 															data-ScholarPaperDataPer="${teacherScholarPaper.teaDataPer}"
 															data-ScholarPaperDataCont="${teacherScholarPaper.teaDataCont}">修改</a>
-															<a class="btn btn-sm btn-danger deleteBtn deleteScholarPaperInfo" href="#"
-															data-toggle="modal"
+															<a
+															class="btn btn-sm btn-danger deleteBtn deleteScholarPaperInfo"
+															href="#" data-toggle="modal"
 															data-target="#deleteScholarPaper"
 															data-deleteScholarPaperTeaCode="${teacher.teaCode}"
 															data-deleteScholarPaperCode="${teacherScholarPaper.teaDataContCode}">刪除</a></td>
@@ -584,17 +594,15 @@
 												<td>${teacherAwardInfo.teaAwaYear}</td>
 												<td>${teacherAwardInfo.teaAwaDep}</td>
 												<td>${teacherAwardInfo.teaAwa}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateTeaAwaInfo" data-toggle="modal"
-													data-target="#updateTeaAwa"
+												<td><a class="btn btn-sm btn-default updateTeaAwaInfo"
+													href="#" data-toggle="modal" data-target="#updateTeaAwa"
 													data-updateTeaAwaTeaCode="${teacher.teaCode}"
-													data-UpdateTeaAwaCode="${teacherAwardInfo.teaAwaCode}"
+													data-updateTeaAwaCode="${teacherAwardInfo.teaAwaCode}"
 													data-teaAwaYear="${teacherAwardInfo.teaAwaYear}"
 													data-teaAwaDep="${teacherAwardInfo.teaAwaDep}"
-													data-teaAwa="${teacherAwardInfo.teaAwa}">修改</a> <a
-													class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteTeaAwaInfo" data-toggle="modal"
-													data-target="#deleteTeaAwa"
+													data-teaAwaInfo="${teacherAwardInfo.teaAwa}">修改</a> <a
+													class="btn btn-sm btn-danger deleteBtn deleteTeaAwaInfo"
+													href="#" data-toggle="modal" data-target="#deleteTeaAwa"
 													data-deleteTeaAwaTeaCode="${teacher.teaCode}"
 													data-deleteTeaAwaCode="${teacherAwardInfo.teaAwaCode}">刪除</a></td>
 												<td>暫未開發</td>
@@ -637,20 +645,18 @@
 												<td>${teacherPlanInfo.teaPlanSpon}</td>
 												<td>${teacherPlanInfo.teaPlanMon}</td>
 												<td>${teacherPlanInfo.teaPlanPos}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateTeaAwaInfo" data-toggle="modal"
-													data-target="#updateTeaAwa"
+												<td><a class="btn btn-sm btn-default updateTeaPlanInfo"
+													href="#" data-toggle="modal" data-target="#updateTeaPlan"
 													data-updateTeaPlanTeaCode="${teacher.teaCode}"
-													data-UpdateTeaPlanCode="${teacherPlanInfo.teaPlanCode}"
+													data-updateTeaPlanCode="${teacherPlanInfo.teaPlanCode}"
 													data-teaPlanPer="${teacherPlanInfo.teaPlanPer}"
 													data-teaPlanLeader="${teacherPlanInfo.teaPlanLeader}"
 													data-teaPlanName="${teacherPlanInfo.teaPlanName}"
 													data-teaPlanSpon="${teacherPlanInfo.teaPlanSpon}"
 													data-teaPlanMon="${teacherPlanInfo.teaPlanMon}"
 													data-teaPlanPos="${teacherPlanInfo.teaPlanPos}">修改</a> <a
-													class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteTeaPlanInfo" data-toggle="modal"
-													data-target="#deleteTeaPlan"
+													class="btn btn-sm btn-danger deleteBtn deleteTeaPlanInfo"
+													href="#" data-toggle="modal" data-target="#deleteTeaPlan"
 													data-deleteTeaPlanTeaCode="${teacher.teaCode}"
 													data-deleteTeaPlanCode="${teacherPlanInfo.teaPlanCode}">刪除</a></td>
 												<td>暫未開發</td>
@@ -686,16 +692,16 @@
 											<tr>
 												<td>${teacherPracticeReach.teaDataPer}</td>
 												<td>${teacherPracticeReach.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updatePracticalInfo" data-toggle="modal"
-													data-target="#updatePractical"
+												<td><a
+													class="btn btn-sm btn-default updatePracticalInfo" href="#"
+													data-toggle="modal" data-target="#updatePractical"
 													data-updatePracticalTeaCode="${teacher.teaCode}"
 													data-UpdatePracticalCode="${teacherPracticeReach.teaDataContCode}"
 													data-PracticalDataPer="${teacherPracticeReach.teaDataPer}"
 													data-PracticalDataCont="${teacherPracticeReach.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deletePracticalInfo" data-toggle="modal"
-													data-target="#deletePractical"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deletePracticalInfo"
+													href="#" data-toggle="modal" data-target="#deletePractical"
 													data-deletePracticalTeaCode="${teacher.teaCode}"
 													data-deletePracticalCode="${teacherPracticeReach.teaDataContCode}">刪除</a></td>
 												<td>暫未開發</td>
@@ -715,7 +721,7 @@
 					<div class="tabs">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#teaStuTopic" data-toggle="tab">指導學生專題</a></li>
-							<li class=""><a href="#teaStuPaper" data-toggle="tab">指導研究生專題</a></li>
+							<li class=""><a href="#teaStuPaper" data-toggle="tab">指導研究生論文</a></li>
 							<li class=""><a href="#otherTeaExp" data-toggle="tab">其他教學經驗</a></li>
 						</ul>
 						<div class="tab-content">
@@ -743,15 +749,15 @@
 											<tr>
 												<td>${teacherStuTopic.teaStuYear}</td>
 												<td>${teacherStuTopic.teaStuName}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateTeaStuTopicInfo" data-toggle="modal"
-													data-target="#updateTeaStuTopic"
+												<td><a
+													class="btn btn-sm btn-default updateTeaStuTopicInfo"
+													data-toggle="modal" data-target="#updateTeaStuTopic"
 													data-updateTeaStuTopicTeaCode="${teacher.teaCode}"
 													data-UpdateTeaStuTopicCode="${teacherStuTopic.topicID}"
 													data-teaStuYear="${teacherStuTopic.teaStuYear}"
 													data-teaStuName="${teacherStuTopic.teaStuName}">修改</a> <a
-													class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteTeaStuTopicInfo" data-toggle="modal"
+													class="btn btn-sm btn-danger deleteBtn deleteTeaStuTopicInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteTeaStuTopic"
 													data-deleteTeaStuTopicTeaCode="${teacher.teaCode}"
 													data-deleteTeaStuTopicCode="${teacherStuTopic.topicID}">刪除</a></td>
@@ -764,7 +770,7 @@
 								<div class="clearfix"></div>
 							</div>
 
-							<!-- 指導研究生專題 -->
+							<!-- 指導研究生論文 -->
 							<div class="tab-pane fade" id="teaStuPaper">
 
 								<a class="btn btn-default" href="#" data-toggle="modal"
@@ -789,16 +795,18 @@
 												<td>${teacherStuPaper.teaStuYear}</td>
 												<td>${teacherStuPaper.teaStuName}</td>
 												<td>${teacherStuPaper.teaStuPaperName}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateTeaStuPaperInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateTeaStuPaperInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateTeaStuPaper"
 													data-updateTeaStuPaperTeaCode="${teacher.teaCode}"
 													data-UpdateTeaStuPaperCode="${teacherStuPaper.paperID}"
-													data-teaStuYear="${teacherStuPaper.teaStuYear}"
-													data-teaStuName="${teacherStuPaper.teaStuName}"
+													data-teaGraduateStuYear="${teacherStuPaper.teaStuYear}"
+													data-teaGraduateStuName="${teacherStuPaper.teaStuName}"
 													data-teaStuPaperName="${teacherStuPaper.teaStuPaperName}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteTeaStuPaperInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteTeaStuPaperInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteTeaStuPaper"
 													data-deleteTeaStuPaperTeaCode="${teacher.teaCode}"
 													data-deleteTeaStuPaperCode="${teacherStuPaper.paperID}">刪除</a></td>
@@ -834,15 +842,17 @@
 											<tr>
 												<td>${teacherOtherExp.teaDataPer}</td>
 												<td>${teacherOtherExp.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateOtherTeaExpInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateOtherTeaExpInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateOtherTeaExp"
 													data-updateOtherTeaExpTeaCode="${teacher.teaCode}"
 													data-UpdateOtherTeaExpCode="${teacherOtherExp.teaDataContCode}"
 													data-OtherTeaExpDataPer="${teacherOtherExp.teaDataPer}"
 													data-OtherTeaExpDataCont="${teacherOtherExp.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteOtherTeaExpInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteOtherTeaExpInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteOtherTeaExp"
 													data-deleteOtherTeaExpTeaCode="${teacher.teaCode}"
 													data-deleteOtherTeaExpCode="${teacherOtherExp.teaDataContCode}">刪除</a></td>
@@ -892,15 +902,17 @@
 											<tr>
 												<td>${teacherInSchService.teaDataPer}</td>
 												<td>${teacherInSchService.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateInSchServiceInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateInSchServiceInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateInSchService"
 													data-updateInSchServiceTeaCode="${teacher.teaCode}"
 													data-UpdateInSchServiceCode="${teacherInSchService.teaDataContCode}"
 													data-InSchServiceDataPer="${teacherInSchService.teaDataPer}"
 													data-InSchServiceDataCont="${teacherInSchService.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteInSchServiceInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteInSchServiceInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteInSchService"
 													data-deleteInSchServiceTeaCode="${teacher.teaCode}"
 													data-deleteInSchServiceCode="${teacherInSchService.teaDataContCode}">刪除</a></td>
@@ -937,15 +949,17 @@
 											<tr>
 												<td>${teacherOutSchService.teaDataPer}</td>
 												<td>${teacherOutSchService.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateOutSchServiceInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateOutSchServiceInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateOutSchService"
 													data-updateOutSchServiceTeaCode="${teacher.teaCode}"
 													data-UpdateOutSchServiceCode="${teacherOutSchService.teaDataContCode}"
 													data-OutSchServiceDataPer="${teacherOutSchService.teaDataPer}"
 													data-OutSchServiceDataCont="${teacherOutSchService.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteOutSchServiceInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteOutSchServiceInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteOutSchService"
 													data-deleteOutSchServiceTeaCode="${teacher.teaCode}"
 													data-deleteOutSchServiceCode="${teacherOutSchService.teaDataContCode}">刪除</a></td>
@@ -982,15 +996,17 @@
 											<tr>
 												<td>${teacherAsCommitMem.teaDataPer}</td>
 												<td>${teacherAsCommitMem.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateAsCommitMemInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateAsCommitMemInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateAsCommitMem"
 													data-updateAsCommitMemTeaCode="${teacher.teaCode}"
 													data-UpdateAsCommitMemCode="${teacherAsCommitMem.teaDataContCode}"
 													data-AsCommitMemDataPer="${teacherAsCommitMem.teaDataPer}"
 													data-AsCommitMemDataCont="${teacherAsCommitMem.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteAsCommitMemInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteAsCommitMemInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteAsCommitMem"
 													data-deleteAsCommitMemTeaCode="${teacher.teaCode}"
 													data-deleteAsCommitMemCode="${teacherAsCommitMem.teaDataContCode}">刪除</a></td>
@@ -1026,15 +1042,17 @@
 											<tr>
 												<td>${teacherScholarExp.teaDataPer}</td>
 												<td>${teacherScholarExp.teaDataCont}</td>
-												<td><a class="btn btn-sm btn-default" href="#"
-													id="updateScholarExpInfo" data-toggle="modal"
+												<td><a
+													class="btn btn-sm btn-default updateScholarExpInfo"
+													href="#" data-toggle="modal"
 													data-target="#updateScholarExp"
 													data-updateScholarExpTeaCode="${teacher.teaCode}"
 													data-UpdateScholarExpCode="${teacherScholarExp.teaDataContCode}"
 													data-ScholarExpDataPer="${teacherScholarExp.teaDataPer}"
 													data-ScholarExpDataCont="${teacherScholarExp.teaDataCont}">修改</a>
-													<a class="btn btn-sm btn-danger deleteBtn" href="#"
-													id="deleteScholarExpInfo" data-toggle="modal"
+													<a
+													class="btn btn-sm btn-danger deleteBtn deleteScholarExpInfo"
+													href="#" data-toggle="modal"
 													data-target="#deleteScholarExp"
 													data-deleteScholarExpTeaCode="${teacher.teaCode}"
 													data-deleteScholarExpCode="${teacherScholarExp.teaDataContCode}">刪除</a></td>
