@@ -59,7 +59,7 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<button type="submit" class="btn btn-info">確認修改</button>
+						<button type="button" class="btn btn-info">確認修改</button>
 					</form>
 				</div>
 			</div>
@@ -71,14 +71,19 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
-		$('.btn-info').click(
+		$(".btn-info").click(
 				function() {
 					var size = $("tr").length;
 					var j = 0;
-					var data = '"data":[ ';
+					var data = [];
+					//var data = '[ ';
 					$.each($("input:hidden[name='teaSort']"),
-							(function(i, val) {
-								j = j + 1;
+							function(i, val) {
+								var data_row = {};
+								data_row.teaSort = val.value;
+								data_row.teaCode = $("input:hidden[name='teaCode']").eq(i).val();
+								data.push(data_row);
+								/* j = j + 1;
 								var teaSort = val.value;
 								var teaCode = $("input:hidden[name='teaCode']")
 										.eq(i).val();
@@ -89,17 +94,22 @@
 								}
 								if (j == size) {
 									data = data + "]";
-								}
-							}));
-					//alert(data);
-					var rank = JSON.stringify(JSON.parse(data));
+								} */
+							});
+					
+					var rank = JSON.stringify(data);
 					$.ajax({
+						URL : "/rankTeacherList",
 						type : "POST",
-						URL : "/changeTeacherRank",
 						contentType : "application/json",
-						data : rank
+						data : rank,
+
+						success : function(result) {
+							alert("修改成功！")
+							$("body").html(result);
+						}
 					});
-				})
+				});
 	</script>
 	<script>
 		$(function() {

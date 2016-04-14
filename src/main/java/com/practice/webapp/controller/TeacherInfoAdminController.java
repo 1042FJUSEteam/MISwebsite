@@ -1,19 +1,26 @@
 package com.practice.webapp.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.entity.teacher.RankInfo;
@@ -26,6 +33,12 @@ import com.practice.webapp.entity.teacher.TeacherPlanInfo;
 import com.practice.webapp.entity.teacher.TeacherSpeInfo;
 import com.practice.webapp.entity.teacher.TeacherStuPaper;
 import com.practice.webapp.entity.teacher.TeacherStuTopic;
+
+import org.codehaus.jackson.JsonEncoding;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import com.practice.webapp.dao.TeacherInfoAdminDAO;
 
 @Controller
@@ -97,11 +110,34 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
-	// 無法獲取前端傳來的json，需要問一下瑞昱
-	@RequestMapping(value = "/changeTeacherRank", method = RequestMethod.POST)
-	public ModelAndView changeTeacherRank(@RequestBody RankInfo rank) {
+	@RequestMapping(value = "/rankTeacherList", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView changeTeacherRank(@RequestBody String rank) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<LinkedHashMap<String, Object>> rankList = null;
+		List<RankInfo> rankInfo = new ArrayList<RankInfo>();
+		try {
+			rankList = objectMapper.readValue(rank, List.class);
+			// 獲取json包的大小
+			// System.out.println(rankList.size());
+			for (int i = 0; i < rankList.size(); i++) {
+				Map<String, Object> map = rankList.get(i);
+				Set<String> set = map.keySet();
+				Iterator<String> it = set.iterator();
+				while (it.hasNext()) {
+					String key = it.next();
+					System.out.println(key + ":" + map.get(key));
+					//怎麼把這些值封裝到list中？
+				}
+			}
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
-
 		return model;
 	}
 
