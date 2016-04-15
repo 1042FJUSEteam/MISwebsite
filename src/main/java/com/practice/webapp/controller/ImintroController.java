@@ -175,38 +175,38 @@ public class ImintroController {
 		return model;
 	}
 	
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-    public ModelAndView upload() {
-    	ModelAndView model = new ModelAndView("fileupload");
-        return model;
-    }
-    
-    @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
-    public ModelAndView savefiles(@ModelAttribute Fileupload fileupload) throws IllegalStateException, IOException {
-    	ModelAndView model = new ModelAndView("fileuploadsuccess");
-    	
-        String saveDirectory = "d:/crunchify/";
- 
-        List<MultipartFile> crunchifyFiles = fileupload.getFiles();
- 
-        List<String> fileNames = new ArrayList<String>();
- 
-        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
-            for (MultipartFile multipartFile : crunchifyFiles) {
- 
-                String fileName = multipartFile.getOriginalFilename();
-                if (!"".equalsIgnoreCase(fileName)) {
-                    // Handle file content - multipartFile.getInputStream()
-                    multipartFile.transferTo(new File(saveDirectory + fileName));
-                    fileNames.add(fileName);
-                }
-            }
-        }
-        
-        model.addObject("fileNames", fileNames);
-        
-        return model;
-    }
+//    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+//    public ModelAndView upload() {
+//    	ModelAndView model = new ModelAndView("fileupload");
+//        return model;
+//    }
+//    
+//    @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
+//    public ModelAndView savefiles(@ModelAttribute Fileupload fileupload) throws IllegalStateException, IOException {
+//    	ModelAndView model = new ModelAndView("fileuploadsuccess");
+//    	
+//        String saveDirectory = "d:/crunchify/";
+// 
+//        List<MultipartFile> crunchifyFiles = fileupload.getFiles();
+// 
+//        List<String> fileNames = new ArrayList<String>();
+// 
+//        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+//            for (MultipartFile multipartFile : crunchifyFiles) {
+// 
+//                String fileName = multipartFile.getOriginalFilename();
+//                if (!"".equalsIgnoreCase(fileName)) {
+//                    // Handle file content - multipartFile.getInputStream()
+//                    multipartFile.transferTo(new File(saveDirectory + fileName));
+//                    fileNames.add(fileName);
+//                }
+//            }
+//        }
+//        
+//        model.addObject("fileNames", fileNames);
+//        
+//        return model;
+//    }
     
     //award
 	@RequestMapping(value = "/back_award", method = RequestMethod.GET)
