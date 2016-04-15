@@ -268,12 +268,35 @@ public class ImintroController {
 	}
 	
 	@RequestMapping(value = "/updateass", method = RequestMethod.POST)
-	public ModelAndView updateasspost(@ModelAttribute Assitant assitant){
-		System.out.println(assitant.getM_ldap());
+	public ModelAndView updateasspost(@ModelAttribute Assitant assitant) throws IllegalStateException, IOException {
+		//System.out.println(assitant.getM_ldap());
 		ModelAndView model = new ModelAndView("redirect:/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateass(assitant);
 		
+		 String saveDirectory = "C:/Users/uynihs/Documents/GitHub/MISwebsite/src/main/webapp/img/";
+		 
+		 
+	        List<MultipartFile> crunchifyFiles = assitant.getFiles();
+	        //System.out.println(crunchifyFiles);
+	        List<String> fileNames = new ArrayList<String>();
+	 
+	        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+	            for (MultipartFile multipartFile : crunchifyFiles) {
+	 
+	                String fileName = multipartFile.getOriginalFilename();
+	                if (!"".equalsIgnoreCase(fileName)) {
+	                    multipartFile.transferTo(new File(saveDirectory + fileName));
+	                    fileNames.add(fileName);
+	                    
+
+	                }
+	            }
+	        }	
+	        
+	        imintroDAO.updatepic(fileNames, assitant);
+	        model.addObject("fileNames", fileNames);
+	        
 		return model;
 	}
 	

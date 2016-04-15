@@ -40,7 +40,7 @@
 			</div>
 		</div><br/>
 		
-		<form method="post" action="updateass" id="updateForm">
+		<form method="post" action="updateass" id="updateForm"  modelAttribute="uploadForm" enctype="multipart/form-data">
 			<input type="hidden" name="m_ldap" value="${updateass.m_ldap}">
 			<div class="form-group">
 				<label>m_name:</label>
@@ -63,9 +63,9 @@
 				<p class="help-block">location</p>
 			</div>
 			<div class="form-group">
-				<label>tea_photo:</label>
-				<textarea type="text" name="tea_photo" rows="3" cols="40">${updateass.tea_photo}</textarea>
-				<p class="help-block">tea_photo</p>
+				<label>更新相片:</label>
+				<input name="files" type="file" />				
+				<p class="help-block">選擇照片:</p>
 			</div>
 			
 			<div class="form-group">
@@ -89,6 +89,9 @@
 		</div>
 		               			
 	</div>
+	
+    
+    	
   	
 	<%@include file="jspf/MISwebsiteFooter.jspf"%>
 	

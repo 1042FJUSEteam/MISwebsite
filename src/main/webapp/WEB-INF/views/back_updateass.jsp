@@ -40,17 +40,17 @@
 			<div class="col-md-12">	  			
 				<table class="table">
 				  	<tr>
-				  		<th>編輯</th>
-				  		<th></th>
-				  		<th>tea_code</th>
+				  		<th>編輯</th>				  		
+				  		<th>教師編號</th>
 				  		<th>姓名</th>
 				  		<th>職稱</th>
 				  		<th>ldap</th>
 				  		<th>電話</th>
 				  		<th>email</th>
 				  		<th>辦公室</th>
-				  		<th>照片</th>
-				  		<th>工作項目</th>			  		
+				  		<!--<th>照片</th>-->
+				  		<th>工作項目</th>	
+				  		<th>本機照片</th>		  		
 				  	</tr>
 					
 					<!-- 顯示所選擇的 -->
@@ -60,8 +60,7 @@
 							  		<td>
 							  			<a class="btn btn-default" href="updateass?m_ldap=${getAss.m_ldap}">修改資訊</a>
 							  			<a class="btn btn-default" href="insertass">新增人員</a>
-						  			</td>
-						  			<td>
+						  			
 							  			<a class="btn btn-default" href="updateworkcontent?tea_code=${getAss.tea_code}">修改工作</a>
 							  			<a class="btn btn-default" href="insertworkcontent?tea_code=${getAss.tea_code}">新增工作</a>
 						  			</td>
@@ -72,12 +71,13 @@
 							  		<td>${getAss.m_phone}</td>
 							  		<td>${getAss.m_email}</td>
 							  		<td>${getAss.location}</td>
-							  		<td>${getAss.tea_photo}</td>
+							  		<!-- <td>${getAss.tea_photo}</td> -->
 							  		<td width="200px">
 								  		<c:forEach items="${getAss.assitantworkList}" var="assitantworkList">
 								  			${assitantworkList.workContent}<br/>
 								  		</c:forEach>
 							  		</td>
+							  		<td><img src="img/${getAss.tea_photo}" width="200px" height="200px"></td>
 							  	</tr>					  	
 						</c:forEach>	  	
 					</tbody>
@@ -85,6 +85,8 @@
 				</table>
 			</div>
 		</div>
+		
+
 		
 				
 	</div>
@@ -134,6 +136,8 @@
 				});
     });
     </script>
+
+
 
     	
 	<%@include file="jspf/MISwebsiteFooter.jspf"%>

@@ -34,5 +34,7 @@ public interface ImintroDAO {
 	public void updateworkcontent(AssitantWork assitantWork);//update updateworkcontent
 	public void insertworkcontent(AssitantWork assitantWork);//新增助教工作
 	public void insertass(NewInfoGu newInfo);//新增助教
+	public void updatepic(List<String> fileNames, Assitant assitant);//更新助教照片
+	
 	
 }

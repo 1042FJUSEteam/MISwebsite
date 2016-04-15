@@ -3,6 +3,8 @@ package com.practice.webapp.entity.introduction;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Assitant {
 	private String tea_en_name;
 	private String m_name;
@@ -22,6 +24,35 @@ public class Assitant {
 	private List<String> workList = new ArrayList<String>();
 	private List<AssitantWork> assitantworkList = new ArrayList<AssitantWork>();
 	
+	//更新相片
+	private List<MultipartFile> crunchifyFiles;
+	 
+    public List<MultipartFile> getFiles() {
+        return crunchifyFiles;
+    }
+ 
+    public void setFiles(List<MultipartFile> files) {
+        this.crunchifyFiles = files;
+    }   
+    /*
+	private MultipartFile crunchifyFiles;	 
+	public MultipartFile getCrunchifyFiles() {
+		return crunchifyFiles;
+	}
+	public void setCrunchifyFiles(MultipartFile crunchifyFiles) {
+		this.crunchifyFiles = crunchifyFiles;
+	}
+	*/
+    
+//    private MultipartFile picfile;
+//	public MultipartFile getPicfile() {
+//		return picfile;
+//	}
+//
+//	public void setPicfile(MultipartFile picfile) {
+//		this.picfile = picfile;
+//	}
+
 	
 	
 	public List<AssitantWork> getAssitantworkList() {

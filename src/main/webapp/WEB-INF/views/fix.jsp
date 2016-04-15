@@ -39,7 +39,7 @@
 		<label>選擇:</label>
 		<form>
 			<select name="YourCategory" class="categorySelect">
-			<option value="0">All</option>
+			<option value="0">請選擇</option>
 				<c:forEach items="${getDeptIntro}" var="getDeptIntro">
 					<option value="${getDeptIntro.di_code}">${getDeptIntro.di_name}</option>
 				</c:forEach>
@@ -53,20 +53,21 @@
 			<div class="col-md-12">	  			
 				<table class="table">
 				  	<tr>
-				  		<th>di_code</th>
-				  		<th>di_name</th>
-				  		<th>dic_code</th>
-				  		<th>dic_name</th>
-				  		<th>dic_cont</th>
+				  		<th>欄位編號</th>
+				  		<th>欄位名稱</th>
+				  		<th>頁簽編號</th>
+				  		<th>頁簽名稱</th>
+				  		<th>內容</th>
 				  		<th>刪除</th>
 				  		<th>修改</th>			  		
 				  		<th>新增</th>
 				  	</tr>
 					
 					<!-- 顯示所選擇的 -->
-					<tbody id="testt">
-						<c:forEach items="${getAll}" var="getAll">
-							  	<tr class="category_${getAll.di_code} trrr">
+					<tbody id="testt" >
+					
+						<c:forEach items="${getAll}" var="getAll" >
+							  	<tr class="category_${getAll.di_code} trrr"  style="display: none">
 							  		<td>${getAll.di_code}</td>
 							  		<td>${getAll.di_name}</td>
 							  		<td>${getAll.dic_code}</td>
@@ -137,6 +138,8 @@
 				});
     });
     </script>
+
+
 
     	
 	<%@include file="jspf/MISwebsiteFooter.jspf"%>

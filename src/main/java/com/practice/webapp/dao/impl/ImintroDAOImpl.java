@@ -899,5 +899,33 @@ public class ImintroDAOImpl implements ImintroDAO{
 					}
 					return AssID;
 				}
+				
+			public void updatepic(List<String> fileNames, Assitant assitant){			
+				String sql = "UPDATE teacher SET TEA_PHOTO = ? WHERE TEA_LDAP = ?";
+
+				try {
+					conn = dataSource.getConnection();
+					smt = conn.prepareStatement(sql);
+					
+					System.out.println(fileNames.get(0));
+					System.out.println(assitant.getM_ldap());
+					
+					smt.setString(1, fileNames.get(0));
+					smt.setString(2, assitant.getM_ldap());
+
+					smt.executeUpdate();			
+					smt.close();
+					
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+		 
+				} finally {
+					if (conn != null) {
+						try {
+							conn.close();
+						} catch (SQLException e) {}
+					}
+				}
+			}
 	
 }
