@@ -47,9 +47,43 @@
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="proTeacherManage">
 								<div class="col-md-12">
-									<a class="btn btn-default"
-										href="rankTeacherList?type=T">更改前端顯示順序</a>
-									<p>此处添加搜索功能
+									<a class="btn btn-default" href="rankTeacherList?type=T">更改前端顯示順序</a>
+
+									<div class="row margin-top-20"></div>
+
+									<form id="searchProForm" action="searchPro" method="post">
+										<table width="60%">
+											<tr>
+												<td><select class="form-control" name="key"
+													id="ProSelection"
+													onChange="checkSelection(this.selectedIndex)">
+														<option value="teacher.TEA_LDAP">按照LDAP查找</option>
+														<option value="teacher.TEA_CODE">按照教師編號查找</option>
+														<option value="members.M_NAME">按照教師姓名查找</option>
+														<option value="teacher.TEA_EN_NAME">按照英文姓名查找</option>
+														<option value="class_post.POST_CODE">按照職稱查找</option>
+														<option value="members.M_PHONE">按照聯絡電話查找</option>
+														<option value="members.M_EMAIL">按照Email查找</option>
+														<option value="teacher.Location">按照辦公地址查找</option>
+												</select></td>
+												<td><input type="text" name="value"
+													class="form-control" id="proTextArea"> <select
+													class="form-control" name="disabled" id="proPosSelection"
+													style="display: none;">
+														<option value="DA">教授兼系主任</option>
+														<option value="DD">副教授兼系主任</option>
+														<option value="DT">教授</option>
+														<option value="DQ">副教授</option>
+														<option value="DR">助理教授</option>
+														<option value="DS">講師</option>
+														<option value="DZ">離校</option>
+												</select></td>
+												<td><button type="submit" class="btn btn-default">搜索</button>
+												</td>
+											</tr>
+										</table>
+									</form>
+
 									<div class="row margin-top-20"></div>
 
 									<table class="table table-hover" width="100%">
@@ -103,9 +137,41 @@
 
 							<div class="tab-pane fade" id="partTeacherManage">
 								<div class="col-md-12">
-									<a class="btn btn-default"
-										href="rankTeacherList?type=B">更改前端顯示順序</a>
-									<p>此处添加搜索功能
+									<a class="btn btn-default" href="rankTeacherList?type=B">更改前端顯示順序</a>
+
+									<div class="row margin-top-20"></div>
+
+									<form id="searchPartForm" action="searchPart" method="post">
+										<table width="60%">
+											<tr>
+												<td><select class="form-control" name="key"
+													id="PartSelection"
+													onChange="checkSelection2(this.selectedIndex)">
+														<option value="teacher.TEA_LDAP">按照LDAP查找</option>
+														<option value="teacher.TEA_CODE">按照教師編號查找</option>
+														<option value="members.M_NAME">按照教師姓名查找</option>
+														<option value="teacher.TEA_EN_NAME">按照英文姓名查找</option>
+														<option value="class_post.POST_CODE">按照職稱查找</option>
+														<option value="members.M_PHONE">按照聯絡電話查找</option>
+														<option value="members.M_EMAIL">按照Email查找</option>
+														<option value="teacher.Location">按照辦公地址查找</option>
+												</select></td>
+												<td><input type="text" name="value"
+													class="form-control" id="partTextArea"> <select
+													class="form-control" name="disabled" id="partPosSelection"
+													style="display: none;">
+														<option value="DT">教授</option>
+														<option value="DQ">副教授</option>
+														<option value="DR">助理教授</option>
+														<option value="DS">講師</option>
+														<option value="DZ">離校</option>
+												</select></td>
+												<td><button type="submit" class="btn btn-default">搜索</button>
+												</td>
+											</tr>
+										</table>
+									</form>
+
 									<div class="row margin-top-20"></div>
 
 									<table class="table table-hover" width="100%">
@@ -162,9 +228,9 @@
 									<form method="post" action="newTeacherBasicInfo"
 										id="newTeacherForm" class="signup-page">
 										<input type="hidden" name="teaCode" value="">
-										新增的教師圖片先用girl.jpg代替
-										<input type="hidden" name="teaPic" value="girl.jpg"> <input
-											type="hidden" name="teaSort" value="">
+										新增的教師圖片先用girl.jpg代替 <input type="hidden" name="teaPic"
+											value="girl.jpg"> <input type="hidden" name="teaSort"
+											value="">
 
 										<div class="form-group">
 											<label>LDAP<span class="color-red">*</span></label> <input
@@ -286,6 +352,42 @@
 	</script>
 	<script>
 		$("#newTeacherForm").validate();
+	</script>
+	<script>
+		$("#searchProForm").validate();
+	</script>
+	<script>
+		$("#searchPartForm").validate();
+	</script>
+	<script>
+		function checkSelection(x) {
+			if (x == 4) {
+				$("#proTextArea").hide();
+				$("#proPosSelection").show();
+				$("#proPosSelection").attr("name", "value");
+				$("#proTextArea").attr("name", "disabled");
+			} else {
+				$("#proTextArea").show();
+				$("#proPosSelection").hide();
+				$("#proPosSelection").attr("name", "disabled");
+				$("#proTextArea").attr("name", "value");
+			}
+		}
+	</script>
+	<script>
+		function checkSelection2(x) {
+			if (x == 4) {
+				$("#partTextArea").hide();
+				$("#partPosSelection").show();
+				$("#partPosSelection").attr("name", "value");
+				$("#partTextArea").attr("name", "disabled");
+			} else {
+				$("#partTextArea").show();
+				$("#partPosSelection").hide();
+				$("#partPosSelection").attr("name", "disabled");
+				$("#partTextArea").attr("name", "value");
+			}
+		}
 	</script>
 </body>
 

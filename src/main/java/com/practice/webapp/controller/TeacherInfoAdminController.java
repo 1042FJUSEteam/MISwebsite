@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.practice.webapp.entity.teacher.DetailRankInfo;
 import com.practice.webapp.entity.teacher.RankInfo;
+import com.practice.webapp.entity.teacher.ResearchTeacher;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfoAdmin;
 import com.practice.webapp.entity.teacher.TeacherEduInfo;
@@ -56,6 +58,36 @@ public class TeacherInfoAdminController {
 		// 兼任教師
 		List<TeacherBasicInfoAdmin> partTeacherList = new ArrayList<TeacherBasicInfoAdmin>();
 		partTeacherList = teacherInfoAdminDAO.getPartTeacherInfoList();
+		model.addObject("partTeacherList", partTeacherList);
+		return model;
+	}
+
+	@RequestMapping(value = "/searchPro", method = RequestMethod.POST)
+	public ModelAndView searchProAndGetTeacherList(@ModelAttribute ResearchTeacher researchInfo) {
+		ModelAndView model = new ModelAndView("teacherManage");
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		// 專任教師
+		List<TeacherBasicInfoAdmin> proTeacherList = new ArrayList<TeacherBasicInfoAdmin>();
+		proTeacherList = teacherInfoAdminDAO.getSearchProTeacherInfoList(researchInfo);
+		model.addObject("proTeacherList", proTeacherList);
+		// 兼任教師
+		List<TeacherBasicInfoAdmin> partTeacherList = new ArrayList<TeacherBasicInfoAdmin>();
+		partTeacherList = teacherInfoAdminDAO.getPartTeacherInfoList();
+		model.addObject("partTeacherList", partTeacherList);
+		return model;
+	}
+
+	@RequestMapping(value = "/searchPart", method = RequestMethod.POST)
+	public ModelAndView searchPartAndGetTeacherList(@ModelAttribute ResearchTeacher researchInfo) {
+		ModelAndView model = new ModelAndView("teacherManage");
+		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
+		// 專任教師
+		List<TeacherBasicInfoAdmin> proTeacherList = new ArrayList<TeacherBasicInfoAdmin>();
+		proTeacherList = teacherInfoAdminDAO.getProTeacherInfoList();
+		model.addObject("proTeacherList", proTeacherList);
+		// 兼任教師
+		List<TeacherBasicInfoAdmin> partTeacherList = new ArrayList<TeacherBasicInfoAdmin>();
+		partTeacherList = teacherInfoAdminDAO.getSearchPartTeacherInfoList(researchInfo);
 		model.addObject("partTeacherList", partTeacherList);
 		return model;
 	}

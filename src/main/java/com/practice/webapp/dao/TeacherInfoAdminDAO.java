@@ -3,6 +3,7 @@ package com.practice.webapp.dao;
 import java.util.List;
 
 import com.practice.webapp.entity.teacher.RankInfo;
+import com.practice.webapp.entity.teacher.ResearchTeacher;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfoAdmin;
@@ -17,6 +18,8 @@ import com.practice.webapp.entity.teacher.TeacherStuTopic;
 public interface TeacherInfoAdminDAO {
 	public List<TeacherBasicInfoAdmin> getProTeacherInfoList();//獲取專任教師基本資料
 	public List<TeacherBasicInfoAdmin> getPartTeacherInfoList();//獲取兼任教師基本資料
+	public List<TeacherBasicInfoAdmin> getSearchProTeacherInfoList(ResearchTeacher researchInfo);//在搜索條件下獲取專任教師基本資料
+	public List<TeacherBasicInfoAdmin> getSearchPartTeacherInfoList(ResearchTeacher researchInfo);//在搜索條件下獲取兼任教師基本資料
 	public void update(TeacherBasicInfoAdmin updateInfo);//更新教師基本資料
 	public void delete(TeacherBasicInfoAdmin deleteInfo);//刪除教師（判定爲離校）
 	public TeacherBasicInfoAdmin get(String teaCode);//獲取特定教師的基本資料
@@ -129,4 +132,5 @@ public interface TeacherInfoAdminDAO {
 	public void deleteScholarExp(TeacherBasicInfoAdmin teaInfo, TeacherOtherInfo scholarExp);//刪除指定教師學術經驗內容
 	public void updateScholarExp(TeacherBasicInfoAdmin teaInfo, TeacherOtherInfo scholarExp);//更新指定教師的學術經驗內容
 	public void newScholarExp(TeacherBasicInfoAdmin teaInfo, TeacherOtherInfo scholarExp);//建立新的教師學術經驗內容
+
 }

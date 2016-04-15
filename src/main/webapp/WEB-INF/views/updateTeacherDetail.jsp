@@ -81,7 +81,10 @@
 									</tr>
 									<c:forEach items="${teacherEduInfo}" var="teacherEduInfo">
 										<tr>
-											<td>${teacherEduInfo.teaSch}</td>
+											<td><input type="hidden" name="teaEduCode" id="teaEduCode"
+												value="${teacherEduInfo.teaEduCode }"> <input
+												type="hidden" name="teaCode" id="teaCode" value="${teacher.teaCode }">
+												${teacherEduInfo.teaSch}</td>
 											<td>${teacherEduInfo.teaDep}</td>
 											<td>${teacherEduInfo.teaDeg}</td>
 											<td><a class="btn btn-sm btn-default updateTeaEduInfo"
@@ -95,7 +98,10 @@
 												href="#" data-toggle="modal" data-target="#deleteTeaEdu"
 												data-deleteEduTeaCode="${teacher.teaCode}"
 												data-deleteEduCode="${teacherEduInfo.teaEduCode}">刪除</a></td>
-											<td>暫未開發</td>
+											<td>暫未開發
+											<!-- <button type="button" class="btn btn-default eduUp">上移</button>
+												<button type="button" class="btn btn-default eduDown">下移</button> -->
+											</td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -1083,6 +1089,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/editTeacherDetailInfo.js"></script>
+<script type="text/javascript" src="js/teacherDetailRank.js"></script>
 
 <script type="text/javascript" src="js/jquery.min.js"
 	type="text/javascript"></script>

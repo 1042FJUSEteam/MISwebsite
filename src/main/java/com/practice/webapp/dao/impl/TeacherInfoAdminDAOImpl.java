@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import com.practice.webapp.dao.TeacherInfoAdminDAO;
 import com.practice.webapp.entity.teacher.RankInfo;
+import com.practice.webapp.entity.teacher.ResearchTeacher;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfoAdmin;
 import com.practice.webapp.entity.teacher.TeacherEduInfo;
@@ -64,6 +65,69 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				TeacherBasicInfoAdmin info = new TeacherBasicInfoAdmin();
+				info.setTeaPic(rs.getString("TEA_PHOTO"));
+				info.setTeaCode(rs.getString("TEA_CODE"));
+				info.setTeaLDAP(rs.getString("TEA_LDAP"));
+				info.setTeaName(rs.getString("M_NAME"));
+				info.setTeaENName(rs.getString("TEA_EN_NAME"));
+				info.setTeaPos(rs.getString("POST_NAME"));
+				info.setTeaTel(rs.getString("M_PHONE"));
+				info.setTeaEmail(rs.getString("M_EMAIL"));
+				info.setTeaLoc(rs.getString("Location"));
+				info.setTeaAble(rs.getString("TEA_ABLE"));
+				infoList.add(info);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return infoList;
+	}
+
+	@Override
+	public List<TeacherBasicInfoAdmin> getSearchProTeacherInfoList(ResearchTeacher researchInfo) {
+		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
+				+ "members.M_NAME, teacher.TEA_EN_NAME, class_post.POST_NAME, "
+				+ "members.M_PHONE, members.M_EMAIL, teacher.Location, teacher.TEA_ABLE "
+				+ "from teacher, members, class_post, members_class " + "where "
+				+ "teacher.TEA_LDAP = members.M_LDAP and " + "members.M_LDAP = members_class.M_LDAP and "
+				+ "members_class.M_POST_CODE = class_post.POST_CODE and " + researchInfo.getKey() + " like ? "
+				+ "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
+		return getResearchList(sql, researchInfo);
+	}
+
+	@Override
+	public List<TeacherBasicInfoAdmin> getSearchPartTeacherInfoList(ResearchTeacher researchInfo) {
+		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
+				+ "members.M_NAME, teacher.TEA_EN_NAME, class_post.POST_NAME, "
+				+ "members.M_PHONE, members.M_EMAIL, teacher.Location, teacher.TEA_ABLE "
+				+ "from teacher, members, class_post, members_class " + "where "
+				+ "teacher.TEA_LDAP = members.M_LDAP and " + "members.M_LDAP = members_class.M_LDAP and "
+				+ "members_class.M_POST_CODE = class_post.POST_CODE and " + "teacher.TeacherType like 'B' "
+				+ "and " +researchInfo.getKey() + " like ?" + "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
+		return getResearchList(sql, researchInfo);
+	}
+
+	private List<TeacherBasicInfoAdmin> getResearchList(String sql, ResearchTeacher researchInfo) {
+		List<TeacherBasicInfoAdmin> infoList = new ArrayList<TeacherBasicInfoAdmin>();
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, "%" + researchInfo.getValue()+"%");
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherBasicInfoAdmin info = new TeacherBasicInfoAdmin();
