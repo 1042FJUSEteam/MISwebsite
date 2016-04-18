@@ -60,7 +60,7 @@
 				  		<th>內容</th>
 				  		<th>刪除</th>
 				  		<th>修改</th>			  		
-				  		<th>新增</th>
+				  		<!--  <th>新增</th>-->
 				  	</tr>
 					
 					<!-- 顯示所選擇的 -->
@@ -79,9 +79,9 @@
 							  		<td>
 							  			<a class="btn btn-default" href="updatedeptintro?di_code=${getAll.di_code}&dic_code=${getAll.dic_code}">修改</a>
 							  		</td>
-							  		<td>
+							  		<!-- <td>
 							  			<a class="btn btn-primary" href="insertdeptintro?di_code=${getAll.di_code}">新增</a>
-							  		</td>
+							  		</td> -->
 							  	</tr>							  	
 						</c:forEach>	  	
 					</tbody>
