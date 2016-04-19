@@ -33,7 +33,7 @@ public class Interceptor0417 implements HandlerInterceptor{
         
         if(StringUtils.isEmpty(user))
         {
-        	response.sendRedirect(contextPath+"/logintt");
+        	response.sendRedirect(contextPath+"/login");
         	return false;
         }
         

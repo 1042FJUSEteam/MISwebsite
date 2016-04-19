@@ -137,7 +137,7 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/updatedeptintro", method = RequestMethod.POST)
 	public ModelAndView updatedeptintropost(@ModelAttribute Imintro imintro){
-		ModelAndView model = new ModelAndView("redirect:/back_imintro");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.update(imintro);
 		
@@ -148,7 +148,7 @@ public class ImintroController {
 	public ModelAndView deleteImintro(@ModelAttribute Imintro imintro){
 		System.out.println("@@1 " + imintro.getDi_code());
 		System.out.println("@@2 " + imintro.getDic_code());
-		ModelAndView model = new ModelAndView("redirect:/back_imintro");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.delete(imintro);
 		
@@ -168,7 +168,7 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/insertdeptintro", method = RequestMethod.POST)
 	public ModelAndView insertdeptintropost(@ModelAttribute Imintro imintro){
-		ModelAndView model = new ModelAndView("redirect:/back_imintro");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.insert(imintro);
 		
@@ -235,7 +235,7 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/updateaward", method = RequestMethod.POST)
 	public ModelAndView updateawardpost(@ModelAttribute Award award){
-		ModelAndView model = new ModelAndView("redirect:/back_award");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_award");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateaward(award);
 		
@@ -270,11 +270,12 @@ public class ImintroController {
 	@RequestMapping(value = "/admin/updateass", method = RequestMethod.POST)
 	public ModelAndView updateasspost(@ModelAttribute Assitant assitant) throws IllegalStateException, IOException {
 		//System.out.println(assitant.getM_ldap());
-		ModelAndView model = new ModelAndView("redirect:/back_updateass");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateass(assitant);
 		
 		 String saveDirectory = "C:/Users/uynihs/Documents/GitHub/MISwebsite/src/main/webapp/img/";
+		 String saveDirectory2 = "D:/xampp/htdocs/ppicc/";
 		 
 		 
 	        List<MultipartFile> crunchifyFiles = assitant.getFiles();
@@ -286,7 +287,7 @@ public class ImintroController {
 	 
 	                String fileName = multipartFile.getOriginalFilename();
 	                if (!"".equalsIgnoreCase(fileName)) {
-	                    multipartFile.transferTo(new File(saveDirectory + fileName));
+	                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
 	                    fileNames.add(fileName);
 	                    
 
@@ -314,7 +315,7 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/updateworkcontent", method = RequestMethod.POST)
 	public ModelAndView updateworkcontentpost(@ModelAttribute AssitantWork assitantWork){
-		ModelAndView model = new ModelAndView("redirect:/back_updateass");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateworkcontent(assitantWork);
 		
@@ -338,7 +339,7 @@ public class ImintroController {
 	@RequestMapping(value = "/admin/insertworkcontent", method = RequestMethod.POST)
 	public ModelAndView insertworkcontentpost(@ModelAttribute AssitantWork assitantWork){
 //		System.out.println(assitantWork.getTeachercode());
-		ModelAndView model = new ModelAndView("redirect:/back_updateass");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.insertworkcontent(assitantWork);
 		
@@ -356,7 +357,7 @@ public class ImintroController {
 	//teacher_code �A_I
 	@RequestMapping(value = "/admin/insertass", method = RequestMethod.POST)
 	public ModelAndView insertasspost(@ModelAttribute NewInfoGu assitant){
-		ModelAndView model = new ModelAndView("redirect:/back_updateass");
+		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.insertass(assitant);
 		
