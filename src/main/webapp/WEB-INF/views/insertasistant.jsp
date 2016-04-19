@@ -95,13 +95,14 @@
 					class="form-control margin-buttom-20" required>
 			</div>
 
-			<div class="form-group">
+			<!--  <div class="form-group">
 				<label for="category">是否顯示</label> <select
 					class="form-control" name="teaAble">
 					<option value="0">不顯示</option>
 					<option value="1">顯示</option>
 				</select>
-			</div>
+			</div> 
+			-->
 
 			<button type="submit" class="btn btn-primary">新增</button>
 		</form>

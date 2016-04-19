@@ -90,7 +90,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/back_imintro", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/back_imintro", method = RequestMethod.GET)
 	public ModelAndView getImintroBackList(){
 		ModelAndView model = new ModelAndView("fix");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -118,7 +118,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updatedeptintro", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updatedeptintro", method = RequestMethod.GET)
 	public ModelAndView updatedeptintroget(@ModelAttribute Imintro imintro){
 		
 //		System.out.println("1 "+imintro.getDi_code());
@@ -135,7 +135,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updatedeptintro", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updatedeptintro", method = RequestMethod.POST)
 	public ModelAndView updatedeptintropost(@ModelAttribute Imintro imintro){
 		ModelAndView model = new ModelAndView("redirect:/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -144,7 +144,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/deletedeptintro", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/deletedeptintro", method = RequestMethod.POST)
 	public ModelAndView deleteImintro(@ModelAttribute Imintro imintro){
 		System.out.println("@@1 " + imintro.getDi_code());
 		System.out.println("@@2 " + imintro.getDic_code());
@@ -155,7 +155,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/insertdeptintro", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/insertdeptintro", method = RequestMethod.GET)
 	public ModelAndView insertdeptintroget(@ModelAttribute Imintro imintro){
 		ModelAndView model = new ModelAndView("insertdeptintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -166,7 +166,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/insertdeptintro", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insertdeptintro", method = RequestMethod.POST)
 	public ModelAndView insertdeptintropost(@ModelAttribute Imintro imintro){
 		ModelAndView model = new ModelAndView("redirect:/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -209,7 +209,7 @@ public class ImintroController {
 //    }
     
     //award
-	@RequestMapping(value = "/back_award", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/back_award", method = RequestMethod.GET)
 	public ModelAndView getbackaward(){
 		ModelAndView model = new ModelAndView("back_award");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -221,7 +221,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateaward", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updateaward", method = RequestMethod.GET)
 	public ModelAndView updateaward(@ModelAttribute Award award){
 		
 		ModelAndView model = new ModelAndView("updateaward");
@@ -233,7 +233,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateaward", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updateaward", method = RequestMethod.POST)
 	public ModelAndView updateawardpost(@ModelAttribute Award award){
 		ModelAndView model = new ModelAndView("redirect:/back_award");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -243,7 +243,7 @@ public class ImintroController {
 	}
 	
 	//ass
-	@RequestMapping(value = "/back_updateass", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/back_updateass", method = RequestMethod.GET)
 	public ModelAndView getbackass(){
 		ModelAndView model = new ModelAndView("back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -255,7 +255,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateass", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updateass", method = RequestMethod.GET)
 	public ModelAndView updateass(@ModelAttribute Assitant assitant){
 		
 		ModelAndView model = new ModelAndView("updateass");
@@ -267,7 +267,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateass", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updateass", method = RequestMethod.POST)
 	public ModelAndView updateasspost(@ModelAttribute Assitant assitant) throws IllegalStateException, IOException {
 		//System.out.println(assitant.getM_ldap());
 		ModelAndView model = new ModelAndView("redirect:/back_updateass");
@@ -300,7 +300,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateworkcontent", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updateworkcontent", method = RequestMethod.GET)
 	public ModelAndView updateworkcontent(@ModelAttribute Assitant assitant){
 		
 		ModelAndView model = new ModelAndView("updateworkcontent");
@@ -312,7 +312,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/updateworkcontent", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updateworkcontent", method = RequestMethod.POST)
 	public ModelAndView updateworkcontentpost(@ModelAttribute AssitantWork assitantWork){
 		ModelAndView model = new ModelAndView("redirect:/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -321,7 +321,7 @@ public class ImintroController {
 		return model;
 	}	
 	
-	@RequestMapping(value = "/insertworkcontent", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/insertworkcontent", method = RequestMethod.GET)
 	public ModelAndView insertworkcontentget(@ModelAttribute Assitant assitant){
 //		System.out.println(assitant.getTea_code());
 		ModelAndView model = new ModelAndView("insertworkcontent");
@@ -335,7 +335,7 @@ public class ImintroController {
 	}
 	
 
-	@RequestMapping(value = "/insertworkcontent", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insertworkcontent", method = RequestMethod.POST)
 	public ModelAndView insertworkcontentpost(@ModelAttribute AssitantWork assitantWork){
 //		System.out.println(assitantWork.getTeachercode());
 		ModelAndView model = new ModelAndView("redirect:/back_updateass");
@@ -345,7 +345,7 @@ public class ImintroController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/insertass", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/insertass", method = RequestMethod.GET)
 	public ModelAndView insertassget(){
 		ModelAndView model = new ModelAndView("insertasistant");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
@@ -354,7 +354,7 @@ public class ImintroController {
 	}
 	
 	//teacher_code �A_I
-	@RequestMapping(value = "/insertass", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insertass", method = RequestMethod.POST)
 	public ModelAndView insertasspost(@ModelAttribute NewInfoGu assitant){
 		ModelAndView model = new ModelAndView("redirect:/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
