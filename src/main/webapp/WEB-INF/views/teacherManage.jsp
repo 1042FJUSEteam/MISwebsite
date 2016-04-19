@@ -228,9 +228,9 @@
 									<form method="post" action="newTeacherBasicInfo"
 										id="newTeacherForm" class="signup-page">
 										<input type="hidden" name="teaCode" value="">
-										新增的教師圖片先用girl.jpg代替 <input type="hidden" name="teaPic"
-											value="girl.jpg"> <input type="hidden" name="teaSort"
-											value="">
+										<!-- 新增的教師圖片先用girl.jpg代替 -->
+										<input type="hidden" name="teaPic" value="girl.jpg"> <input
+											type="hidden" name="teaSort" value="">
 
 										<div class="form-group">
 											<label>LDAP<span class="color-red">*</span></label> <input

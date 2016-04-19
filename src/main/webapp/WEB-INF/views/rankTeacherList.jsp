@@ -100,6 +100,7 @@
 					var rank = JSON.stringify(data);
 					$.ajax({
 						URL : "/rankTeacherList",
+						//大小寫url有差
 						type : "POST",
 						contentType : "application/json",
 						data : rank,

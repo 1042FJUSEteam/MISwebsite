@@ -36,10 +36,9 @@
 		<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 			<form method="post" action="updateTeacherBasicInfoForm"
 				id="updateForm" class="signup-page">
-				暂无修改显示图片的功能 <input type="hidden" name="teaCode"
-					value=${updateInfo.teaCode }> <input type="hidden"
-					name="teaLDAP" value=${updateInfo.teaLDAP }>
-
+				<!-- 暫無修改圖片功能 -->
+				<input type="hidden" name="teaCode" value=${updateInfo.teaCode }>
+				<input type="hidden" name="teaLDAP" value=${updateInfo.teaLDAP }>
 
 				<div class="form-group">
 					<label>姓名<span class="color-red">*</span></label> <input

@@ -77,13 +77,16 @@
 										<th>系所</th>
 										<th>學位</th>
 										<th>編輯</th>
-										<th>更改顯示位置</th>
+										<th>
+											<!-- 更改顯示位置 -->
+										</th>
 									</tr>
 									<c:forEach items="${teacherEduInfo}" var="teacherEduInfo">
 										<tr>
-											<td><input type="hidden" name="teaEduCode" id="teaEduCode"
-												value="${teacherEduInfo.teaEduCode }"> <input
-												type="hidden" name="teaCode" id="teaCode" value="${teacher.teaCode }">
+											<td><input type="hidden" name="teaEduCode"
+												id="teaEduCode" value="${teacherEduInfo.teaEduCode }">
+												<input type="hidden" name="teaCode" id="teaCode"
+												value="${teacher.teaCode }">
 												${teacherEduInfo.teaSch}</td>
 											<td>${teacherEduInfo.teaDep}</td>
 											<td>${teacherEduInfo.teaDeg}</td>
@@ -98,9 +101,8 @@
 												href="#" data-toggle="modal" data-target="#deleteTeaEdu"
 												data-deleteEduTeaCode="${teacher.teaCode}"
 												data-deleteEduCode="${teacherEduInfo.teaEduCode}">刪除</a></td>
-											<td>暫未開發
-											<!-- <button type="button" class="btn btn-default eduUp">上移</button>
-												<button type="button" class="btn btn-default eduDown">下移</button> -->
+											<td>
+												<!-- 暫未開發 -->
 											</td>
 										</tr>
 									</c:forEach>
@@ -124,7 +126,9 @@
 										<th>部门</th>
 										<th>职称</th>
 										<th>編輯</th>
-										<th>更改顯示位置</th>
+										<th>
+											<!-- 更改顯示位置 -->
+										</th>
 									</tr>
 									<c:forEach items="${teacherExpInfo}" var="teacherExpInfo">
 										<tr>
@@ -144,7 +148,9 @@
 												href="#" data-toggle="modal" data-target="#deleteTeaExp"
 												data-deleteExpTeaCode="${teacher.teaCode}"
 												data-deleteTeaExpCode="${teacherExpInfo.teaExpCode}">刪除</a></td>
-											<td>暫未開發</td>
+											<td>
+												<!-- 暫未開發 -->
+											</td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -165,7 +171,9 @@
 									<tr>
 										<th>專長</th>
 										<th>編輯</th>
-										<th>更改顯示位置</th>
+										<th>
+											<!-- 更改顯示位置 -->
+										</th>
 									</tr>
 									<c:forEach items="${teacherSpeInfo}" var="teacherSpeInfo">
 										<tr>
@@ -179,7 +187,9 @@
 												href="#" data-toggle="modal" data-target="#deleteTeaSpe"
 												data-deleteSpeTeaCode="${teacher.teaCode}"
 												data-deleteSpeExpCode="${teacherSpeInfo.teaSpeCode}">刪除</a></td>
-											<td>暫未開發</td>
+											<td>
+												<!-- 暫未開發 -->
+											</td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -232,7 +242,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherIssuePaper}"
@@ -254,7 +266,7 @@
 															data-target="#deleteIssuePaper"
 															data-deleteIssuePaperTeaCode="${teacher.teaCode}"
 															data-deleteIssuePaperCode="${teacherIssuePaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>!<!-- 暫未開發 --></td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -277,7 +289,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherMeetingPaper}"
@@ -299,7 +313,9 @@
 															data-target="#deleteMeetingPaper"
 															data-deleteMeetingPaperTeaCode="${teacher.teaCode}"
 															data-deleteMeetingPaperCode="${teacherMeetingPaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -322,7 +338,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherBooks}" var="teacherBooks">
@@ -339,7 +357,9 @@
 															href="#" data-toggle="modal" data-target="#deleteBooks"
 															data-deleteBooksTeaCode="${teacher.teaCode}"
 															data-deleteBooksCode="${teacherBooks.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -362,7 +382,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherTechReport}"
@@ -384,7 +406,9 @@
 															data-target="#deleteTechReport"
 															data-deleteTechReportTeaCode="${teacher.teaCode}"
 															data-deleteTechReportCode="${teacherTechReport.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -407,7 +431,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherPaper}" var="teacherPaper">
@@ -428,7 +454,9 @@
 															data-target="#deleteTeacherPaper"
 															data-deleteTeacherPaperTeaCode="${teacher.teaCode}"
 															data-deleteTeacherPaperCode="${teacherPaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -451,7 +479,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherMagazinePaper}"
@@ -473,7 +503,9 @@
 															data-target="#deleteMagazinePaper"
 															data-deleteMagazinePaperTeaCode="${teacher.teaCode}"
 															data-deleteMagazinePaperCode="${teacherMagazinePaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -496,7 +528,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherWaitingPaper}"
@@ -518,7 +552,9 @@
 															data-target="#deleteWaitingPaper"
 															data-deleteWaitingPaperTeaCode="${teacher.teaCode}"
 															data-deleteWaitingPaperCode="${teacherWaitingPaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -541,7 +577,9 @@
 														<th>期間</th>
 														<th>內容</th>
 														<th>編輯</th>
-														<th>更改顯示位置</th>
+														<th>
+															<!-- 更改顯示位置 -->
+														</th>
 													</tr>
 												</thead>
 												<c:forEach items="${teacherScholarPaper}"
@@ -563,7 +601,9 @@
 															data-target="#deleteScholarPaper"
 															data-deleteScholarPaperTeaCode="${teacher.teaCode}"
 															data-deleteScholarPaperCode="${teacherScholarPaper.teaDataContCode}">刪除</a></td>
-														<td>暫未開發</td>
+														<td>
+															<!-- 暫未開發 -->
+														</td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -591,7 +631,9 @@
 											<th>單位</th>
 											<th>獎項</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherAwardInfo}" var="teacherAwardInfo">
@@ -611,7 +653,9 @@
 													href="#" data-toggle="modal" data-target="#deleteTeaAwa"
 													data-deleteTeaAwaTeaCode="${teacher.teaCode}"
 													data-deleteTeaAwaCode="${teacherAwardInfo.teaAwaCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -639,7 +683,9 @@
 											<th>贊助金額</th>
 											<th>職稱</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherPlanInfo}" var="teacherPlanInfo">
@@ -665,7 +711,9 @@
 													href="#" data-toggle="modal" data-target="#deleteTeaPlan"
 													data-deleteTeaPlanTeaCode="${teacher.teaCode}"
 													data-deleteTeaPlanCode="${teacherPlanInfo.teaPlanCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -689,7 +737,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherPracticeReach}"
@@ -710,7 +760,9 @@
 													href="#" data-toggle="modal" data-target="#deletePractical"
 													data-deletePracticalTeaCode="${teacher.teaCode}"
 													data-deletePracticalCode="${teacherPracticeReach.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -747,7 +799,9 @@
 											<th>年度</th>
 											<th>專題名稱</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherStuTopic}" var="teacherStuTopic">
@@ -767,7 +821,9 @@
 													data-target="#deleteTeaStuTopic"
 													data-deleteTeaStuTopicTeaCode="${teacher.teaCode}"
 													data-deleteTeaStuTopicCode="${teacherStuTopic.topicID}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -792,7 +848,9 @@
 											<th>研究生名稱</th>
 											<th>論文題目</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherStuPaper}" var="teacherStuPaper">
@@ -816,7 +874,9 @@
 													data-target="#deleteTeaStuPaper"
 													data-deleteTeaStuPaperTeaCode="${teacher.teaCode}"
 													data-deleteTeaStuPaperCode="${teacherStuPaper.paperID}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -840,7 +900,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherOtherExp}" var="teacherOtherExp">
@@ -862,7 +924,9 @@
 													data-target="#deleteOtherTeaExp"
 													data-deleteOtherTeaExpTeaCode="${teacher.teaCode}"
 													data-deleteOtherTeaExpCode="${teacherOtherExp.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -899,7 +963,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherInSchService}"
@@ -922,7 +988,9 @@
 													data-target="#deleteInSchService"
 													data-deleteInSchServiceTeaCode="${teacher.teaCode}"
 													data-deleteInSchServiceCode="${teacherInSchService.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -946,7 +1014,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherOutSchService}"
@@ -969,7 +1039,9 @@
 													data-target="#deleteOutSchService"
 													data-deleteOutSchServiceTeaCode="${teacher.teaCode}"
 													data-deleteOutSchServiceCode="${teacherOutSchService.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -993,7 +1065,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherAsCommitMem}"
@@ -1016,7 +1090,9 @@
 													data-target="#deleteAsCommitMem"
 													data-deleteAsCommitMemTeaCode="${teacher.teaCode}"
 													data-deleteAsCommitMemCode="${teacherAsCommitMem.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -1040,7 +1116,9 @@
 											<th>期間</th>
 											<th>內容</th>
 											<th>編輯</th>
-											<th>更改顯示位置</th>
+											<th>
+												<!-- 更改顯示位置 -->
+											</th>
 										</tr>
 									</thead>
 									<c:forEach items="${teacherScholarExp}" var="teacherScholarExp">
@@ -1062,7 +1140,9 @@
 													data-target="#deleteScholarExp"
 													data-deleteScholarExpTeaCode="${teacher.teaCode}"
 													data-deleteScholarExpCode="${teacherScholarExp.teaDataContCode}">刪除</a></td>
-												<td>暫未開發</td>
+												<td>
+													<!-- 暫未開發 -->
+												</td>
 											</tr>
 										</tbody>
 									</c:forEach>

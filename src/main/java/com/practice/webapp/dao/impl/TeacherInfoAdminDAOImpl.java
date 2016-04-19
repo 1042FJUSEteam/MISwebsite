@@ -33,6 +33,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		this.dataSource = dataSource;
 	}
 
+	// 獲取專任教師基本信息列表
 	@Override
 	public List<TeacherBasicInfoAdmin> getProTeacherInfoList() {
 		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
@@ -46,6 +47,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return getList(sql);
 	}
 
+	// 獲取兼任教師基本信息列表
 	@Override
 	public List<TeacherBasicInfoAdmin> getPartTeacherInfoList() {
 		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
@@ -97,6 +99,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return infoList;
 	}
 
+	// 獲取搜索專任教師結果列表
 	@Override
 	public List<TeacherBasicInfoAdmin> getSearchProTeacherInfoList(ResearchTeacher researchInfo) {
 		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
@@ -109,6 +112,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return getResearchList(sql, researchInfo);
 	}
 
+	// 獲取搜索兼任教師結果列表
 	@Override
 	public List<TeacherBasicInfoAdmin> getSearchPartTeacherInfoList(ResearchTeacher researchInfo) {
 		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, "
@@ -116,8 +120,8 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 				+ "members.M_PHONE, members.M_EMAIL, teacher.Location, teacher.TEA_ABLE "
 				+ "from teacher, members, class_post, members_class " + "where "
 				+ "teacher.TEA_LDAP = members.M_LDAP and " + "members.M_LDAP = members_class.M_LDAP and "
-				+ "members_class.M_POST_CODE = class_post.POST_CODE and " + "teacher.TeacherType like 'B' "
-				+ "and " +researchInfo.getKey() + " like ?" + "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
+				+ "members_class.M_POST_CODE = class_post.POST_CODE and " + "teacher.TeacherType like 'B' " + "and "
+				+ researchInfo.getKey() + " like ?" + "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
 		return getResearchList(sql, researchInfo);
 	}
 
@@ -127,7 +131,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setString(1, "%" + researchInfo.getValue()+"%");
+			smt.setString(1, "%" + researchInfo.getValue() + "%");
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				TeacherBasicInfoAdmin info = new TeacherBasicInfoAdmin();
@@ -160,10 +164,12 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		return infoList;
 	}
 
+	// 更新教師的基本信息
 	@Override
 	public void update(TeacherBasicInfoAdmin updateInfo) {
 		String sql1 = "Update members SET M_NAME = ?, M_PHONE = ?, M_EMAIL = ? " + "WHERE M_LDAP =?";
-		String sql2 = "Update teacher SET TEA_EN_NAME = ?, Location = ?, TeacherType=? " + "WHERE TEA_LDAP =?";
+		String sql2 = "Update teacher SET TEA_EN_NAME = ?, Location = ?, TeacherType=? "
+				+ "WHERE TEA_LDAP =?";
 		String sql3 = "Update members_class SET M_POST_CODE = ? " + "WHERE M_LDAP =?";
 
 		try {
@@ -207,6 +213,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 
 	}
 
+	// 刪除專任教師信息：離職+不顯示
 	@Override
 	public void delete(TeacherBasicInfoAdmin deleteInfo) {
 
@@ -248,7 +255,8 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 		String sql = "select teacher.TEA_PHOTO, teacher.TEA_CODE, teacher.TEA_LDAP, teacher.TeacherType, "
 				+ "members.M_NAME, teacher.TEA_EN_NAME, class_post.POST_NAME, members.M_PHONE, members.M_EMAIL, "
 				+ "teacher.Location " + "from teacher, members, class_post, members_class "
-				+ "where teacher.TEA_CODE = ? and teacher.TEA_LDAP = members.M_LDAP and members.M_LDAP = members_class.M_LDAP and members_class.M_POST_CODE = class_post.POST_CODE";
+				+ "where teacher.TEA_CODE = ? and teacher.TEA_LDAP = members.M_LDAP and "
+				+ "members.M_LDAP = members_class.M_LDAP and members_class.M_POST_CODE = class_post.POST_CODE";
 
 		try {
 			conn = dataSource.getConnection();

@@ -47,6 +47,7 @@ import com.practice.webapp.dao.TeacherInfoAdminDAO;
 public class TeacherInfoAdminController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-module.xml");
 
+	// 獲取管理後臺獲取教師基本信息列表
 	@RequestMapping(value = "/teacherManage", method = RequestMethod.GET)
 	public ModelAndView getTeacherList() {
 		ModelAndView model = new ModelAndView("teacherManage");
@@ -62,6 +63,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 管理後臺獲取搜索專任教師的結果列表
 	@RequestMapping(value = "/searchPro", method = RequestMethod.POST)
 	public ModelAndView searchProAndGetTeacherList(@ModelAttribute ResearchTeacher researchInfo) {
 		ModelAndView model = new ModelAndView("teacherManage");
@@ -77,6 +79,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 管理後台獲取搜索兼任教師的結果列表
 	@RequestMapping(value = "/searchPart", method = RequestMethod.POST)
 	public ModelAndView searchPartAndGetTeacherList(@ModelAttribute ResearchTeacher researchInfo) {
 		ModelAndView model = new ModelAndView("teacherManage");
@@ -92,12 +95,14 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 修改教師基本信息
 	@RequestMapping(value = "/updateTeacherInfo", method = RequestMethod.GET)
-	public ModelAndView updateTeacherInfoPage(@RequestParam String teaCode) {
+	public ModelAndView updateTeacherInfoPage(@RequestParam String teaCode) throws IllegalStateException, IOException {
 		ModelAndView model = new ModelAndView("updateTeacherInfo");
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
 		TeacherBasicInfoAdmin updateInfo = teacherInfoAdminDAO.get(teaCode);
 		model.addObject("updateInfo", updateInfo);
+
 		return model;
 	}
 
@@ -109,6 +114,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 刪除教師基本信息：離職+不顯示
 	@RequestMapping(value = "/deleteTeacherInfo", method = RequestMethod.POST)
 	public ModelAndView deleteProduct(@ModelAttribute TeacherBasicInfoAdmin deleteInfo) {
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
@@ -117,6 +123,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 修改教師在前端是否顯示
 	@RequestMapping(value = "/changeView", method = RequestMethod.POST)
 	public ModelAndView changeView(@ModelAttribute TeacherBasicInfoAdmin changeInfo) {
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
@@ -125,6 +132,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 新增一個教師-先從基本信息開始
 	@RequestMapping(value = "/newTeacherBasicInfo", method = RequestMethod.POST)
 	public ModelAndView newTeacherBasicInfo(@ModelAttribute TeacherBasicInfoAdmin newInfo) {
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
@@ -133,6 +141,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 修改教師的前端顯示順序
 	@RequestMapping(value = "/rankTeacherList", method = RequestMethod.GET)
 	public ModelAndView rankTeacherList(@RequestParam String type) {
 		ModelAndView model = new ModelAndView("rankTeacherList");
@@ -185,6 +194,7 @@ public class TeacherInfoAdminController {
 		return model;
 	}
 
+	// 修改教師的詳細信息
 	@RequestMapping(value = "/updateTeacherDetail", method = RequestMethod.GET)
 	public ModelAndView updateTeacherDetailInfoPage(@RequestParam String teaCode) {
 		ModelAndView model = new ModelAndView("updateTeacherDetail");
