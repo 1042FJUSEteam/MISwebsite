@@ -111,7 +111,7 @@
 																					
 											<c:forEach items="${getfileList}" var="fileList">											
 													<div class="panel-body">												
-														<a href="https://docs.google.com/file/d/${fileList.file_url}/edit">${fileList.file_url}</a>												  											
+														<a href="https://imwebegroupservice.storage.googleapis.com/${fileList.file_url}">${fileList.file_url}</a>												  											
 													</div>
 											</c:forEach>	
 																

@@ -140,8 +140,7 @@ public class ImintroController {
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.update(imintro);
 		
-		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";
-		 
+		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
 		 
         List<MultipartFile> crunchifyFiles = imintro.getFiles();
         //System.out.println(crunchifyFiles);
@@ -157,9 +156,6 @@ public class ImintroController {
                 }
             }
         }	
-        
-        System.out.println("back "+imintro.getFile_code());
-        System.out.println("back "+imintro.getFile_url());
         
         imintroDAO.updatexidafile(fileNames, imintro);
         model.addObject("fileNames", fileNames);

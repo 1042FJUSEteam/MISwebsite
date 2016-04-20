@@ -42,23 +42,41 @@
 		<c:set var="di_code" value="${updatedeptintro.di_code}"/>
 		<c:set var="dic_code" value="${updatedeptintro.dic_code}"/>
 		<c:choose>
-			<c:when test="${di_code == 2}">			
-			<c:forEach items="${getfileList}" var="fileList">	
-				<form method="post" action="updatedeptintro" modelAttribute="uploadForm" enctype="multipart/form-data">
-					<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">									
-						${fileList.file_url}<br>
-						${fileList.file_code}<br>
-						<input type="hidden" name="file_code" id="file_code" value="${fileList.file_code}">
-						<input type="hidden" name="file_url" id="file_url" value="${fileList.file_url}">
-						<div class="form-group">
-							<label>更新檔案:</label>
-							<input name="files" type="file" />				
-							<p class="help-block">選擇檔案:</p>
-						</div>											
-						<button type="submit" class="btn btn-primary">修改</button><br>					
-					<br/>
-				</form>
-			</c:forEach>
+			<c:when test="${di_code == 2}">	
+				<h2>一次修改一項</h2>		
+				<c:forEach items="${getfileList}" var="fileList">	
+					<form method="post" action="updatedeptintro" modelAttribute="uploadForm" enctype="multipart/form-data">
+						<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">									
+							${fileList.file_url}<br>
+							<input type="hidden" name="file_code" id="file_code" value="${fileList.file_code}">
+							<input type="hidden" name="file_url" id="file_url" value="${fileList.file_url}">
+							<div class="form-group">
+								<label>更新檔案:</label>
+								<input name="files" type="file" />				
+								<p class="help-block">選擇檔案:</p>
+							</div>											
+							<button type="submit" class="btn btn-primary">修改</button><br>					
+						<br/>
+					</form>
+				</c:forEach>
+			</c:when>
+			<c:when test="${di_code == 5 && dic_code == 2}">	
+				<h2>一次修改一項</h2>		
+				<c:forEach items="${getfileList}" var="fileList">	
+					<form method="post" action="updatedeptintro" modelAttribute="uploadForm" enctype="multipart/form-data">
+						<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">									
+							${fileList.file_url}<br>
+							<input type="hidden" name="file_code" id="file_code" value="${fileList.file_code}">
+							<input type="hidden" name="file_url" id="file_url" value="${fileList.file_url}">
+							<div class="form-group">
+								<label>更新檔案:</label>
+								<input name="files" type="file" />				
+								<p class="help-block">選擇檔案:</p>
+							</div>											
+							<button type="submit" class="btn btn-primary">修改</button><br>					
+						<br/>
+					</form>
+				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<form method="post" action="updatedeptintro" id="updateFormo">
@@ -69,8 +87,7 @@
 		            </textarea>
 		            <script>          
 		                CKEDITOR.replace( 'dic_cont' );
-		            </script>
-		
+		            </script>		
 		            <br/><button type="submit" class="btn btn-primary">修改</button>
 		        </form>	
 			</c:otherwise>
