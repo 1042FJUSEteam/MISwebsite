@@ -1,5 +1,9 @@
 package com.practice.webapp.entity.introduction;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Imintro {
 	private String di_code;
 	private String di_name;
@@ -10,6 +14,18 @@ public class Imintro {
 	private int file_code;
 	private String file_url;
 	
+	
+	//§ó·sÀÉ®×
+	private List<MultipartFile> crunchifyFiles;
+	 
+    public List<MultipartFile> getFiles() {
+        return crunchifyFiles;
+    }
+ 
+    public void setFiles(List<MultipartFile> files) {
+        this.crunchifyFiles = files;
+    } 
+	//
 	
 	
 	public int getFile_code() {

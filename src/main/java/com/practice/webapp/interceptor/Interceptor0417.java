@@ -20,16 +20,16 @@ public class Interceptor0417 implements HandlerInterceptor{
 			throws Exception {
 		// TODO Auto-generated method stub
 		//logger.info("Before handler is executed");
-		System.out.println("Before handler is executed");
+//		System.out.println("Before handler is executed");
         //请求的路径
         String contextPath=request.getContextPath();
         String  url=request.getServletPath().toString();
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute(SEESION_MEMBER);
         
-        System.out.println(contextPath);
-        System.out.println(url);
-        System.out.println(user);
+//        System.out.println(contextPath);
+//        System.out.println(url);
+//        System.out.println(user);
         
         if(StringUtils.isEmpty(user))
         {
@@ -45,7 +45,7 @@ public class Interceptor0417 implements HandlerInterceptor{
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
 		//logger.info("After request has finished");
-		System.out.println("After request has finished");
+//		System.out.println("After request has finished");
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class Interceptor0417 implements HandlerInterceptor{
 			throws Exception {
 		// TODO Auto-generated method stub
 		//logger.info("After handler is executed");
-		System.out.println("After handler is executed");
+//		System.out.println("After handler is executed");
 	}
 
 }

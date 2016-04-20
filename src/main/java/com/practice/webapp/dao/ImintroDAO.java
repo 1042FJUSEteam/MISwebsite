@@ -35,6 +35,7 @@ public interface ImintroDAO {
 	public void insertworkcontent(AssitantWork assitantWork);//新增助教工作
 	public void insertass(NewInfoGu newInfo);//新增助教
 	public void updatepic(List<String> fileNames, Assitant assitant);//更新助教照片
+	public void updatexidafile(List<String> fileNames, Imintro imintro);//更新系大事紀檔案
 	
 	
 }

@@ -345,6 +345,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 				Imintro imintro5 = new Imintro();
 				imintro5.setFile_code(rs.getInt("FILE_CODE"));
 				imintro5.setFile_url(rs.getString("FILE_URL"));
+				imintro5.setDi_code(rs.getString("DI_CODE"));
 				getfileList.add(imintro5);
 			}				
 			rs.close();
@@ -912,6 +913,39 @@ public class ImintroDAOImpl implements ImintroDAO{
 					
 					smt.setString(1, fileNames.get(0));
 					smt.setString(2, assitant.getM_ldap());
+
+					smt.executeUpdate();			
+					smt.close();
+					
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+		 
+				} finally {
+					if (conn != null) {
+						try {
+							conn.close();
+						} catch (SQLException e) {}
+					}
+				}
+			}
+			
+			public void updatexidafile(List<String> fileNames, Imintro imintro){			
+
+				String sql = "UPDATE department_introduction_file SET FIlE_URL = ? WHERE DI_CODE = ? AND FILE_CODE =?";
+
+				System.out.println(fileNames.size());
+				
+				try {
+					conn = dataSource.getConnection();
+					smt = conn.prepareStatement(sql);
+					
+					System.out.println(fileNames.get(0));
+					System.out.println(imintro.getDi_code());
+					System.out.println(imintro.getFile_code());
+					
+					smt.setString(1, fileNames.get(0));
+					smt.setString(2, imintro.getDi_code());
+					smt.setInt(3, imintro.getFile_code());
 
 					smt.executeUpdate();			
 					smt.close();

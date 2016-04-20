@@ -30,9 +30,7 @@
 
 <body>
 	<%@include file="jspf/adminNavbar.jspf"%>
-
 	
-								
 	<div class="container">	
 		<div class="row">
 			<br>
@@ -41,32 +39,44 @@
 			</div>
 		</div><br/>
 		
-		<form method="post" action="updatedeptintro" id="updateFormo">
-			<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">
-			<input type="hidden" name="dic_code" id="dic_code" value="${updatedeptintro.dic_code}">
-            <textarea name="dic_cont" id="dic_cont" >
-				${updatedeptintro.dic_cont}
-            </textarea>
-            <script>          
-                CKEDITOR.replace( 'dic_cont' );
-            </script>
-
-            <br/><button type="submit" class="btn btn-primary">修改</button>
-        </form>	
-        
-        <div class="row">
-			<br>
-			<div class="col-md-12">	  			
-				
-			</div>
-		</div>
-		               			
+		<c:set var="di_code" value="${updatedeptintro.di_code}"/>
+		<c:set var="dic_code" value="${updatedeptintro.dic_code}"/>
+		<c:choose>
+			<c:when test="${di_code == 2}">			
+			<c:forEach items="${getfileList}" var="fileList">	
+				<form method="post" action="updatedeptintro" modelAttribute="uploadForm" enctype="multipart/form-data">
+					<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">									
+						${fileList.file_url}<br>
+						${fileList.file_code}<br>
+						<input type="hidden" name="file_code" id="file_code" value="${fileList.file_code}">
+						<input type="hidden" name="file_url" id="file_url" value="${fileList.file_url}">
+						<div class="form-group">
+							<label>更新檔案:</label>
+							<input name="files" type="file" />				
+							<p class="help-block">選擇檔案:</p>
+						</div>											
+						<button type="submit" class="btn btn-primary">修改</button><br>					
+					<br/>
+				</form>
+			</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<form method="post" action="updatedeptintro" id="updateFormo">
+					<input type="hidden" name="di_code" id="di_code" value="${updatedeptintro.di_code}">
+					<input type="hidden" name="dic_code" id="dic_code" value="${updatedeptintro.dic_code}">
+		            <textarea name="dic_cont" id="dic_cont" >
+						${updatedeptintro.dic_cont}
+		            </textarea>
+		            <script>          
+		                CKEDITOR.replace( 'dic_cont' );
+		            </script>
+		
+		            <br/><button type="submit" class="btn btn-primary">修改</button>
+		        </form>	
+			</c:otherwise>
+		</c:choose>		               			
 	</div>
 	
-    
-    	
-    	
-
 	<%@include file="jspf/MISwebsiteFooter.jspf"%>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -120,26 +120,49 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/updatedeptintro", method = RequestMethod.GET)
 	public ModelAndView updatedeptintroget(@ModelAttribute Imintro imintro){
-		
-//		System.out.println("1 "+imintro.getDi_code());
-//		//System.out.println("2 "+imintro1.getDic_code());
-//		System.out.println("3 "+imintro.getDic_code());
-//		System.out.println("4 "+imintro.getDic_name());
-		
 		ModelAndView model = new ModelAndView("updatedeptintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		
 		Imintro updatedeptintro = new Imintro();
 		updatedeptintro = imintroDAO.getdiccont(imintro);
 		model.addObject("updatedeptintro", updatedeptintro);
+		
+		List<Imintro> getfileList = new ArrayList<Imintro>();
+		getfileList = imintroDAO.getfile(imintro);
+		model.addObject("getfileList", getfileList);
+		
 		return model;
 	}
 	
 	@RequestMapping(value = "/admin/updatedeptintro", method = RequestMethod.POST)
-	public ModelAndView updatedeptintropost(@ModelAttribute Imintro imintro){
+	public ModelAndView updatedeptintropost(@ModelAttribute Imintro imintro) throws IllegalStateException, IOException {
 		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.update(imintro);
+		
+		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";
+		 
+		 
+        List<MultipartFile> crunchifyFiles = imintro.getFiles();
+        //System.out.println(crunchifyFiles);
+        List<String> fileNames = new ArrayList<String>();
+ 
+        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+            for (MultipartFile multipartFile : crunchifyFiles) {
+ 
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
+                    fileNames.add(fileName);
+                }
+            }
+        }	
+        
+        System.out.println("back "+imintro.getFile_code());
+        System.out.println("back "+imintro.getFile_url());
+        
+        imintroDAO.updatexidafile(fileNames, imintro);
+        model.addObject("fileNames", fileNames);
 		
 		return model;
 	}
