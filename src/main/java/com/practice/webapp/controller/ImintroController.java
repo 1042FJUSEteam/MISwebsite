@@ -288,8 +288,10 @@ public class ImintroController {
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateass(assitant);
 		
-		 String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
-		 
+		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
+		
+		if(assitant.getFiles() == null)
+		{
 	        List<MultipartFile> crunchifyFiles = assitant.getFiles();
 	        //System.out.println(crunchifyFiles);
 	        List<String> fileNames = new ArrayList<String>();
@@ -307,7 +309,7 @@ public class ImintroController {
 	        
 	        imintroDAO.updatepic(fileNames, assitant);
 	        model.addObject("fileNames", fileNames);
-	        
+		}   
 		return model;
 	}
 	

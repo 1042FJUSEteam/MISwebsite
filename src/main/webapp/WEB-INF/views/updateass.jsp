@@ -43,24 +43,20 @@
 		<form method="post" action="updateass" id="updateForm"  modelAttribute="uploadForm" enctype="multipart/form-data">
 			<input type="hidden" name="m_ldap" value="${updateass.m_ldap}">
 			<div class="form-group">
-				<label>m_name:</label>
-				<textarea type="text" name="m_name" rows="3" cols="40">${updateass.m_name}</textarea>
-				<p class="help-block">m_name</p>
+				<label>姓名:</label>
+				<textarea name="m_name" rows="3" cols="40">${updateass.m_name}</textarea>
 			</div>
 			<div class="form-group">
-				<label>m_phone:</label>
-				<textarea type="text" name="m_phone" rows="3" cols="40">${updateass.m_phone}</textarea>
-				<p class="help-block">m_phone</p>
+				<label>電話:</label>
+				<textarea name="m_phone" rows="3" cols="40">${updateass.m_phone}</textarea>
 			</div>
 			<div class="form-group">
-				<label>m_email:</label>
-				<textarea type="text" name="m_email" rows="3" cols="40">${updateass.m_email}</textarea>
-				<p class="help-block">m_email</p>
+				<label>email:</label>
+				<textarea name="m_email" rows="3" cols="40">${updateass.m_email}</textarea>
 			</div>
 			<div class="form-group">
-				<label>location:</label>
-				<textarea type="text" name="location" rows="3" cols="40">${updateass.location}</textarea>
-				<p class="help-block">location</p>
+				<label >辦公室:</label>
+				<textarea name="location" rows="3" cols="40">${updateass.location}</textarea>
 			</div>
 			<div class="form-group">
 				<label>更新相片:</label>
