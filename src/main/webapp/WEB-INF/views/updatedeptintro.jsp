@@ -25,7 +25,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<!-- CKEditor -->
-	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+	<script src="ckeditor/ckeditor.js"></script>
 </head>
 
 <body>

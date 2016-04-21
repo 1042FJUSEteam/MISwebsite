@@ -39,8 +39,6 @@ import com.practice.webapp.entity.introduction.Fileupload;
 public class ImintroController {
 	
 	ApplicationContext context =  new ClassPathXmlApplicationContext("spring-module.xml");
-	//private static final Logger logger = LoggerFactory.getLogger(ImintroController.class);
-	
 	
 	@RequestMapping(value = "/Imintro", method = RequestMethod.GET)
 	public ModelAndView getImintroList(@ModelAttribute Imintro imintro){
@@ -56,7 +54,6 @@ public class ImintroController {
 	@RequestMapping(value = "/assitant", method = RequestMethod.GET)
 	public ModelAndView getassitantList(){
 		ModelAndView model = new ModelAndView("assitant");
-		System.out.println("@@1");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		
 		List<Assitant> assitantList = new ArrayList<Assitant>();
@@ -140,33 +137,31 @@ public class ImintroController {
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.update(imintro);
 		
-		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
-		 
-        List<MultipartFile> crunchifyFiles = imintro.getFiles();
-        //System.out.println(crunchifyFiles);
-        List<String> fileNames = new ArrayList<String>();
- 
-        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
-            for (MultipartFile multipartFile : crunchifyFiles) {
- 
-                String fileName = multipartFile.getOriginalFilename();
-                if (!"".equalsIgnoreCase(fileName)) {
-                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
-                    fileNames.add(fileName);
-                }
-            }
-        }	
-        
-        imintroDAO.updatexidafile(fileNames, imintro);
-        model.addObject("fileNames", fileNames);
-		
+		if(imintro.getFile_url() != null)
+		{
+			String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
+			 
+	        List<MultipartFile> crunchifyFiles = imintro.getFiles();
+	        List<String> fileNames = new ArrayList<String>();
+	 
+	        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+	            for (MultipartFile multipartFile : crunchifyFiles) {
+	 
+	                String fileName = multipartFile.getOriginalFilename();
+	                if (!"".equalsIgnoreCase(fileName)) {
+	                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
+	                    fileNames.add(fileName);
+	                }
+	            }
+	        }	        
+	        imintroDAO.updatexidafile(fileNames, imintro);
+	        model.addObject("fileNames", fileNames);
+		}
 		return model;
 	}
 	
 	@RequestMapping(value = "/admin/deletedeptintro", method = RequestMethod.POST)
 	public ModelAndView deleteImintro(@ModelAttribute Imintro imintro){
-		System.out.println("@@1 " + imintro.getDi_code());
-		System.out.println("@@2 " + imintro.getDic_code());
 		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.delete(imintro);
@@ -293,9 +288,7 @@ public class ImintroController {
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.updateass(assitant);
 		
-		 String saveDirectory = "C:/Users/uynihs/Documents/GitHub/MISwebsite/src/main/webapp/img/";
-		 String saveDirectory2 = "D:/xampp/htdocs/ppicc/";
-		 
+		 String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
 		 
 	        List<MultipartFile> crunchifyFiles = assitant.getFiles();
 	        //System.out.println(crunchifyFiles);
@@ -308,8 +301,6 @@ public class ImintroController {
 	                if (!"".equalsIgnoreCase(fileName)) {
 	                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
 	                    fileNames.add(fileName);
-	                    
-
 	                }
 	            }
 	        }	
@@ -343,7 +334,6 @@ public class ImintroController {
 	
 	@RequestMapping(value = "/admin/insertworkcontent", method = RequestMethod.GET)
 	public ModelAndView insertworkcontentget(@ModelAttribute Assitant assitant){
-//		System.out.println(assitant.getTea_code());
 		ModelAndView model = new ModelAndView("insertworkcontent");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		
@@ -357,7 +347,6 @@ public class ImintroController {
 
 	@RequestMapping(value = "/admin/insertworkcontent", method = RequestMethod.POST)
 	public ModelAndView insertworkcontentpost(@ModelAttribute AssitantWork assitantWork){
-//		System.out.println(assitantWork.getTeachercode());
 		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.insertworkcontent(assitantWork);
@@ -373,12 +362,50 @@ public class ImintroController {
 		return model;
 	}
 	
-	//teacher_code �A_I
 	@RequestMapping(value = "/admin/insertass", method = RequestMethod.POST)
 	public ModelAndView insertasspost(@ModelAttribute NewInfoGu assitant){
 		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
 		imintroDAO.insertass(assitant);
+		
+		return model;
+	}
+	
+	//上傳檔案
+	@RequestMapping(value = "/admin/uploadfile", method = RequestMethod.GET)
+	public ModelAndView uploadfileget(@ModelAttribute Imintro imintro){
+		ModelAndView model = new ModelAndView("uploadfile");
+		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
+		
+		Imintro fileimintro= new Imintro();
+		fileimintro.setDi_code(imintro.getDi_code());
+		fileimintro.setDic_code(imintro.getDic_code());
+		model.addObject("fileimintro", imintro);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/admin/uploadfile", method = RequestMethod.POST)
+	public ModelAndView uploadfilepost(@ModelAttribute Imintro imintro) throws IllegalStateException, IOException{
+		ModelAndView model = new ModelAndView("redirect:/admin/back_imintro");
+		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
+
+		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";
+		 		 
+        List<MultipartFile> crunchifyFiles = imintro.getFiles();
+        List<String> fileNames = new ArrayList<String>();
+ 
+        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+            for (MultipartFile multipartFile : crunchifyFiles) {
+ 
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
+                    fileNames.add(fileName);
+                  }
+            }
+        }	
+		imintroDAO.uploadfile(fileNames, imintro);		
 		
 		return model;
 	}

@@ -79,9 +79,21 @@
 							  		<td>
 							  			<a class="btn btn-default" href="updatedeptintro?di_code=${getAll.di_code}&dic_code=${getAll.dic_code}">修改</a>
 							  		</td>
-							  		<!-- <td>
-							  			<a class="btn btn-primary" href="insertdeptintro?di_code=${getAll.di_code}">新增</a>
-							  		</td> -->
+							  		
+					  				<c:set var="di_code" value="${getAll.di_code}"/>
+									<c:set var="dic_code" value="${getAll.dic_code}"/>
+							  		<c:choose>
+							  			<c:when test="${di_code == 2}">
+							  				<td>
+							  					<a class="btn btn-primary" href="uploadfile?di_code=${getAll.di_code}&dic_code=${getAll.dic_code}">新增</a>
+							  				</td>
+							  			</c:when>
+							  			<c:when test="${di_code == 5 && dic_code == 2}">
+							  				<td>
+							  					<a class="btn btn-primary" href="uploadfile?di_code=${getAll.di_code}&dic_code=${getAll.dic_code}">新增</a>
+							  				</td>
+							  			</c:when>	
+							  		</c:choose>							  		
 							  	</tr>							  	
 						</c:forEach>	  	
 					</tbody>

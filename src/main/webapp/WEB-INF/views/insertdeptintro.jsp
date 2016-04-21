@@ -25,7 +25,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<!-- CKEditor -->
-	<script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+	<script src="ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -37,24 +37,20 @@
 		<form method="post" action="insertdeptintro" id="insertdeptintro">
 			<input type="hidden" name="di_code" value="${insertdeptintro.di_code}">
 			<div class="form-group">
-				<label>DIC_CODE:</label>
+				<label>欄位編號:</label>
 				<textarea type="text" name="dic_code" rows="3" cols="40"></textarea>
-				<p class="help-block">欄位別</p>
 			</div>
 			<div class="form-group">
-				<label>DIC_NAME:</label>
+				<label>欄位名稱:</label>
 				<textarea type="text" name="dic_name" rows="3" cols="40"></textarea>
-				<p class="help-block">欄位名稱</p>
 			</div>
 			<div class="form-group">
-				<label>DIC_CONT:</label>
+				<label>內容:</label>
 				<textarea type="text" name="dic_cont" rows="3" cols="40"></textarea>
-				<p class="help-block">內容</p>
 			</div>
 			<div class="form-group">
-				<label>DIC_CONT_EN:</label> 
+				<label>英文內容:</label> 
 				<textarea type="text" name="dic_cont_en" rows="3" cols="40"></textarea>
-				<p class="help-block">英文內容</p>
 			</div>
 	
 		<br/><button type="submit" class="btn btn-primary">新增</button>

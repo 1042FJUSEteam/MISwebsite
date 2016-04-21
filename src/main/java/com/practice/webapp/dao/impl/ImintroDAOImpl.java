@@ -99,8 +99,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 
 
 	public Imintro gettwo(Imintro imintro, String dic_code) {
-		//System.out.println(dic_code);
-		//System.out.println(imintro.getDi_code());
 		Imintro imintro2 = new Imintro();
 		String sql = "SELECT * FROM department_introduction_class where DI_CODE = ? AND DIC_CODE = ?";
 		try {
@@ -109,21 +107,14 @@ public class ImintroDAOImpl implements ImintroDAO{
 			smt.setString(1, imintro.getDi_code());
 			smt.setString(2, dic_code);
 			rs = smt.executeQuery();
-			System.out.println("##");
-			while(rs.next()){ 
-				
+			while(rs.next()){ 				
 				imintro2.setDi_code(rs.getString("DI_CODE"));
 				imintro2.setDic_code(rs.getString("DIC_CODE"));
 				imintro2.setDic_name(rs.getString("DIC_NAME"));
 				imintro2.setDic_cont(rs.getString("DIC_CONT"));
-				//System.out.println(imintro2.getDic_name());
-				//System.out.println(imintro2.getDic_code());
-				//System.out.println("##");
 			}				
 			rs.close();
 			smt.close();
-			//System.out.println("## " + imintro2.getDic_code());
-	 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
  
@@ -138,7 +129,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public Imintro getthree(Imintro imintro, String dic_code) {
-		//System.out.println(dic_code);
 		String sql = "SELECT * from department_introduction_class where DI_CODE = ? AND DIC_CODE = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -151,12 +141,9 @@ public class ImintroDAOImpl implements ImintroDAO{
 				imintro.setDic_code(rs.getString("DIC_CODE"));
 				imintro.setDic_name(rs.getString("DIC_NAME"));
 				imintro.setDic_cont(rs.getString("DIC_CONT"));
-				//System.out.println(imintro.getDic_name());
 			}				
 			rs.close();
-			smt.close();
-			//System.out.println(imintro.getDic_name());
-	 
+			smt.close();	 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
  
@@ -269,7 +256,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public List<AssitantWork> getassitantWorkList(Assitant assitant) {
-//		System.out.println(assitant.getTea_code());
 		List<AssitantWork> assitantWorkList = new ArrayList<AssitantWork>();
 		String sql = "SELECT * FROM asistantwork WHERE TeacherCode = ?";
 		try {
@@ -284,7 +270,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 				assitantWork.setWorkContent(rs.getString("AsistantWorkContent"));
 				assitantWork.setAsistantWorkID(rs.getInt("AsistantWorkID"));
 				assitantWorkList.add(assitantWork);
-//				System.out.println("@@");
 			}				
 			rs.close(); 
 			smt.close(); 
@@ -394,7 +379,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public Imintro getdiccont(Imintro imintro) {
-		//List<Imintro> getdiccontList = new ArrayList();
 		Imintro imintro5 = new Imintro();
 		String sql = "SELECT * from department_introduction_class where DI_CODE = ? AND DIC_CODE = ?";
 		try {
@@ -403,13 +387,11 @@ public class ImintroDAOImpl implements ImintroDAO{
 			smt.setString(1, imintro.getDi_code());
 			smt.setString(2, imintro.getDic_code());
 			rs = smt.executeQuery();
-			while(rs.next()){
-				
+			while(rs.next()){				
 				imintro5.setDi_code(rs.getString("DI_CODE"));
 				imintro5.setDic_name(rs.getString("DIC_NAME"));
 				imintro5.setDic_cont(rs.getString("DIC_CONT"));
 				imintro5.setDic_code(rs.getString("DIC_CODE"));
-				//getdiccontList.add(imintro5);
 			}				
 			rs.close();
 			smt.close();
@@ -428,9 +410,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void update(Imintro imintro) {
-//		System.out.println(imintro.getDic_cont());
-//		System.out.println(imintro.getDi_code());
-		// TODO Auto-generated method stub
 		String sql = "UPDATE department_introduction_class SET DIC_CONT=? WHERE DI_CODE = ? AND DIC_CODE = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -438,8 +417,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 			smt.setString(1, imintro.getDic_cont());
 			smt.setString(2, imintro.getDi_code());
 			smt.setString(3, imintro.getDic_code());
-//			System.out.println(imintro.getDic_cont());
-//			System.out.println(imintro.getDi_code());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -456,10 +433,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void delete(Imintro imintro) {
-		System.out.println("@1 " + imintro.getDi_code());
-		System.out.println("@2 " + imintro.getDic_code());
-		// TODO Auto-generated method stub
-		//String sql = "DELETE w,s FROM department_introduction w inner join department_introduction_class s on w.DI_CODE = s.DI_CODE WHERE w.DI_CODE = ?";
 		String sql = "DELETE FROM department_introduction_class WHERE DI_CODE = ? AND DIC_CODE = ?";
 		
 		try {
@@ -483,10 +456,8 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void insert(Imintro imintro) {
-		// TODO Auto-generated method stub
 		String sql = "INSERT department_introduction_class(DI_CODE,DIC_CODE,DIC_NAME,DIC_CONT,DIC_CONT_EN)"
 				+ "VALUES(?,?,?,?,?)";
-//		String slq2 = "INSERT department_introduction(DI_CODE, DI_NAME) VALUES(?,?)";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -496,16 +467,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 			smt.setString(4, imintro.getDic_cont());
 			smt.setString(5, imintro.getDic_cont_en());
 			smt.executeUpdate();			
-			smt.close();
-			
-
-//			PreparedStatement smt2 = null ;
-//			smt2 = conn.prepareStatement(slq2);
-//			smt2.setString(1, imintro.getDi_code());
-//			smt2.setString(2, imintro.getDi_name());
-//			smt2.executeUpdate();
-//			smt2.close();
-// 
+			smt.close(); 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
  
@@ -519,7 +481,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void updateaward(Award award) {
-
 		String sql = "UPDATE award_cont SET AWARD_CONT = ? WHERE AR_CODE = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -571,7 +532,6 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void updateass(Assitant assitant) {
-
 		String sql = "UPDATE members SET M_EMAIL=?, M_PHONE=?, M_NAME=? WHERE M_LDAP = ?";
 		String sql2 = "UPDATE members_class SET M_POST_CODE = ? WHERE M_LDAP = ?";
 		String sql3 = "UPDATE teacher SET Location = ? WHERE TEA_LDAP = ?";
@@ -663,22 +623,16 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public void updateworkcontent(AssitantWork assitantWork) {
-		System.out.println("@@1");
 		String sql = "UPDATE asistantwork SET AsistantWorkContent = ? WHERE AsistantWorkID = ? AND TeacherCode = ?";
 
 		try {
 			conn = dataSource.getConnection();
-			smt = conn.prepareStatement(sql);
-			System.out.println(assitantWork.getWorkContent());
-			System.out.println(assitantWork.getTeachercode());
-			System.out.println(assitantWork.getAsistantWorkID());
-			
+			smt = conn.prepareStatement(sql);			
 			smt.setString(1, assitantWork.getWorkContent());
 			smt.setInt(3, assitantWork.getTeachercode());
 			smt.setInt(2, assitantWork.getAsistantWorkID());
 			smt.executeUpdate();			
-			smt.close();
-			
+			smt.close();			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
  
@@ -692,44 +646,15 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}
 	
 	public AssitantWork getassitantWork(Assitant assitant) {
-//		System.out.println(assitant.getTea_code()+"rr");
 		int teacode = assitant.getTea_code();
 		AssitantWork assitantwork2 = new AssitantWork();
 		assitantwork2.setTeachercode(teacode);
 		return assitantwork2;
-//		AssitantWork assitantwork1 = new AssitantWork();
-//		String sql = "SELECT * from asistantwork where TeacherCode = ?";
-//		try {
-//			conn = dataSource.getConnection();
-//			smt = conn.prepareStatement(sql);
-//			smt.setInt(1, assitant.getTea_code());
-//			rs = smt.executeQuery();
-//			while(rs.next()){
-//				assitantwork1.setWorkContent(rs.getString("AsistantWorkContent"));
-//				assitantwork1.setTeachercode(rs.getInt("TeacherCode"));
-//				System.out.println(assitantwork1.getTeachercode()+"rr1");
-//			}				
-//			rs.close();
-//			smt.close();
-//	 
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-// 
-//		} finally {
-//			if (conn != null) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {}
-//			}
-//		}
-//		return assitantwork1;
-		
 	}
 	
 	public void insertworkcontent(AssitantWork assitantWork) {
 		String sql = "INSERT asistantwork(TeacherCode, AsistantWorkContent, AsistantWorkID)"
 				+ "VALUES(?,?,?)";
-//		System.out.println(assitantWork.getTeachercode()+"ee");
 		int id = newAssID();
 
 		try {
@@ -809,159 +734,194 @@ public class ImintroDAOImpl implements ImintroDAO{
 	}	
 	
 	// 自動產生一個新的教師編號
-		private String newTeaCode() {
-			String teaCode = "";
-			String sql = "select max(TEA_CODE) as TEA_CODE from teacher";
-			try {
-				conn = dataSource.getConnection();
-				smt = conn.prepareStatement(sql);
-				rs = smt.executeQuery();
-				if (rs.next()) {
-					int i = rs.getInt("TEA_CODE");
-					i++;
-					teaCode = Integer.toString(i);
-				}
-				rs.close();
-				smt.close();
+	private String newTeaCode() {
+		String teaCode = "";
+		String sql = "select max(TEA_CODE) as TEA_CODE from teacher";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			if (rs.next()) {
+				int i = rs.getInt("TEA_CODE");
+				i++;
+				teaCode = Integer.toString(i);
+			}
+			rs.close();
+			smt.close();
 
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 
-			} finally {
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
 				}
 			}
-			return teaCode;
 		}
+		return teaCode;
+	}
 
-		// 自動產生一個新的教師排序編號，先統一生成該教師類別中的最大值，再通過“更改排序”按鈕進行修改
-		private String newTeaSort(NewInfoGu newInfo) {
-			String teaSort = "";
-			String sql = "select max(TEA_SORT) as TEA_SORT from teacher, members_class where Teachertype=?";
+	// 自動產生一個新的教師排序編號，先統一生成該教師類別中的最大值，再通過“更改排序”按鈕進行修改
+	private String newTeaSort(NewInfoGu newInfo) {
+		String teaSort = "";
+		String sql = "select max(TEA_SORT) as TEA_SORT from teacher, members_class where Teachertype=?";
 
-			try {
-				conn = dataSource.getConnection();
-				smt = conn.prepareStatement(sql);
-				smt.setString(1, newInfo.getTeaType());
-				rs = smt.executeQuery();
-				if (rs.next()) {
-					int i = rs.getInt("TEA_SORT");
-					i++;
-					teaSort = Integer.toString(i);
-				}
-				rs.close();
-				smt.close();
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, newInfo.getTeaType());
+			rs = smt.executeQuery();
+			if (rs.next()) {
+				int i = rs.getInt("TEA_SORT");
+				i++;
+				teaSort = Integer.toString(i);
+			}
+			rs.close();
+			smt.close();
 
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 
-			} finally {
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-					}
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
 				}
 			}
-
-			return teaSort;
 		}
+
+		return teaSort;
+	}
 		
-		// 自動產生一個新的AsistantID編號
-				private int newAssID() {
-					int AssID = 0;
-					String sql = "select max(AsistantWorkID) as AsistantWorkID from asistantwork";
-					try {
-						conn = dataSource.getConnection();
-						smt = conn.prepareStatement(sql);
-						rs = smt.executeQuery();
-						if (rs.next()) {
-							int i = rs.getInt("AsistantWorkID");
-							i++;
-							AssID = i;
-						}
-						rs.close();
-						smt.close();
+	// 自動產生一個新的AsistantID編號
+	private int newAssID() {
+		int AssID = 0;
+		String sql = "select max(AsistantWorkID) as AsistantWorkID from asistantwork";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			if (rs.next()) {
+				int i = rs.getInt("AsistantWorkID");
+				i++;
+				AssID = i;
+			}
+			rs.close();
+			smt.close();
 
-					} catch (SQLException e) {
-						throw new RuntimeException(e);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 
-					} finally {
-						if (conn != null) {
-							try {
-								conn.close();
-							} catch (SQLException e) {
-							}
-						}
-					}
-					return AssID;
-				}
-				
-			public void updatepic(List<String> fileNames, Assitant assitant){			
-				String sql = "UPDATE teacher SET TEA_PHOTO = ? WHERE TEA_LDAP = ?";
-
+		} finally {
+			if (conn != null) {
 				try {
-					conn = dataSource.getConnection();
-					smt = conn.prepareStatement(sql);
-					
-					System.out.println(fileNames.get(0));
-					System.out.println(assitant.getM_ldap());
-					
-					smt.setString(1, fileNames.get(0));
-					smt.setString(2, assitant.getM_ldap());
-
-					smt.executeUpdate();			
-					smt.close();
-					
+					conn.close();
 				} catch (SQLException e) {
-					throw new RuntimeException(e);
-		 
-				} finally {
-					if (conn != null) {
-						try {
-							conn.close();
-						} catch (SQLException e) {}
-					}
 				}
 			}
-			
-			public void updatexidafile(List<String> fileNames, Imintro imintro){			
-
-				String sql = "UPDATE department_introduction_file SET FIlE_URL = ? WHERE DI_CODE = ? AND FILE_CODE =?";
-
-				System.out.println(fileNames.size());
+		}
+		return AssID;
+	}
 				
+	public void updatepic(List<String> fileNames, Assitant assitant){			
+		String sql = "UPDATE teacher SET TEA_PHOTO = ? WHERE TEA_LDAP = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, fileNames.get(0));
+			smt.setString(2, assitant.getM_ldap());
+			smt.executeUpdate();			
+			smt.close();			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
 				try {
-					conn = dataSource.getConnection();
-					smt = conn.prepareStatement(sql);
-					
-					System.out.println(fileNames.get(0));
-					System.out.println(imintro.getDi_code());
-					System.out.println(imintro.getFile_code());
-					
-					smt.setString(1, fileNames.get(0));
-					smt.setString(2, imintro.getDi_code());
-					smt.setInt(3, imintro.getFile_code());
-
-					smt.executeUpdate();			
-					smt.close();
-					
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-		 
-				} finally {
-					if (conn != null) {
-						try {
-							conn.close();
-						} catch (SQLException e) {}
-					}
-				}
+					conn.close();
+				} catch (SQLException e) {}
 			}
-			
-			
+		}
+	}
 	
+	public void updatexidafile(List<String> fileNames, Imintro imintro){			
+		String sql = "UPDATE department_introduction_file SET FIlE_URL = ? WHERE DI_CODE = ? AND FILE_CODE =?";	
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);			
+			smt.setString(1, fileNames.get(0));
+			smt.setString(2, imintro.getDi_code());
+			smt.setInt(3, imintro.getFile_code());
+			smt.executeUpdate();			
+			smt.close();			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
+	public void uploadfile(List<String> fileNames, Imintro imintro){			
+		String sql = "INSERT department_introduction_file VALUES(?,?,?,?,1)";		
+		int newFileCode = newFileCode(); 		
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, imintro.getDi_code());
+			smt.setString(2, imintro.getDic_code());
+			smt.setInt(3, newFileCode);
+			smt.setString(4, fileNames.get(0));
+			smt.executeUpdate();			
+			smt.close();		
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
+	
+	// 自動產生一個新的檔案編號
+	private int newFileCode() {
+		String code = "";
+		int intcode = 0;
+		String sql = "select max(FILE_CODE) as FILE_CODE from department_introduction_file";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			if (rs.next()) {
+				int i = rs.getInt("FILE_CODE");
+				i++;
+				code = Integer.toString(i);
+				intcode += Integer.parseInt(code); //將字串轉int
+			};					
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return intcode;
+	}
 }
