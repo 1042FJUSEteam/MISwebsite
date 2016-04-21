@@ -226,11 +226,16 @@
 							<div class="tab-pane fade" id="newTeacher">
 								<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 									<form method="post" action="newTeacherBasicInfo"
-										id="newTeacherForm" class="signup-page">
-										<input type="hidden" name="teaCode" value="">
-										<!-- 新增的教師圖片先用girl.jpg代替 -->
-										<input type="hidden" name="teaPic" value="girl.jpg"> <input
+										id="newTeacherForm" class="signup-page"
+										enctype="multipart/form-data">
+										<input type="hidden" name="teaCode" value=""><input
 											type="hidden" name="teaSort" value="">
+
+										<div class="form-group">
+											<label>教師圖片<span class="color-red">*</span></label> <input
+												type="file" name="file" accept="image/*"
+												class="margin-buttom-20" required />
+										</div>
 
 										<div class="form-group">
 											<label>LDAP<span class="color-red">*</span></label> <input
@@ -339,6 +344,14 @@
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+			var message = "${message}";
+			if (message != "") {
+				alert(message);
+			}
+		})
+	</script>
 	<script>
 		$(function() {
 			$(".deleteBtn").click(function() {

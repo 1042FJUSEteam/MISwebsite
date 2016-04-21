@@ -1,5 +1,6 @@
 package com.practice.webapp.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,12 +16,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.entity.teacher.DetailRankInfo;
@@ -97,7 +100,7 @@ public class TeacherInfoAdminController {
 
 	// 修改教師基本信息
 	@RequestMapping(value = "/updateTeacherInfo", method = RequestMethod.GET)
-	public ModelAndView updateTeacherInfoPage(@RequestParam String teaCode) throws IllegalStateException, IOException {
+	public ModelAndView updateTeacherInfoPage(@RequestParam String teaCode) {
 		ModelAndView model = new ModelAndView("updateTeacherInfo");
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
 		TeacherBasicInfoAdmin updateInfo = teacherInfoAdminDAO.get(teaCode);
@@ -107,10 +110,31 @@ public class TeacherInfoAdminController {
 	}
 
 	@RequestMapping(value = "/updateTeacherBasicInfoForm", method = RequestMethod.POST)
-	public ModelAndView updateTeacherInfo(@ModelAttribute TeacherBasicInfoAdmin updateInfo) {
+	public ModelAndView updateTeacherInfo(@ModelAttribute TeacherBasicInfoAdmin updateInfo,
+			@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request)
+			throws Exception {
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
 		teacherInfoAdminDAO.update(updateInfo);
+
+		// 獲取文件名，包括其後綴
+		// 應當在此處驗證文件格式是否圖片在進行後續動作
+		String picName = file.getOriginalFilename();
+		if (picName != "") {
+			// 獲取路徑
+			String path = request.getSession().getServletContext().getRealPath("/") + "img/teacherIMG/";
+			// 開始上傳
+			File dirPath = new File(path);
+			if (!dirPath.exists()) {
+				dirPath.mkdir();
+			}
+			File uploadFile = new File(path + picName);
+			FileCopyUtils.copy(file.getBytes(), uploadFile);
+
+			// 修改資料庫內容
+			teacherInfoAdminDAO.updateTeaPic(updateInfo, picName);
+		}
+
 		return model;
 	}
 
@@ -134,10 +158,38 @@ public class TeacherInfoAdminController {
 
 	// 新增一個教師-先從基本信息開始
 	@RequestMapping(value = "/newTeacherBasicInfo", method = RequestMethod.POST)
-	public ModelAndView newTeacherBasicInfo(@ModelAttribute TeacherBasicInfoAdmin newInfo) {
+	public ModelAndView newTeacherBasicInfo(@ModelAttribute TeacherBasicInfoAdmin newInfo,
+			@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request)
+			throws Exception {
 		ModelAndView model = new ModelAndView("redirect:/teacherManage");
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.newTeacherBasicInfo(newInfo);
+
+		// 要先驗證LDAP是否重複
+		if (teacherInfoAdminDAO.checkLDAP(newInfo)) {
+			TeacherBasicInfoAdmin teaInfo = teacherInfoAdminDAO.newTeacherBasicInfo(newInfo);
+
+			// 獲取文件名，包括其後綴
+			// 應當在此處驗證文件格式是否圖片在進行後續動作
+			String picName = file.getOriginalFilename();
+			System.out.println(picName);
+			// 獲取路徑
+			String path = request.getSession().getServletContext().getRealPath("/") + "img/teacherIMG/";
+			System.out.println(path);
+			// 開始上傳
+			File dirPath = new File(path);
+			if (!dirPath.exists()) {
+				dirPath.mkdir();
+			}
+			File uploadFile = new File(path + picName);
+			FileCopyUtils.copy(file.getBytes(), uploadFile);
+
+			// 修改資料庫內容
+			teacherInfoAdminDAO.updateTeaPic(teaInfo, picName);
+		} else {
+			model = new ModelAndView("teacherManage");
+			model.addObject("message", "新教師的LDAP重複了，請重新輸入！");
+		}
+
 		return model;
 	}
 

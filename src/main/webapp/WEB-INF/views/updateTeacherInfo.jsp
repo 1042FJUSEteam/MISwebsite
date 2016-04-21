@@ -35,10 +35,16 @@
 		<div class="row margin-vert-30"></div>
 		<div class="col-md-6 col-md-offset-3 col-sm-offset-3">
 			<form method="post" action="updateTeacherBasicInfoForm"
-				id="updateForm" class="signup-page">
-				<!-- 暫無修改圖片功能 -->
+				id="updateForm" class="signup-page" enctype="multipart/form-data">
 				<input type="hidden" name="teaCode" value=${updateInfo.teaCode }>
 				<input type="hidden" name="teaLDAP" value=${updateInfo.teaLDAP }>
+
+				<div class="form-group">
+					<label>顯示圖片<span class="color-red">*</span></label> <br> <img
+						src="img/teacherIMG/${updateInfo.teaPic}" width="100" height="100">
+					<input type="file" name="file" accept="image/*"
+						class="margin-buttom-20" />
+				</div>
 
 				<div class="form-group">
 					<label>姓名<span class="color-red">*</span></label> <input

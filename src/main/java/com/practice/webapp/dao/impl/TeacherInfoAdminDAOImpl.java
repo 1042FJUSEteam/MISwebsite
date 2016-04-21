@@ -168,8 +168,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	@Override
 	public void update(TeacherBasicInfoAdmin updateInfo) {
 		String sql1 = "Update members SET M_NAME = ?, M_PHONE = ?, M_EMAIL = ? " + "WHERE M_LDAP =?";
-		String sql2 = "Update teacher SET TEA_EN_NAME = ?, Location = ?, TeacherType=? "
-				+ "WHERE TEA_LDAP =?";
+		String sql2 = "Update teacher SET TEA_EN_NAME = ?, Location = ?, TeacherType=? " + "WHERE TEA_LDAP =?";
 		String sql3 = "Update members_class SET M_POST_CODE = ? " + "WHERE M_LDAP =?";
 
 		try {
@@ -211,6 +210,32 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			}
 		}
 
+	}
+
+	// 更新教師的顯示圖片，在修改教師基本信息和新增教師基本信息部分會使用
+	@Override
+	public void updateTeaPic(TeacherBasicInfoAdmin updateInfo, String picName) {
+		String sql = "update teacher set TEA_PHOTO = ? where TEA_CODE = ?";
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, picName);
+			smt.setString(2, updateInfo.getTeaCode());
+			smt.executeUpdate();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 	// 刪除專任教師信息：離職+不顯示
@@ -318,15 +343,46 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 	}
 
 	@Override
-	public void newTeacherBasicInfo(TeacherBasicInfoAdmin newInfo) {
+	public boolean checkLDAP(TeacherBasicInfoAdmin newInfo) {
+		boolean isChecked = false;
+
+		String sql = "select * from teacher where TEA_LDAP = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, newInfo.getTeaLDAP());
+			rs = smt.executeQuery();
+			if(!rs.next()){
+				isChecked = true;
+			}
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+		return isChecked;
+	}
+
+	@Override
+	public TeacherBasicInfoAdmin newTeacherBasicInfo(TeacherBasicInfoAdmin newInfo) {
 		String sql1 = "insert into teacher(TEA_CODE, TeacherType, TEA_EN_NAME, TEA_PHOTO, "
 				+ "TEA_LDAP, TEA_SORT, TEA_ABLE, Location) values(?,?,?,?,?,?,?,?)";
 		String sql2 = "insert into members(M_LDAP, M_PASSWORD, M_NAME, M_DEP_CODE, M_PHONE, M_EMAIL) "
 				+ "values(?,'test',?,'1',?,?)";
 		String sql3 = "insert into members_class(M_LDAP, M_POST_CODE) values(?,?)";
 
-		String teaCode = newTeaCode();
-		String teaSort = newTeaSort(newInfo);
+		newInfo.setTeaPic(" ");
+		newInfo.setTeaCode(newTeaCode());
+		newInfo.setTeaSort(newTeaSort(newInfo));
 
 		try {
 			PreparedStatement smt1 = null;
@@ -335,12 +391,12 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 			conn = dataSource.getConnection();
 
 			smt1 = conn.prepareStatement(sql1);
-			smt1.setString(1, teaCode);
+			smt1.setString(1, newInfo.getTeaCode());
 			smt1.setString(2, newInfo.getTeaType());
 			smt1.setString(3, newInfo.getTeaENName());
 			smt1.setString(4, newInfo.getTeaPic());
 			smt1.setString(5, newInfo.getTeaLDAP());
-			smt1.setString(6, teaSort);
+			smt1.setString(6, newInfo.getTeaSort());
 			smt1.setString(7, newInfo.getTeaAble());
 			smt1.setString(8, newInfo.getTeaLoc());
 			smt1.executeUpdate();
@@ -371,6 +427,7 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 				}
 			}
 		}
+		return newInfo;
 	}
 
 	// 自動產生一個新的教師編號

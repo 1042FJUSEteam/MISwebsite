@@ -52,7 +52,7 @@
 										<figure>
 											<a href="teacherDetailInfo?teaCode=${proTeacherList.teaCode}">
 												<img
-												src="https://imwebegroupservice.storage.googleapis.com/${proTeacherList.teaPic}"
+												src="img/teacherIMG/${proTeacherList.teaPic}"
 												width="236" height="236">
 											</a>
 											<div class="overlay">
@@ -80,7 +80,7 @@
 											<a
 												href="teacherDetailInfo?teaCode=${partTeacherList.teaCode}">
 												<img
-												src="https://imwebegroupservice.storage.googleapis.com/${partTeacherList.teaPic}"
+												src="img/teacherIMG/${partTeacherList.teaPic}"
 												width="236" height="236">
 											</a>
 											<div class="overlay">

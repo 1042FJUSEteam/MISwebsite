@@ -21,10 +21,12 @@ public interface TeacherInfoAdminDAO {
 	public List<TeacherBasicInfoAdmin> getSearchProTeacherInfoList(ResearchTeacher researchInfo);//在搜索條件下獲取專任教師基本資料
 	public List<TeacherBasicInfoAdmin> getSearchPartTeacherInfoList(ResearchTeacher researchInfo);//在搜索條件下獲取兼任教師基本資料
 	public void update(TeacherBasicInfoAdmin updateInfo);//更新教師基本資料
+	public void updateTeaPic(TeacherBasicInfoAdmin updateInfo, String picName);//修改資料庫中教師照片名稱
 	public void delete(TeacherBasicInfoAdmin deleteInfo);//刪除教師（判定爲離校）
 	public TeacherBasicInfoAdmin get(String teaCode);//獲取特定教師的基本資料
 	public void changeView(TeacherBasicInfoAdmin changeInfo);//更改教師信息是否顯示在前端
-	public void newTeacherBasicInfo(TeacherBasicInfoAdmin newInfo);//新增教師基本信息
+	public boolean checkLDAP(TeacherBasicInfoAdmin newInfo);//在新增教師基本信息之前需要驗證LDAP是否重複
+	public TeacherBasicInfoAdmin newTeacherBasicInfo(TeacherBasicInfoAdmin newInfo);//新增教師基本信息
 	public List<TeacherBasicInfoAdmin> teacherShowList(String teaType);//顯示目前教師在前端的顯示順序
 	public void changeTeacherRank(List<RankInfo> rankInfo);//修改教師的前端順序
 	
