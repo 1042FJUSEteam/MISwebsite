@@ -1,5 +1,8 @@
 package com.practice.webapp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.LoginDAO;
 import com.practice.webapp.entity.login.Account;
+import com.practice.webapp.interceptor.Interceptor0417;
 
 @Controller
 public class IndexAndLoginController {
@@ -31,26 +35,28 @@ public class IndexAndLoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView checklogin(@ModelAttribute Account account) {
-		ModelAndView model = new ModelAndView("redirect:/adminIndex");
+	public ModelAndView checklogin(@ModelAttribute Account account, HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("redirect:/admin/adminIndex");
 		LoginDAO loginDAO = (LoginDAO) context.getBean("LoginDAO");
 		boolean flag = loginDAO.checkLogin(account);
-		if (flag == true){
+		if (flag == true) {
+			HttpSession session = request.getSession();
+			session.setAttribute(Interceptor0417.SEESION_MEMBER, "adminX~~X");
 			Account account_session = (Account) context.getBean("account");
 			account_session.setUserName(account.getUserName());
 			account_session.setPassword(account.getPassword());
-		}else{
+		} else {
 			model = new ModelAndView("login");
 			model.addObject("message", "用戶名或密碼錯誤，請重新輸入");
-			Account account_session = (Account)context.getBean("account");
+			Account account_session = (Account) context.getBean("account");
 			account_session.setUserName("");
 			account_session.setPassword("");
 		}
-		
+
 		return model;
 	}
 
-	@RequestMapping(value = "/adminIndex", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adminIndex", method = RequestMethod.GET)
 	public ModelAndView showadminIndex() {
 		ModelAndView model = new ModelAndView("adminIndex");
 

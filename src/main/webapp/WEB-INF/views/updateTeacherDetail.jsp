@@ -266,7 +266,7 @@
 															data-target="#deleteIssuePaper"
 															data-deleteIssuePaperTeaCode="${teacher.teaCode}"
 															data-deleteIssuePaperCode="${teacherIssuePaper.teaDataContCode}">刪除</a></td>
-														<td>!<!-- 暫未開發 --></td>
+														<td><!-- 暫未開發 --></td>
 													</tr>
 												</c:forEach>
 											</table>
@@ -417,7 +417,7 @@
 										</div>
 
 										<!-- 畢業論文 -->
-										<div class="tab-pane fade active" id="TecherPaper">
+										<div class="tab-pane fade" id="TecherPaper">
 
 											<a class="btn btn-default" href="#" data-toggle="modal"
 												id="newTeacherPaperInfo" data-target="#newTeacherPaper"

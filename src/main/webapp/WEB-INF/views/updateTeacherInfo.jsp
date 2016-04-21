@@ -42,8 +42,8 @@
 				<div class="form-group">
 					<label>顯示圖片<span class="color-red">*</span></label> <br> <img
 						src="img/teacherIMG/${updateInfo.teaPic}" width="100" height="100">
-					<input type="file" name="file" accept="image/*"
-						class="margin-buttom-20" />
+					<input type="file" name="file" accept="image/*" /> <span
+						class="color-red margin-buttom-20">請上傳英文名的圖片</span>
 				</div>
 
 				<div class="form-group">

@@ -233,8 +233,8 @@
 
 										<div class="form-group">
 											<label>教師圖片<span class="color-red">*</span></label> <input
-												type="file" name="file" accept="image/*"
-												class="margin-buttom-20" required />
+												type="file" name="file" accept="image/*" required /> <span
+												class="color-red margin-buttom-20">請上傳英文名的圖片</span>
 										</div>
 
 										<div class="form-group">

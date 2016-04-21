@@ -51,8 +51,7 @@
 										<a href="#"> </a>
 										<figure>
 											<a href="teacherDetailInfo?teaCode=${proTeacherList.teaCode}">
-												<img
-												src="img/teacherIMG/${proTeacherList.teaPic}"
+												<img src="img/teacherIMG/${proTeacherList.teaPic}"
 												width="236" height="236">
 											</a>
 											<div class="overlay">
@@ -79,8 +78,7 @@
 										<figure>
 											<a
 												href="teacherDetailInfo?teaCode=${partTeacherList.teaCode}">
-												<img
-												src="img/teacherIMG/${partTeacherList.teaPic}"
+												<img src="img/teacherIMG/${partTeacherList.teaPic}"
 												width="236" height="236">
 											</a>
 											<div class="overlay">
