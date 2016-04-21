@@ -289,11 +289,11 @@ public class ImintroController {
 		imintroDAO.updateass(assitant);
 		
 		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
-		
-		if(assitant.getFiles() == null)
+
+		if(assitant.getFiles() != null)
 		{
 	        List<MultipartFile> crunchifyFiles = assitant.getFiles();
-	        //System.out.println(crunchifyFiles);
+	        System.out.println(crunchifyFiles);
 	        List<String> fileNames = new ArrayList<String>();
 	 
 	        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
@@ -306,10 +306,10 @@ public class ImintroController {
 	                }
 	            }
 	        }	
-	        
+
 	        imintroDAO.updatepic(fileNames, assitant);
 	        model.addObject("fileNames", fileNames);
-		}   
+		}
 		return model;
 	}
 	
@@ -365,10 +365,31 @@ public class ImintroController {
 	}
 	
 	@RequestMapping(value = "/admin/insertass", method = RequestMethod.POST)
-	public ModelAndView insertasspost(@ModelAttribute NewInfoGu assitant){
+	public ModelAndView insertasspost(@ModelAttribute NewInfoGu assitant) throws IllegalStateException, IOException{
 		ModelAndView model = new ModelAndView("redirect:/admin/back_updateass");
 		ImintroDAO imintroDAO = (ImintroDAO)context.getBean("imintroDAO");
-		imintroDAO.insertass(assitant);
+
+		String saveDirectory2 = "D:/xampp/htdocs/ppicc/";		 
+
+		//if(assitant.getFiles() == null)
+		//{
+		
+        List<MultipartFile> crunchifyFiles = assitant.getFiles();
+        List<String> fileNames = new ArrayList<String>();
+        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+            for (MultipartFile multipartFile : crunchifyFiles) {
+ 
+                String fileName = multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                    multipartFile.transferTo(new File(saveDirectory2 + fileName));
+                    fileNames.add(fileName);
+                  }
+            }
+        }	
+
+	        imintroDAO.insertass(fileNames, assitant);
+	        model.addObject("fileNames", fileNames);
+		//}
 		
 		return model;
 	}

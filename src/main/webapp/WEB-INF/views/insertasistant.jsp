@@ -36,12 +36,7 @@
 
 	<div class="container">
 		<br/>
-		<form method="post" action="insertass"
-			id="newTeacherForm" class="signup-page">
-			<input type="hidden" name="teaCode" value="">
-			新增的教師圖片先用girl.jpg代替
-			<input type="hidden" name="teaPic" value="girl.jpg"> <input
-				type="hidden" name="teaSort" value="">
+		<form method="post" action="insertass" modelAttribute="uploadForm" enctype="multipart/form-data">
 
 			<div class="form-group">
 				<label>LDAP<span class="color-red">*</span></label> <input
@@ -90,9 +85,15 @@
 			</div>
 
 			<div class="form-group">
-				<label>办公地址<span class="color-red">*</span></label> <input
+				<label>辦公地址<span class="color-red">*</span></label> <input
 					type="text" name="teaLoc" value=""
 					class="form-control margin-buttom-20" required>
+			</div>
+			
+			<div class="form-group">
+				<label>新增照片:</label>
+				<input name="files" type="file" />				
+				<p class="help-block">選擇照片:</p>
 			</div>
 
 			<!--  <div class="form-group">

@@ -1,5 +1,9 @@
 package com.practice.webapp.entity.introduction;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class NewInfoGu {
 	private String teaPic;//教師圖片
 	private String teaCode;//教師編號
@@ -13,6 +17,17 @@ public class NewInfoGu {
 	private String teaAble;//教師信息是否在前端顯示
 	private String teaSort;//教師信息的排序
 	private String teaType;//教師類型
+	
+	//更新檔案
+		private List<MultipartFile> crunchifyFiles;
+		 
+	    public List<MultipartFile> getFiles() {
+	        return crunchifyFiles;
+	    }
+	 
+	    public void setFiles(List<MultipartFile> files) {
+	        this.crunchifyFiles = files;
+	    } 
 	
 	public String getTeaPic() {
 		return teaPic;

@@ -60,7 +60,7 @@
 			</div>
 			<div class="form-group">
 				<label>更新相片:</label>
-				<input name="files" type="file" />				
+				<input name="files crunchifyFiles" type="file" />				
 				<p class="help-block">選擇照片:</p>
 			</div>
 			

@@ -44,16 +44,16 @@
 			<!-- Carousel Images -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="img/slideshow/slide1.jpg">
+					<img src="1100.jpg">
 				</div>
 				<div class="item">
-					<img src="img/slideshow/slide2.jpg">
+					<img src="img/1111.jpg">
 				</div>
 				<div class="item">
-					<img src="img/slideshow/slide3.jpg">
+					<img src="img/1122.jpg">
 				</div>
 				<div class="item">
-					<img src="img/slideshow/slide4.jpg">
+					<img src="img/1133.png">
 				</div>
 			</div>
 			<!-- End Carousel Images -->

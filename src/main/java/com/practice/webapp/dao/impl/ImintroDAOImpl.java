@@ -678,7 +678,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 		}
 	}
 	
-	public void insertass(NewInfoGu newInfo) {
+	public void insertass(List<String> fileNames,NewInfoGu newInfo) {
 		String sql1 = "insert into teacher(TEA_CODE, TeacherType, TEA_EN_NAME, TEA_PHOTO, "
 				+ "TEA_LDAP, TEA_SORT, TEA_ABLE, Location) values(?,?,?,?,?,?,?,?)";
 		String sql2 = "insert into members(M_LDAP, M_PASSWORD, M_NAME, M_DEP_CODE, M_PHONE, M_EMAIL) "
@@ -693,15 +693,14 @@ public class ImintroDAOImpl implements ImintroDAO{
 			PreparedStatement smt2 = null;
 			PreparedStatement smt3 = null;
 			conn = dataSource.getConnection();
-
 			smt1 = conn.prepareStatement(sql1);
 			smt1.setString(1, teaCode);
 			smt1.setString(2, newInfo.getTeaType());
 			smt1.setString(3, newInfo.getTeaENName());
-			smt1.setString(4, newInfo.getTeaPic());
+			smt1.setString(4, (String)fileNames.get(0));
 			smt1.setString(5, newInfo.getTeaLDAP());
 			smt1.setString(6, teaSort);
-			smt1.setString(7, newInfo.getTeaAble());
+			smt1.setString(7, "1");
 			smt1.setString(8, newInfo.getTeaLoc());
 			smt1.executeUpdate();
 			smt1.close();
