@@ -53,7 +53,7 @@
                     <div class="accordion-body collapse in">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-5"><img src="https://imwebegroupservice.storage.googleapis.com/${assitant.tea_photo}" width="300px" height="256px"></div>
+                                <div class="col-md-5"><img src="img/asistant/${assitant.tea_photo}" width="300px" height="256px"></div>
                                 <div class="col-md-7">
                                     <h3 class="no-margin no-padding">${assitant.post_name}</h3>
                                     <br />

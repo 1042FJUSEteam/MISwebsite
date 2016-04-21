@@ -77,7 +77,7 @@
 								  			${assitantworkList.workContent}<br/>
 								  		</c:forEach>
 							  		</td>
-							  		<td><img src="http://140.136.155.51/ppicc/${getAss.tea_photo}" width="200px" height="200px"></td>
+							  		<td><img src="img/asistant/${getAss.tea_photo}" width="200px" height="200px"></td>
 							  	</tr>					  	
 						</c:forEach>	  	
 					</tbody>

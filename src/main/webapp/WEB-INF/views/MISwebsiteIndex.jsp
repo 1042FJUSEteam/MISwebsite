@@ -30,7 +30,7 @@
 </head>
 <body>
 	<%@include file="jspf/MISwebsiteNavbar.jspf"%>
-	
+
 	<div id="content" class="container">
 		<div class="row margin-top-10"></div><!-- 用于控制与navbar间距 -->
 		<div id="carousel-example" class="carousel slide" data-ride="carousel">
@@ -44,16 +44,16 @@
 			<!-- Carousel Images -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="1100.jpg">
+					<img src="img/slideshow/slide1.jpg">
 				</div>
 				<div class="item">
-					<img src="img/1111.jpg">
+					<img src="img/slideshow/slide2.jpg">
 				</div>
 				<div class="item">
-					<img src="img/1122.jpg">
+					<img src="img/slideshow/slide3.jpg">
 				</div>
 				<div class="item">
-					<img src="img/1133.png">
+					<img src="img/slideshow/slide4.jpg">
 				</div>
 			</div>
 			<!-- End Carousel Images -->
