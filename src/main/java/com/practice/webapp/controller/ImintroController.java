@@ -156,8 +156,11 @@ public class ImintroController {
 					}
 				}
 			}
-			imintroDAO.updatexidafile(fileNames, imintro);
-			model.addObject("fileNames", fileNames);
+			if (fileNames.size() != 0) {
+				imintroDAO.updatexidafile(fileNames, imintro);
+				model.addObject("fileNames", fileNames);
+			}
+
 		}
 		return model;
 	}
@@ -294,24 +297,23 @@ public class ImintroController {
 
 		String saveDirectory2 = request.getSession().getServletContext().getRealPath("/") + "img/asistant/";
 
-		if (assitant.getFiles() != null) {
-			List<MultipartFile> crunchifyFiles = assitant.getFiles();
-			System.out.println(crunchifyFiles);
-			List<String> fileNames = new ArrayList<String>();
+		List<MultipartFile> crunchifyFiles = assitant.getFiles();
+		// System.out.println(crunchifyFiles.size());
+		List<String> fileNames = new ArrayList<String>();
 
-			if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
-				for (MultipartFile multipartFile : crunchifyFiles) {
+		if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+			for (MultipartFile multipartFile : crunchifyFiles) {
 
-					String fileName = multipartFile.getOriginalFilename();
-					if (!"".equalsIgnoreCase(fileName)) {
-						multipartFile.transferTo(new File(saveDirectory2 + fileName));
-						fileNames.add(fileName);
-					}
+				String fileName = multipartFile.getOriginalFilename();
+				if (!"".equalsIgnoreCase(fileName)) {
+					multipartFile.transferTo(new File(saveDirectory2 + fileName));
+					fileNames.add(fileName);
 				}
 			}
-
-			imintroDAO.updatepic(fileNames, assitant);
-			model.addObject("fileNames", fileNames);
+			if (fileNames.size() != 0) {
+				imintroDAO.updatepic(fileNames, assitant);
+				model.addObject("fileNames", fileNames);
+			}
 		}
 		return model;
 	}
@@ -432,7 +434,9 @@ public class ImintroController {
 				}
 			}
 		}
-		imintroDAO.uploadfile(fileNames, imintro);
+		if (fileNames.size() != 0) {
+			imintroDAO.uploadfile(fileNames, imintro);
+		}
 
 		return model;
 	}
