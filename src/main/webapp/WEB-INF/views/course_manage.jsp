@@ -5,21 +5,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Sample applications</title>
-<!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Meta -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
 <!-- Template CSS -->
-<link href="css/animate.css" rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/nexus.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
-<link href="css/custom.css" rel="stylesheet">
-<link href="css/course.css" rel="stylesheet">
+<link rel="stylesheet" href="css/animate.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="css/responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="css/custom.css" rel="stylesheet">
+<link rel="stylesheet" href="css/course.css" rel="stylesheet">
+<!-- Google Fonts -->
 <link href="http://fonts.googleapis.com/css?family=Lato:400,300"
 	rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300"
 	rel="stylesheet" type="text/css">
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<title>輔仁大學資訊管理學系管理后台</title>
 <!-- CKeditor -->
 <script src="ckeditor/ckeditor.js"></script>
 </head>
