@@ -9,7 +9,7 @@ public class Graduation {
 	private String gra_student;
 	private String gra_path;
 	private String secondteacher;
-	
+
 	public String getGra_code() {
 		return gra_code;
 	}

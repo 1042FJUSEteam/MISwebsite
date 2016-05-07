@@ -33,7 +33,7 @@
 </head>
 
 <body>
-	<%@include file="jspf/adminNavbar.jspf"%>"%>
+	<%@include file="jspf/adminNavbar.jspf"%>
 	<div id="content" class="container">
 		<div class="row margin-top-10"></div>
 		<!-- 用于控制与navbar间距 -->

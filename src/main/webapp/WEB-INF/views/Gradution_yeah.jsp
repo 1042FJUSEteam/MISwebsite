@@ -47,35 +47,42 @@
 				<div class="col-md-9">
 
 					<table class="table">
+
 						<tr>
 							<th>編號</th>
 							<th>題目</th>
-							<th>指導老師</th>
+							<th width="11%">指導老師</th>
 							<th>學生</th>
-
 						</tr>
-						<c:forEach items="${graduationList}" var="graduation">
-							<tr>
-								<td>${graduation.gra_code}</td>
-								<td>${graduation.gra_title}</td>
-								<td>${graduation.gra_teacher}</td>
-								<td>${graduation.gra_student}</td>
-							</tr>
-						</c:forEach>
+
+
+						<tr>
+
+							<td width="14%"><select class="form-control" name="GRA_YEAR"
+								id="yearSelection" onChange="selectYear()">
+									<option value="0">年份</option>
+									<c:forEach items="${graYearList}" var="graYearList">
+										<option value="${graYearList}">${graYearList}</option>
+									</c:forEach>
+							</select></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tbody id="detailBody">
+							<c:forEach items="${graduationList}" var="graduationList">
+								<tr class="category_${graduationList.gra_year}"
+									style="display: none;">
+									<td>${graduationList.gra_code}</td>
+									<td>${graduationList.gra_title}</td>
+									<td>${graduationList.gra_teacher}</td>
+									<td>${graduationList.gra_student}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
-		</div>
-
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-
-
-
-		<div id="content" class="container">
-			<div class="row margin-top-10"></div>
-			<!-- 用于控制与navbar间距 -->
 		</div>
 
 		<div class="row margin-top-10"></div>
@@ -86,6 +93,19 @@
 
 </body>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+	function selectYear() {
+		var year = $("#yearSelection").val();
+		//alert(year);
+		$("#detailBody").children().hide();
+		if (year != 0) {
+			$(".category_" + year).show();
+		}
+	}
+</script>
 <!-- JS -->
 <script type="text/javascript" src="js/jquery.min.js"
 	type="text/javascript"></script>

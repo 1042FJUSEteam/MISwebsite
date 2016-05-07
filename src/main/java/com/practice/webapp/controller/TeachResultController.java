@@ -7,9 +7,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.*;
@@ -34,9 +36,12 @@ public class TeachResultController {
 	public ModelAndView getGraduationList() {
 		ModelAndView model = new ModelAndView("Gradution_yeah");
 		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		List<String> graYearList = new ArrayList<String>();
+		graYearList = Teach_ResultDAO.getGraYearList();
 		List<Graduation> graduationList = new ArrayList<Graduation>();
 		graduationList = Teach_ResultDAO.getGraduationList();
 		model.addObject("graduationList", graduationList);
+		model.addObject("graYearList", graYearList);
 		return model;
 	}
 
@@ -44,9 +49,21 @@ public class TeachResultController {
 	public ModelAndView getTea_stu_paperList() {
 		ModelAndView model = new ModelAndView("Tea_stu_paper");
 		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		List<Tea_stu_paper> tea_stu_paperList = new ArrayList<Tea_stu_paper>();
-		tea_stu_paperList = Teach_ResultDAO.getTea_stu_paperList();
-		model.addObject("tea_stu_paperList", tea_stu_paperList);
+		List<Graduation> masterPaperList = new ArrayList<Graduation>();
+		masterPaperList = Teach_ResultDAO.getMasterPaperList();
+		List<Graduation> eMasterPaperList = new ArrayList<Graduation>();
+		eMasterPaperList = Teach_ResultDAO.getEMasterPaperList();
+		List<Category> masterCategory = new ArrayList<Category>();
+		masterCategory = Teach_ResultDAO.getMasterCategory();
+		List<String> masterYear = new ArrayList<String>();// 獲取碩士班年份表
+		masterYear = Teach_ResultDAO.getMasterPaperYear();
+		List<String> EmasterYear = new ArrayList<String>();// 獲取在職碩班年份表
+		EmasterYear = Teach_ResultDAO.getEMasterPaperYear();
+		model.addObject("masterPaperList", masterPaperList);
+		model.addObject("eMasterPaperList", eMasterPaperList);
+		model.addObject("masterCategory", masterCategory);
+		model.addObject("masterYear", masterYear);
+		model.addObject("EmasterYear", EmasterYear);
 		return model;
 	}
 
@@ -101,8 +118,6 @@ public class TeachResultController {
 	@RequestMapping(value = "/admin/insertGraduation", method = RequestMethod.GET)
 	public ModelAndView insertGraduationPage() {
 		ModelAndView model = new ModelAndView("GraduationAdd");
-		Teach_ResultDAO graduationDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-
 		return model;
 	}
 
@@ -119,9 +134,12 @@ public class TeachResultController {
 	public ModelAndView GraduationAdmin() {
 		ModelAndView model = new ModelAndView("GraduationAdmin");
 		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		List<String> graYearList = new ArrayList<String>();
+		graYearList = Teach_ResultDAO.getGraYearList();
 		List<Graduation> graduationList = new ArrayList<Graduation>();
 		graduationList = Teach_ResultDAO.getGraduationList();
 		model.addObject("graduationList", graduationList);
+		model.addObject("graYearList", graYearList);
 		return model;
 	}
 
@@ -142,10 +160,10 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/insertTea_stu_paper", method = RequestMethod.POST)
-	public ModelAndView insertTea_stu_paper(@ModelAttribute Tea_stu_paper tea_stu_paper) {
+	public ModelAndView insertTea_stu_paper(@ModelAttribute Graduation paperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/Tea_stu_paperAdmin");
 		Teach_ResultDAO tea_stu_paperDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		tea_stu_paperDAO.insertTea_stu_paper(tea_stu_paper);
+		tea_stu_paperDAO.insertTea_stu_paper(paperInfo);
 
 		return model;
 	}
@@ -154,17 +172,29 @@ public class TeachResultController {
 	public ModelAndView Tea_stu_paperAdmin() {
 		ModelAndView model = new ModelAndView("Tea_stu_paperAdmin");
 		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		List<Tea_stu_paper> tea_stu_paperList = new ArrayList<Tea_stu_paper>();
-		tea_stu_paperList = Teach_ResultDAO.getTea_stu_paperList();
-		model.addObject("tea_stu_paperList", tea_stu_paperList);
+		List<Graduation> masterPaperList = new ArrayList<Graduation>();
+		masterPaperList = Teach_ResultDAO.getMasterPaperList();
+		List<Graduation> eMasterPaperList = new ArrayList<Graduation>();
+		eMasterPaperList = Teach_ResultDAO.getEMasterPaperList();
+		List<Category> masterCategory = new ArrayList<Category>();
+		masterCategory = Teach_ResultDAO.getMasterCategory();
+		List<String> masterYear = new ArrayList<String>();// 獲取碩士班年份表
+		masterYear = Teach_ResultDAO.getMasterPaperYear();
+		List<String> EmasterYear = new ArrayList<String>();// 獲取在職碩班年份表
+		EmasterYear = Teach_ResultDAO.getEMasterPaperYear();
+		model.addObject("masterPaperList", masterPaperList);
+		model.addObject("eMasterPaperList", eMasterPaperList);
+		model.addObject("masterCategory", masterCategory);
+		model.addObject("masterYear", masterYear);
+		model.addObject("EmasterYear", EmasterYear);
 		return model;
 	}
 
-	@RequestMapping(value = "/admin/deleteTea_stu_paper", method = RequestMethod.GET)
-	public ModelAndView deleteTea_stu_paper(@ModelAttribute Tea_stu_paper tea_stu_paper) {
+	@RequestMapping(value = "/admin/deleteTea_stu_paper", method = RequestMethod.POST)
+	public ModelAndView deleteTea_stu_paper(@RequestParam String paperid) {
 		ModelAndView model = new ModelAndView("redirect:/admin/Tea_stu_paperAdmin");
 		Teach_ResultDAO tea_stu_paperDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		tea_stu_paperDAO.deleteTea_stu_paper(tea_stu_paper);
+		tea_stu_paperDAO.deleteTea_stu_paper(paperid);
 
 		return model;
 	}
@@ -172,8 +202,6 @@ public class TeachResultController {
 	@RequestMapping(value = "/admin/insertAward", method = RequestMethod.GET)
 	public ModelAndView insertAwardPage() {
 		ModelAndView model = new ModelAndView("AwardAdd");
-		Teach_ResultDAO awardDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-
 		return model;
 	}
 
@@ -242,20 +270,19 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/updateTea_stu_paper", method = RequestMethod.GET)
-	public ModelAndView updateGraduation(@RequestParam int paperid) {
+	public ModelAndView updateGraduation1(@RequestParam String paperid) {
 		ModelAndView model = new ModelAndView("Tea_stu_paperUpdate");
 		Teach_ResultDAO tea_stu_paperDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		Tea_stu_paper tea_stu_paperList = tea_stu_paperDAO.getTea_stu_paper(paperid);
-		model.addObject("tea_stu_paperList", tea_stu_paperList);
-
+		Graduation tea_stu_paper = tea_stu_paperDAO.getTea_stu_paper(paperid);
+		model.addObject("tea_stu_paper", tea_stu_paper);
 		return model;
 	}
 
 	@RequestMapping(value = "/admin/updateTea_stu_paper", method = RequestMethod.POST)
-	public ModelAndView updateTea_stu_paper(@ModelAttribute Tea_stu_paper tea_stu_paper) {
+	public ModelAndView updateTea_stu_paper(@ModelAttribute Graduation info) {
 		ModelAndView model = new ModelAndView("redirect:/admin/Tea_stu_paperAdmin");
 		Teach_ResultDAO tea_stu_paperDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-		tea_stu_paperDAO.updateTea_stu_paper(tea_stu_paper);
+		tea_stu_paperDAO.updateTea_stu_paper(info);
 		return model;
 	}
 

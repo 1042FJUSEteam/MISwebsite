@@ -107,8 +107,8 @@ public class TeacherInfoAdminDAOImpl implements TeacherInfoAdminDAO {
 				+ "members.M_PHONE, members.M_EMAIL, teacher.Location, teacher.TEA_ABLE "
 				+ "from teacher, members, class_post, members_class " + "where "
 				+ "teacher.TEA_LDAP = members.M_LDAP and " + "members.M_LDAP = members_class.M_LDAP and "
-				+ "members_class.M_POST_CODE = class_post.POST_CODE and " + researchInfo.getKey() + " like ? "
-				+ "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
+				+ "members_class.M_POST_CODE = class_post.POST_CODE and teacher.TeacherType like 'T' and "
+				+ researchInfo.getKey() + " like ? " + "order by teacher.TEA_ABLE desc, teacher.TEA_SORT";
 		return getResearchList(sql, researchInfo);
 	}
 

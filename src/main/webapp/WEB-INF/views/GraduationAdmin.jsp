@@ -46,53 +46,68 @@
 				<%@include file="jspf/adminSidebar.jsp"%>
 				<div class="col-md-9">
 					<a class="btn btn-primary" href="insertGraduation">新增文章</a>
+					<div class="row margin-top-10"></div>
 					<table class="table">
 						<tr>
 							<th>編號</th>
+							<th>年份</th>
 							<th>題目</th>
 							<th>指導老師</th>
 							<th>學生</th>
+							<th>編輯</th>
 
 						</tr>
-						<c:forEach items="${graduationList}" var="graduation">
-							<tr>
-								<td>${graduation.gra_code}</td>
-								<td>${graduation.gra_year}</td>
-								<td>${graduation.gra_title}</td>
-								<td>${graduation.gra_teacher}</td>
-								<td>${graduation.gra_student}</td>
-								<td><a class="btn btn-default"
-									href="updateGraduation?gra_code=${graduation.gra_code}">修改</a>
-									<a class="btn btn-sm btn-danger deleteBtn"
-									href="deleteGraduation?gra_code=${graduation.gra_code}">刪除</a>
-								</td>
-							</tr>
-						</c:forEach>
+
+						<tr>
+
+							<td width="14%"><select class="form-control" name="GRA_YEAR"
+								id="graduationYearSelection" onChange="graduationYelectYear()">
+									<option value="0">年份</option>
+									<c:forEach items="${graYearList}" var="graYearList">
+										<option value="${graYearList}">${graYearList}</option>
+									</c:forEach>
+							</select></td>
+							<td></td>
+							<td></td>
+						</tr>
+
+						<tbody id="graduationDetailAdmin">
+							<c:forEach items="${graduationList}" var="graduationList">
+								<tr class="graduationAdmin_category_${graduationList.gra_year}"
+									style="display: none;">
+									<td>${graduationList.gra_code}</td>
+									<td>${graduationList.gra_year}</td>
+									<td>${graduationList.gra_title}</td>
+									<td>${graduationList.gra_teacher}</td>
+									<td>${graduationList.gra_student}</td>
+									<td><a class="btn btn-default"
+										href="updateGraduation?gra_code=${graduationList.gra_code}">修改</a>
+										<a class="btn btn-sm btn-danger deleteBtn"
+										href="deleteGraduation?gra_code=${graduationList.gra_code}">刪除</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-
-
-
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-
-
-		<div id="content" class="container">
-			<div class="row margin-top-10"></div>
-			<!-- 用于控制与navbar间距 -->
-		</div>
-
-		<div class="row margin-top-10"></div>
-		<!-- 用于控制与footer间距 -->
 	</div>
-
-	<%@include file="jspf/MISwebsiteFooter.jspf"%>
-
 </body>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+	function graduationYelectYear() {
+		var year = $("#graduationYearSelection").val();
+		//alert(year);
+		$("#graduationDetailAdmin").children().hide();
+		if (year != 0) {
+			$(".graduationAdmin_category_" + year).show();
+		}
+	}
+</script>
 <!-- JS -->
 <script type="text/javascript" src="js/jquery.min.js"
 	type="text/javascript"></script>

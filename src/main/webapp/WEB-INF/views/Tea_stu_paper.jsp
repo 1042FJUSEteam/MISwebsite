@@ -47,48 +47,111 @@
 				<%@include file="jspf/Sidebar-teachResult.jspf"%>
 				<div class="col-md-9">
 
+
+					<table class="table" width="60%">
+						<tr>
+							<td width="20%"><select class="form-control"
+								name="masterSelect" id="masterSelection"
+								onChange="selectMasterCategory()">
+									<option value="0">請選擇部別</option>
+									<c:forEach items="${masterCategory}" var="masterCategory">
+										<option value="${masterCategory.DCcode}">${masterCategory.DCclass}</option>
+									</c:forEach>
+							</select></td>
+							<td width="30%"><select class="form-control"
+								name="EmasterYearSelect" id="EmasterYearSelection"
+								onChange="EmasterSelectyear()" style="display: none;">
+									<option value="0">請選擇年度</option>
+									<c:forEach items="${EmasterYear}" var="EmasterYear">
+										<option value="${EmasterYear}">${EmasterYear}</option>
+									</c:forEach>
+							</select> <select class="form-control" name="masterYearSelect"
+								id="masterYearSelection" onChange="masterSelectyear()"
+								style="display: none;">
+									<option value="0">請選擇年度</option>
+									<c:forEach items="${masterYear}" var="masterYear">
+										<option value="${masterYear}">${masterYear}</option>
+									</c:forEach>
+							</select></td>
+						</tr>
+					</table>
 					<table class="table">
 						<tr>
 							<th>編號</th>
 							<th>題目</th>
-							<th>年份</th>
 							<th>指導老師</th>
 							<th>學生</th>
 
 						</tr>
-						<c:forEach items="${tea_stu_paperList}" var="tea_stu_paper">
-							<tr>
-								<td>${tea_stu_paper.paperid}</td>
-								<td>${tea_stu_paper.tea_stu_paper_name}</td>
-								<td>${tea_stu_paper.tea_stu_year}</td>
-								<td>${tea_stu_paper.tea_name}</td>
-								<td>${tea_stu_paper.tea_stu_name}</td>
-							</tr>
-						</c:forEach>
+
+						<tbody id="masterPaperDetail">
+							<c:forEach items="${masterPaperList}" var="masterPaperList">
+								<tr class="category_year${masterPaperList.gra_year}"
+									style="display: none;">
+									<td>${masterPaperList.gra_code}</td>
+									<td>${masterPaperList.gra_title}</td>
+									<td>${masterPaperList.gra_teacher}</td>
+									<td>${masterPaperList.gra_student}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+						<tbody id="eMasterPaperDetail">
+							<c:forEach items="${eMasterPaperList}" var="eMasterPaperList">
+								<tr class="category_year${eMasterPaperList.gra_year}"
+									style="display: none;">
+									<td>${eMasterPaperList.gra_code}</td>
+									<td>${eMasterPaperList.gra_title}</td>
+									<td>${eMasterPaperList.gra_teacher}</td>
+									<td>${eMasterPaperList.gra_student}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
+
 		</div>
 
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-
-
-
-		<div id="content" class="container">
-			<div class="row margin-top-10"></div>
-			<!-- 用于控制与navbar间距 -->
-		</div>
-
-		<div class="row margin-top-10"></div>
-		<!-- 用于控制与footer间距 -->
-	</div>
-
-	<%@include file="jspf/MISwebsiteFooter.jspf"%>
-
+		<%@include file="jspf/MISwebsiteFooter.jspf"%>
 </body>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+	function selectMasterCategory() {
+		var id = $("#masterSelection").val();
+		//alert(id);
+		if (id == "0") {
+			$("#EmasterYearSelection").hide();
+			$("#masterYearSelection").hide();
+			$("#masterPaperDetail").children().hide();
+			$("#eMasterPaperDetail").children().hide();
+		}
+		if (id == "E1") {
+			$("#masterYearSelection").hide();
+			$("#EmasterYearSelection").show();
+		}
+		if (id == "M1") {
+			$("#EmasterYearSelection").hide();
+			$("#masterYearSelection").show();
+		}
+	}
+	function EmasterSelectyear() {
+		var year = $("#EmasterYearSelection").val();
+		$("#masterPaperDetail").children().hide();
+		$("#eMasterPaperDetail").children().hide();
+		if (year != 0) {
+			$("#eMasterPaperDetail .category_year" + year).show();
+		}
+	}
+	function masterSelectyear() {
+		var year = $("#masterYearSelection").val();
+		$("#masterPaperDetail").children().hide();
+		$("#eMasterPaperDetail").children().hide();
+		if (year != 0) {
+			$("#masterPaperDetail .category_year" + year).show();
+		}
+	}
+</script>
 <!-- JS -->
 <script type="text/javascript" src="js/jquery.min.js"
 	type="text/javascript"></script>

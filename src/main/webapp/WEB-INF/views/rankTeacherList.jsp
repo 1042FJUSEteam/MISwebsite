@@ -98,6 +98,7 @@
 							});
 					
 					var rank = JSON.stringify(data);
+					//alert(rank);
 					$.ajax({
 						URL : "/rankTeacherList",
 						//大小寫url有差

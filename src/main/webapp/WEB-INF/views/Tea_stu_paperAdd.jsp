@@ -49,27 +49,27 @@
 
 					<div class="form-group">
 						<label>論文編號</label>
-						<textarea type="text" rows="3" cols="40" name="paperid"></textarea>
+						<textarea type="text" rows="3" cols="40" name="gra_code"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>論文年份</label>
-						<textarea type="text" rows="3" cols="40" name="tea_stu_year"></textarea>
+						<textarea type="text" rows="3" cols="40" name="gra_year"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>老師編號</label>
-						<textarea type="text" rows="3" cols="40" name="tea_code"></textarea>
+						<textarea type="text" rows="3" cols="40" name="gra_teacher"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>學生</label>
-						<textarea type="text" rows="3" cols="40" name="tea_stu_name"></textarea>
+						<textarea type="text" rows="3" cols="40" name="gra_student"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>論文名稱</label>
-						<textarea type="text" rows="3" cols="40" name="tea_stu_paper_name"></textarea>
+						<textarea type="text" rows="3" cols="40" name="gra_title"></textarea>
 					</div>
 
 					<button type="submit" class="btn btn-primary">新增</button>

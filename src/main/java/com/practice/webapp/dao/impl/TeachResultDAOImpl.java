@@ -60,10 +60,45 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 		return symList;
 	}
 
+	public List<String> getGraYearList() {
+		List<String> graYearList = new ArrayList<String>();
+
+		String sql = "select distinct GRA_YEAR from graduation order by GRA_YEAR desc";
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+
+			while (rs.next()) {
+				String year = rs.getString("GRA_YEAR");
+				graYearList.add(year);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return graYearList;
+	}
+
 	public List<Graduation> getGraduationList() {
 		List<Graduation> graduationList = new ArrayList<Graduation>();
 
-		String sql = "SELECT * FROM graduation";
+		String sql = "SELECT members.M_NAME, graduation.GRA_CODE, graduation.GRA_TITLE, "
+				+ "graduation.GRA_YEAR, graduation.GRA_STUDENT, graduation.GRA_PATH, "
+				+ "graduation.SecondTeacher FROM members, graduation "
+				+ "where graduation.GRA_CODE LIKE '%IM%' AND members.M_LDAP = graduation.GRA_TEACHER "
+				+ "ORDER BY graduation.GRA_YEAR DESC";
 
 		try {
 			conn = dataSource.getConnection();
@@ -75,10 +110,8 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 				graduation.setGra_code(rs.getString("GRA_CODE"));
 				graduation.setGra_year(rs.getString("GRA_YEAR"));
 				graduation.setGra_title(rs.getString("GRA_TITLE"));
-				graduation.setGra_teacher(rs.getString("GRA_TEACHER"));
+				graduation.setGra_teacher(rs.getString("M_NAME"));
 				graduation.setGra_student(rs.getString("GRA_STUDENT"));
-				graduation.setGra_path(rs.getString("GRA_PATH"));
-				graduation.setSecondteacher(rs.getString("SecondTeacher"));
 
 				graduationList.add(graduation);
 			}
@@ -99,11 +132,13 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 		return graduationList;
 	}
 
-	public List<Tea_stu_paper> getTea_stu_paperList() {
-		List<Tea_stu_paper> tea_stu_paperList = new ArrayList<Tea_stu_paper>();
+	public List<Graduation> getMasterPaperList() {
+		List<Graduation> masterPaperList = new ArrayList<Graduation>();
 
-		String sql = "SELECT * FROM tea_stu_paper, teacher, members "
-				+ "WHERE tea_stu_paper.TEA_CODE = teacher.TEA_CODE AND teacher.TEA_LDAP = members.M_LDAP";
+		String sql = "SELECT members.M_NAME, graduation.GRA_CODE, graduation.GRA_TITLE, "
+				+ "graduation.GRA_YEAR, graduation.GRA_STUDENT FROM members, graduation "
+				+ "where graduation.GRA_CODE LIKE 'MB%' AND members.M_LDAP = graduation.GRA_TEACHER "
+				+ "ORDER BY graduation.GRA_YEAR DESC;";
 
 		try {
 			conn = dataSource.getConnection();
@@ -111,15 +146,14 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 			rs = smt.executeQuery();
 
 			while (rs.next()) {
-				Tea_stu_paper tea_stu_paper = new Tea_stu_paper();
-				tea_stu_paper.setPaperid(rs.getInt("PaperID"));
-				tea_stu_paper.setTea_code(rs.getInt("TEA_CODE"));
-				tea_stu_paper.setTea_stu_year(rs.getInt("TEA_STU_YEAR"));
-				tea_stu_paper.setTea_stu_name(rs.getString("TEA_STU_NAME"));
-				tea_stu_paper.setTea_stu_paper_name(rs.getString("TEA_STU_PAPER_NAME"));
-				tea_stu_paper.setTea_name(rs.getString("members.M_NAME"));
+				Graduation masterPaper = new Graduation();
+				masterPaper.setGra_teacher(rs.getString("M_NAME"));
+				masterPaper.setGra_code(rs.getString("GRA_CODE"));
+				masterPaper.setGra_title(rs.getString("GRA_TITLE"));
+				masterPaper.setGra_year(rs.getString("GRA_YEAR"));
+				masterPaper.setGra_student(rs.getString("GRA_STUDENT"));
 
-				tea_stu_paperList.add(tea_stu_paper);
+				masterPaperList.add(masterPaper);
 			}
 			rs.close();
 			smt.close();
@@ -135,7 +169,140 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 				}
 			}
 		}
-		return tea_stu_paperList;
+		return masterPaperList;
+	}
+
+	public List<Graduation> getEMasterPaperList() {
+		List<Graduation> eMasterPaperList = new ArrayList<Graduation>();
+
+		String sql = "SELECT members.M_NAME, graduation.GRA_CODE, graduation.GRA_TITLE, "
+				+ "graduation.GRA_YEAR, graduation.GRA_STUDENT FROM members, graduation "
+				+ "where graduation.GRA_CODE LIKE 'EM%' AND members.M_LDAP = graduation.GRA_TEACHER "
+				+ "ORDER BY graduation.GRA_YEAR DESC;";
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+
+			while (rs.next()) {
+				Graduation eMasterPaper = new Graduation();
+				eMasterPaper.setGra_teacher(rs.getString("M_NAME"));
+				eMasterPaper.setGra_code(rs.getString("GRA_CODE"));
+				eMasterPaper.setGra_title(rs.getString("GRA_TITLE"));
+				eMasterPaper.setGra_year(rs.getString("GRA_YEAR"));
+				eMasterPaper.setGra_student(rs.getString("GRA_STUDENT"));
+
+				eMasterPaperList.add(eMasterPaper);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return eMasterPaperList;
+	}
+
+	public List<Category> getMasterCategory() {
+		List<Category> masterCategory = new ArrayList<Category>();
+
+		String sql = "SELECT DC_CODE, DC_CLASS FROM division_class WHERE DIV_CODE='M'OR DIV_CODE='E'";
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				Category category = new Category();
+				category.setDCcode(rs.getString("DC_CODE"));
+				category.setDCclass(rs.getString("DC_CLASS"));
+				masterCategory.add(category);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return masterCategory;
+	}
+
+	public List<String> getMasterPaperYear() {
+		List<String> masterPaperYear = new ArrayList<String>();
+
+		String sql = "select DISTINCT GRA_YEAR from graduation where "
+				+ "graduation.GRA_CODE LIKE '%MB%' order by GRA_YEAR DESC";
+
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				String year = rs.getString("GRA_YEAR");
+				masterPaperYear.add(year);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return masterPaperYear;
+	}
+
+	public List<String> getEMasterPaperYear() {
+		List<String> EmasterPaperYear = new ArrayList<String>();
+
+		String sql = "select DISTINCT GRA_YEAR from graduation where "
+				+ "graduation.GRA_CODE LIKE '%EM%' order by GRA_YEAR DESC";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			rs = smt.executeQuery();
+			while (rs.next()) {
+				String year = rs.getString("GRA_YEAR");
+				EmasterPaperYear.add(year);
+			}
+			rs.close();
+			smt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return EmasterPaperYear;
 	}
 
 	public List<Award> getAwardList() {
@@ -239,19 +406,17 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 	}
 
 	@Override
-	public void insertTea_stu_paper(Tea_stu_paper tea_stu_paper) {
-		// TODO Auto-generated method stub
-		String sql = "INSERT tea_stu_paper(PaperID,TEA_CODE,TEA_STU_YEAR,TEA_STU_NAME,TEA_STU_PAPER_NAME) "
-				+ "VALUES(?,?,?,?,?)";
+	public void insertTea_stu_paper(Graduation paperInfo) {
+		String sql = "INSERT graduation(GRA_CODE,GRA_YEAR,GRA_TITLE,GRA_TEACHER,GRA_STUDENT) " + "VALUES(?,?,?,?,?)";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, tea_stu_paper.getPaperid());
-			smt.setInt(2, tea_stu_paper.getTea_code());
-			smt.setInt(3, tea_stu_paper.getTea_stu_year());
-			smt.setString(4, tea_stu_paper.getTea_stu_name());
-			smt.setString(5, tea_stu_paper.getTea_stu_paper_name());
+			smt.setString(1, paperInfo.getGra_code());
+			smt.setString(2, paperInfo.getGra_year());
+			smt.setString(3, paperInfo.getGra_title());
+			smt.setString(4, paperInfo.getGra_teacher());
+			smt.setString(5, paperInfo.getGra_student());
 			smt.executeUpdate();
 			smt.close();
 
@@ -347,13 +512,13 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 	}
 
 	@Override
-	public void deleteTea_stu_paper(Tea_stu_paper tea_stu_paper) {
+	public void deleteTea_stu_paper(String paperid) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM tea_stu_paper WHERE PaperID = ?";
+		String sql = "DELETE FROM graduation WHERE GRA_CODE = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, tea_stu_paper.getPaperid());
+			smt.setString(1, paperid);
 			smt.executeUpdate();
 			smt.close();
 
@@ -456,20 +621,20 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 	}
 
 	@Override
-	public void updateTea_stu_paper(Tea_stu_paper tea_stu_paper) {
+	public void updateTea_stu_paper(Graduation info) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE tea_stu_paper SET PaperID = ?,TEA_CODE = ?,TEA_STU_YEAR = ?,TEA_STU_NAME = ?,TEA_STU_PAPER_NAME =?"
-				+ "WHERE PaperID = ?";
+		String sql = "UPDATE graduation SET GRA_CODE = ?,GRA_YEAR = ?,GRA_TITLE = ?,GRA_TEACHER = ?,GRA_STUDENT =?"
+				+ "WHERE GRA_CODE = ?";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, tea_stu_paper.getPaperid());
-			smt.setInt(2, tea_stu_paper.getTea_code());
-			smt.setInt(3, tea_stu_paper.getTea_stu_year());
-			smt.setString(4, tea_stu_paper.getTea_stu_name());
-			smt.setString(5, tea_stu_paper.getTea_stu_paper_name());
-			smt.setInt(6, tea_stu_paper.getPaperid());
+			smt.setString(1, info.getGra_code());
+			smt.setString(2, info.getGra_year());
+			smt.setString(3, info.getGra_title());
+			smt.setString(4, info.getGra_teacher());
+			smt.setString(5, info.getGra_student());
+			smt.setString(6, info.getGra_code());
 			smt.executeUpdate();
 			smt.close();
 
@@ -499,7 +664,7 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 			smt.setString(2, award.getArticlecontent());
 			smt.setString(3, award.getArticleenglishcontent());
 			smt.setInt(4, award.getArticleid());
-			
+
 			smt.executeUpdate();
 			smt.close();
 
@@ -718,21 +883,21 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 	}
 
 	@Override
-	public Tea_stu_paper getTea_stu_paper(int paperid) {
-		Tea_stu_paper out = new Tea_stu_paper();
-		String sql = "SELECT * FROM tea_stu_paper where PaperID = ?";
+	public Graduation getTea_stu_paper(String paperid) {
+		Graduation out = new Graduation();
+		String sql = "SELECT * FROM graduation where GRA_CODE = ?";
 
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, paperid);
+			smt.setString(1, paperid);
 			rs = smt.executeQuery();
 			if (rs.next()) {
-				out.setPaperid(rs.getInt("PaperID"));
-				out.setTea_code(rs.getInt("TEA_CODE"));
-				out.setTea_stu_year(rs.getInt("TEA_STU_YEAR"));
-				out.setTea_stu_name(rs.getString("TEA_STU_NAME"));
-				out.setTea_stu_paper_name(rs.getString("TEA_STU_PAPER_NAME"));
+				out.setGra_code(rs.getString("GRA_CODE"));
+				out.setGra_student(rs.getString("GRA_STUDENT"));
+				out.setGra_year(rs.getString("GRA_YEAR"));
+				out.setGra_teacher(rs.getString("GRA_TEACHER"));
+				out.setGra_title(rs.getString("GRA_TITLE"));
 			}
 			rs.close();
 			smt.close();
