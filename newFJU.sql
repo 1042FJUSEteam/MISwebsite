@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `fju` /*!40100 DEFAULT CHARACTER SET utf8 */;
+﻿CREATE DATABASE  IF NOT EXISTS `fju` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `fju`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
@@ -956,7 +956,7 @@ DROP TABLE IF EXISTS `graduation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `graduation` (
   `GRA_CODE` varchar(6) NOT NULL,
-  `GRA_YEAR` varchar(5) NOT NULL,
+  `GRA_YEAR` int(5) NOT NULL,
   `GRA_TITLE` varchar(100) NOT NULL,
   `GRA_TEACHER` varchar(15) NOT NULL,
   `GRA_STUDENT` varchar(50) NOT NULL,
