@@ -23,7 +23,7 @@ public class Interceptor0417 implements HandlerInterceptor{
 //		System.out.println("Before handler is executed");
         //请求的路径
         String contextPath=request.getContextPath();
-        String  url=request.getServletPath().toString();
+        //String  url=request.getServletPath().toString();
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute(SEESION_MEMBER);
         

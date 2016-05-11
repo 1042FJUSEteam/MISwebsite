@@ -62,8 +62,8 @@
 								name="EmasterYearSelect" id="EmasterYearSelection"
 								onChange="EmasterSelectyear()" style="display: none;">
 									<option value="0">請選擇年度</option>
-									<c:forEach items="${EmasterYear}" var="EmasterYear">
-										<option value="${EmasterYear}">${EmasterYear}</option>
+									<c:forEach items="${eMasterYear}" var="eMasterYear">
+										<option value="${eMasterYear}">${eMasterYear}</option>
 									</c:forEach>
 							</select> <select class="form-control" name="masterYearSelect"
 								id="masterYearSelection" onChange="masterSelectyear()"

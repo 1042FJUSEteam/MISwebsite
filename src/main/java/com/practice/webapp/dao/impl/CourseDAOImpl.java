@@ -14,9 +14,9 @@ import com.practice.webapp.entity.course.Course;
 
 public class CourseDAOImpl implements CourseDAO {
 	private DataSource dataSource;
-	private Connection conn = null;
-	private ResultSet rs = null;
-	private PreparedStatement smt = null;
+	private Connection conn ;
+	private ResultSet rs ;
+	private PreparedStatement smt ;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;

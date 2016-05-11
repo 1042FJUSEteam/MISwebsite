@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.practice.webapp.dao.TeacherInfoAdminDAO;
 import com.practice.webapp.dao.TeacherInfoDAO;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
 import com.practice.webapp.entity.teacher.TeacherBasicInfo;
@@ -44,7 +43,7 @@ public class TeacherInfoController {
 
 	@RequestMapping(value = "/teacherDetailInfo", method = RequestMethod.GET)
 	// ±Ð®v¸Ô²Ó«H®§
-	public ModelAndView TeacherDetailInfoPage(@ModelAttribute TeacherBasicInfo teacherBasicInfo) {
+	public ModelAndView teacherDetailInfoPage(@ModelAttribute TeacherBasicInfo teacherBasicInfo) {
 		List<TeacherEduInfo> teacherEduInfo = new ArrayList<TeacherEduInfo>();
 		List<TeacherExpInfo> teacherExpInfo = new ArrayList<TeacherExpInfo>();
 		List<TeacherSpeInfo> teacherSpeInfo = new ArrayList<TeacherSpeInfo>();

@@ -5,7 +5,7 @@ public class TeacherStuPaper {
 	private boolean flag;//用於判定資料庫中是否有資料
 	private String teaStuYear;//年份
 	private String teaStuName;//學生名字
-	private String TeaStuPaperName;//論文標題
+	private String teaStuPaperName;//論文標題
 	private String paperID;//不重複值
 	
 	public String getName() {
@@ -33,10 +33,10 @@ public class TeacherStuPaper {
 		this.teaStuName = teaStuName;
 	}
 	public String getTeaStuPaperName() {
-		return TeaStuPaperName;
+		return teaStuPaperName;
 	}
 	public void setTeaStuPaperName(String teaStuPaperName) {
-		TeaStuPaperName = teaStuPaperName;
+		this.teaStuPaperName = teaStuPaperName;
 	}
 	public String getPaperID() {
 		return paperID;

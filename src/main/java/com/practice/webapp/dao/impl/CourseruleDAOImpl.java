@@ -6,22 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
-import java.sql.*;
 
 import javax.sql.DataSource;
 
-import com.mysql.jdbc.Blob;
-import com.practice.webapp.dao.CourseDAO;
 import com.practice.webapp.dao.CourseruleDAO;
 import com.practice.webapp.entity.course.Courserule;
 
 public class CourseruleDAOImpl implements CourseruleDAO{
 	
 	private DataSource dataSource;
-	private Connection conn = null ;
-	private ResultSet rs = null ;
-	private PreparedStatement smt = null ;
+	private Connection conn ;
+	private ResultSet rs ;
+	private PreparedStatement smt ;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;

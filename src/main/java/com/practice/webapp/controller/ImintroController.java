@@ -4,18 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-
-//upload
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-//===
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -26,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import org.springframework.ui.Model;
 
 import com.practice.webapp.dao.ImintroDAO;
 
@@ -35,7 +24,6 @@ import com.practice.webapp.entity.introduction.AssitantWork;
 import com.practice.webapp.entity.introduction.Award;
 import com.practice.webapp.entity.introduction.Imintro;
 import com.practice.webapp.entity.introduction.NewInfoGu;
-import com.practice.webapp.entity.introduction.Fileupload;
 
 @Controller
 public class ImintroController {
@@ -363,7 +351,6 @@ public class ImintroController {
 	@RequestMapping(value = "/admin/insertass", method = RequestMethod.GET)
 	public ModelAndView insertassget() {
 		ModelAndView model = new ModelAndView("insertasistant");
-		ImintroDAO imintroDAO = (ImintroDAO) context.getBean("imintroDAO");
 
 		return model;
 	}
@@ -403,7 +390,6 @@ public class ImintroController {
 	@RequestMapping(value = "/admin/uploadfile", method = RequestMethod.GET)
 	public ModelAndView uploadfileget(@ModelAttribute Imintro imintro) {
 		ModelAndView model = new ModelAndView("uploadfile");
-		ImintroDAO imintroDAO = (ImintroDAO) context.getBean("imintroDAO");
 
 		Imintro fileimintro = new Imintro();
 		fileimintro.setDi_code(imintro.getDi_code());

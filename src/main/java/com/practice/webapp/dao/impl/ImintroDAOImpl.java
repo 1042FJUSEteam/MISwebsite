@@ -23,9 +23,9 @@ import com.practice.webapp.entity.introduction.NewInfoGu;
 
 public class ImintroDAOImpl implements ImintroDAO{
 	private DataSource dataSource;
-	private Connection conn = null ;
-	private ResultSet rs = null ;
-	private PreparedStatement smt = null ;
+	private Connection conn;
+	private ResultSet rs;
+	private PreparedStatement smt;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -797,7 +797,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 		
 	// 自動產生一個新的AsistantID編號
 	private int newAssID() {
-		int AssID = 0;
+		int assID = 0;
 		String sql = "select max(AsistantWorkID) as AsistantWorkID from asistantwork";
 		try {
 			conn = dataSource.getConnection();
@@ -806,7 +806,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 			if (rs.next()) {
 				int i = rs.getInt("AsistantWorkID");
 				i++;
-				AssID = i;
+				assID = i;
 			}
 			rs.close();
 			smt.close();
@@ -822,7 +822,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 				}
 			}
 		}
-		return AssID;
+		return assID;
 	}
 				
 	public void updatepic(List<String> fileNames, Assitant assitant){			
@@ -906,7 +906,7 @@ public class ImintroDAOImpl implements ImintroDAO{
 				i++;
 				code = Integer.toString(i);
 				intcode += Integer.parseInt(code); //將字串轉int
-			};					
+			}		
 			rs.close();
 			smt.close();
 

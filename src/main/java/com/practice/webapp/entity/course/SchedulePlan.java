@@ -8,7 +8,7 @@ public class SchedulePlan {
 	private String div_code;
 	private int plan_code;
 	private String plan_name;
-	private int COUNT;
+	private int count;
 	
 	
 	public String getSche_cont() {
@@ -23,11 +23,11 @@ public class SchedulePlan {
 	public void setDiv_code(String div_code) {
 		this.div_code = div_code;
 	}
-	public int getCOUNT() {
-		return COUNT;
+	public int getCount() {
+		return count;
 	}
-	public void setCOUNT(int cOUNT) {
-		COUNT = cOUNT;
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public String getPlan_name() {
 		return plan_name;

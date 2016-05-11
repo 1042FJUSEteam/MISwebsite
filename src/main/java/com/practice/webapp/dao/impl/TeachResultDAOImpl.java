@@ -1,7 +1,6 @@
 package com.practice.webapp.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +14,9 @@ import com.practice.webapp.entity.teachresult.*;
 
 public class TeachResultDAOImpl implements Teach_ResultDAO {
 	private DataSource dataSource;
-	private Connection conn = null;
-	private ResultSet rs = null;
-	private PreparedStatement smt = null;
+	private Connection conn ;
+	private ResultSet rs ;
+	private PreparedStatement smt ;
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -223,8 +222,8 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				Category category = new Category();
-				category.setDCcode(rs.getString("DC_CODE"));
-				category.setDCclass(rs.getString("DC_CLASS"));
+				category.setDcCode(rs.getString("DC_CODE"));
+				category.setDcClass(rs.getString("DC_CLASS"));
 				masterCategory.add(category);
 			}
 			rs.close();
@@ -276,7 +275,7 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 	}
 
 	public List<String> getEMasterPaperYear() {
-		List<String> EmasterPaperYear = new ArrayList<String>();
+		List<String> eMasterPaperYear = new ArrayList<String>();
 
 		String sql = "select DISTINCT GRA_YEAR from graduation where "
 				+ "graduation.GRA_CODE LIKE '%EM%' order by GRA_YEAR DESC";
@@ -286,7 +285,7 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 			rs = smt.executeQuery();
 			while (rs.next()) {
 				String year = rs.getString("GRA_YEAR");
-				EmasterPaperYear.add(year);
+				eMasterPaperYear.add(year);
 			}
 			rs.close();
 			smt.close();
@@ -302,7 +301,7 @@ public class TeachResultDAOImpl implements Teach_ResultDAO {
 				}
 			}
 		}
-		return EmasterPaperYear;
+		return eMasterPaperYear;
 	}
 
 	public List<Award> getAwardList() {

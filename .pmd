@@ -54,6 +54,10 @@
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
+            <name>CollapsibleIfStatements</name>
+            <ruleset>Basic</ruleset>
+        </rule>
+        <rule>
             <name>DontCallThreadRun</name>
             <ruleset>Basic</ruleset>
         </rule>
@@ -92,114 +96,6 @@
         <rule>
             <name>UnconditionalIfStatement</name>
             <ruleset>Basic</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidTrailingComma</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>ConsistentReturn</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>EqualComparison</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>GlobalVariable</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>InnaccurateNumericLiteral</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>ScopeForInVariable</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>UnreachableCode</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>UseBaseWithParseInt</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>DontNestJsfInJstlIteration</name>
-            <ruleset>Basic JSF</ruleset>
-        </rule>
-        <rule>
-            <name>DuplicateJspImports</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>IframeMissingSrcAttribute</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>JspEncoding</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoClassAttribute</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoHtmlComments</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoInlineScript</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoInlineStyleInformation</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoJspForward</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoLongScripts</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoScriptlets</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NoUnsanitizedJSPExpression</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>CollapsibleIfStatements</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyForeachStmt</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveTemplateLength</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>NoInlineJavaScript</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>NoInlineStyles</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>UnusedMacroParameter</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>MistypedCDATASection</name>
-            <ruleset>Basic XML</ruleset>
         </rule>
         <rule>
             <name>ForLoopsMustUseBraces</name>
@@ -242,27 +138,11 @@
             <ruleset>Code Size</ruleset>
         </rule>
         <rule>
-            <name>ExcessiveObjectLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessivePackageBodyLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessivePackageSpecificationLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
             <name>ExcessiveParameterList</name>
             <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>ExcessivePublicCount</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveTypeLength</name>
             <ruleset>Code Size</ruleset>
         </rule>
         <rule>
@@ -275,10 +155,6 @@
         </rule>
         <rule>
             <name>NcssMethodCount</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>NcssObjectCount</name>
             <ruleset>Code Size</ruleset>
         </rule>
         <rule>
@@ -296,26 +172,6 @@
         <rule>
             <name>TooManyFields</name>
             <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>TooManyMethods</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>CommentContent</name>
-            <ruleset>Comments</ruleset>
-        </rule>
-        <rule>
-            <name>CommentRequired</name>
-            <ruleset>Comments</ruleset>
-        </rule>
-        <rule>
-            <name>CommentSize</name>
-            <ruleset>Comments</ruleset>
-        </rule>
-        <rule>
-            <name>AssignmentInOperand</name>
-            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>AtLeastOneConstructor</name>
@@ -406,26 +262,6 @@
             <ruleset>Controversial</ruleset>
         </rule>
         <rule>
-            <name>CouplingBetweenObjects</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveImports</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>LawOfDemeter</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>LooseCoupling</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>LoosePackageCoupling</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
             <name>AbstractClassWithoutAbstractMethod</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -446,10 +282,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>AvoidDeeplyNestedIfStmts</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -459,10 +291,6 @@
         </rule>
         <rule>
             <name>AvoidProtectedMethodInFinalClassNotExtending</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidReassigningParameters</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
@@ -946,10 +774,6 @@
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
-            <name>LongVariable</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
             <name>MethodNamingConventions</name>
             <ruleset>Naming</ruleset>
         </rule>
@@ -975,10 +799,6 @@
         </rule>
         <rule>
             <name>ShortMethodName</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
-            <name>ShortVariable</name>
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
@@ -1010,14 +830,6 @@
             <ruleset>Optimization</ruleset>
         </rule>
         <rule>
-            <name>LocalVariableCouldBeFinal</name>
-            <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
-            <name>MethodArgumentCouldBeFinal</name>
-            <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
             <name>PrematureDeclaration</name>
             <ruleset>Optimization</ruleset>
         </rule>
@@ -1046,72 +858,12 @@
             <ruleset>Optimization</ruleset>
         </rule>
         <rule>
-            <name>TO_DATEWithoutDateFormat</name>
-            <ruleset>PLSQL DATETIME</ruleset>
-        </rule>
-        <rule>
-            <name>TO_DATE_TO_CHAR</name>
-            <ruleset>PLSQL DATETIME</ruleset>
-        </rule>
-        <rule>
-            <name>TO_TIMESTAMPWithoutDateFormat</name>
-            <ruleset>PLSQL DATETIME</ruleset>
-        </rule>
-        <rule>
             <name>ArrayIsStoredDirectly</name>
             <ruleset>Security Code Guidelines</ruleset>
         </rule>
         <rule>
             <name>MethodReturnsInternalArray</name>
             <ruleset>Security Code Guidelines</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidCatchingGenericException</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidCatchingNPE</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidCatchingThrowable</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidLosingExceptionInformation</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidRethrowingException</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingNewInstanceOfSameException</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingNullPointerException</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingRawExceptionTypes</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotExtendJavaLangError</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotThrowExceptionInFinally</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>ExceptionAsFlowControl</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>SignatureDeclareThrowsException</name>
-            <ruleset>Strict Exceptions</ruleset>
         </rule>
         <rule>
             <name>AppendCharacterWithChar</name>
@@ -1178,10 +930,6 @@
             <ruleset>String and StringBuffer</ruleset>
         </rule>
         <rule>
-            <name>TomKytesDespair</name>
-            <ruleset>Tom Kyte's Despair</ruleset>
-        </rule>
-        <rule>
             <name>UnnecessaryBlock</name>
             <ruleset>Unnecessary</ruleset>
         </rule>
@@ -1232,14 +980,6 @@
         <rule>
             <name>UnusedPrivateMethod</name>
             <ruleset>Unused Code</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidAxisNavigation</name>
-            <ruleset>XPath in XSL</ruleset>
-        </rule>
-        <rule>
-            <name>UseConcatOnce</name>
-            <ruleset>XPath in XSL</ruleset>
         </rule>
     </rules>
     <includeDerivedFiles>false</includeDerivedFiles>

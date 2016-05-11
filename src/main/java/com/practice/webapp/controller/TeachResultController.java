@@ -7,11 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.practice.webapp.dao.*;
@@ -35,11 +33,11 @@ public class TeachResultController {
 	@RequestMapping(value = "/Graduation", method = RequestMethod.GET)
 	public ModelAndView getGraduationList() {
 		ModelAndView model = new ModelAndView("Gradution_yeah");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<String> graYearList = new ArrayList<String>();
-		graYearList = Teach_ResultDAO.getGraYearList();
+		graYearList = teach_ResultDAO.getGraYearList();
 		List<Graduation> graduationList = new ArrayList<Graduation>();
-		graduationList = Teach_ResultDAO.getGraduationList();
+		graduationList = teach_ResultDAO.getGraduationList();
 		model.addObject("graduationList", graduationList);
 		model.addObject("graYearList", graYearList);
 		return model;
@@ -48,31 +46,31 @@ public class TeachResultController {
 	@RequestMapping(value = "/Tea_stu_paper", method = RequestMethod.GET)
 	public ModelAndView getTea_stu_paperList() {
 		ModelAndView model = new ModelAndView("Tea_stu_paper");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<Graduation> masterPaperList = new ArrayList<Graduation>();
-		masterPaperList = Teach_ResultDAO.getMasterPaperList();
+		masterPaperList = teach_ResultDAO.getMasterPaperList();
 		List<Graduation> eMasterPaperList = new ArrayList<Graduation>();
-		eMasterPaperList = Teach_ResultDAO.getEMasterPaperList();
+		eMasterPaperList = teach_ResultDAO.getEMasterPaperList();
 		List<Category> masterCategory = new ArrayList<Category>();
-		masterCategory = Teach_ResultDAO.getMasterCategory();
+		masterCategory = teach_ResultDAO.getMasterCategory();
 		List<String> masterYear = new ArrayList<String>();// 獲取碩士班年份表
-		masterYear = Teach_ResultDAO.getMasterPaperYear();
-		List<String> EmasterYear = new ArrayList<String>();// 獲取在職碩班年份表
-		EmasterYear = Teach_ResultDAO.getEMasterPaperYear();
+		masterYear = teach_ResultDAO.getMasterPaperYear();
+		List<String> eMasterYear = new ArrayList<String>();// 獲取在職碩班年份表
+		eMasterYear = teach_ResultDAO.getEMasterPaperYear();
 		model.addObject("masterPaperList", masterPaperList);
 		model.addObject("eMasterPaperList", eMasterPaperList);
 		model.addObject("masterCategory", masterCategory);
 		model.addObject("masterYear", masterYear);
-		model.addObject("EmasterYear", EmasterYear);
+		model.addObject("eMasterYear", eMasterYear);
 		return model;
 	}
 
 	@RequestMapping(value = "/award-teachResult", method = RequestMethod.GET)
 	public ModelAndView getAwardList() {
 		ModelAndView model = new ModelAndView("award-teachResult");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<Award> awardList = new ArrayList<Award>();
-		awardList = Teach_ResultDAO.getAwardList();
+		awardList = teach_ResultDAO.getAwardList();
 		model.addObject("awardList", awardList);
 		return model;
 	}
@@ -80,8 +78,7 @@ public class TeachResultController {
 	@RequestMapping(value = "/admin/insertSym", method = RequestMethod.GET)
 	public ModelAndView insertArticlePage() {
 		ModelAndView model = new ModelAndView("SymAdd");
-		Teach_ResultDAO symDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
-
+		
 		return model;
 	}
 
@@ -95,7 +92,7 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/SymAdmin", method = RequestMethod.GET)
-	public ModelAndView SymAdmin() {
+	public ModelAndView symAdmin() {
 		ModelAndView model = new ModelAndView("SymAdmin");
 
 		Teach_ResultDAO symDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
@@ -131,13 +128,13 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/GraduationAdmin", method = RequestMethod.GET)
-	public ModelAndView GraduationAdmin() {
+	public ModelAndView graduationAdmin() {
 		ModelAndView model = new ModelAndView("GraduationAdmin");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<String> graYearList = new ArrayList<String>();
-		graYearList = Teach_ResultDAO.getGraYearList();
+		graYearList = teach_ResultDAO.getGraYearList();
 		List<Graduation> graduationList = new ArrayList<Graduation>();
-		graduationList = Teach_ResultDAO.getGraduationList();
+		graduationList = teach_ResultDAO.getGraduationList();
 		model.addObject("graduationList", graduationList);
 		model.addObject("graYearList", graYearList);
 		return model;
@@ -169,24 +166,24 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/Tea_stu_paperAdmin", method = RequestMethod.GET)
-	public ModelAndView Tea_stu_paperAdmin() {
+	public ModelAndView tea_stu_paperAdmin() {
 		ModelAndView model = new ModelAndView("Tea_stu_paperAdmin");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<Graduation> masterPaperList = new ArrayList<Graduation>();
-		masterPaperList = Teach_ResultDAO.getMasterPaperList();
+		masterPaperList = teach_ResultDAO.getMasterPaperList();
 		List<Graduation> eMasterPaperList = new ArrayList<Graduation>();
-		eMasterPaperList = Teach_ResultDAO.getEMasterPaperList();
+		eMasterPaperList = teach_ResultDAO.getEMasterPaperList();
 		List<Category> masterCategory = new ArrayList<Category>();
-		masterCategory = Teach_ResultDAO.getMasterCategory();
+		masterCategory = teach_ResultDAO.getMasterCategory();
 		List<String> masterYear = new ArrayList<String>();// 獲取碩士班年份表
-		masterYear = Teach_ResultDAO.getMasterPaperYear();
-		List<String> EmasterYear = new ArrayList<String>();// 獲取在職碩班年份表
-		EmasterYear = Teach_ResultDAO.getEMasterPaperYear();
+		masterYear = teach_ResultDAO.getMasterPaperYear();
+		List<String> eMasterYear = new ArrayList<String>();// 獲取在職碩班年份表
+		eMasterYear = teach_ResultDAO.getEMasterPaperYear();
 		model.addObject("masterPaperList", masterPaperList);
 		model.addObject("eMasterPaperList", eMasterPaperList);
 		model.addObject("masterCategory", masterCategory);
 		model.addObject("masterYear", masterYear);
-		model.addObject("EmasterYear", EmasterYear);
+		model.addObject("eMasterYear", eMasterYear);
 		return model;
 	}
 
@@ -215,11 +212,11 @@ public class TeachResultController {
 	}
 
 	@RequestMapping(value = "/admin/AwardAdmin", method = RequestMethod.GET)
-	public ModelAndView AwardAdmin() {
+	public ModelAndView awardAdmin() {
 		ModelAndView model = new ModelAndView("AwardAdmin");
-		Teach_ResultDAO Teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
+		Teach_ResultDAO teach_ResultDAO = (Teach_ResultDAO) context.getBean("TeachResultDAO");
 		List<Award> awardList = new ArrayList<Award>();
-		awardList = Teach_ResultDAO.getAwardList();
+		awardList = teach_ResultDAO.getAwardList();
 		model.addObject("awardList", awardList);
 		return model;
 	}

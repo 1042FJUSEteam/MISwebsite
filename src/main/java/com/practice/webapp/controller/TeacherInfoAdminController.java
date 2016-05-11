@@ -10,11 +10,9 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.practice.webapp.entity.teacher.DetailRankInfo;
 import com.practice.webapp.entity.teacher.RankInfo;
 import com.practice.webapp.entity.teacher.ResearchTeacher;
 import com.practice.webapp.entity.teacher.TeacherAwardInfo;
@@ -39,8 +36,6 @@ import com.practice.webapp.entity.teacher.TeacherSpeInfo;
 import com.practice.webapp.entity.teacher.TeacherStuPaper;
 import com.practice.webapp.entity.teacher.TeacherStuTopic;
 
-import org.codehaus.jackson.JsonEncoding;
-import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -171,10 +166,10 @@ public class TeacherInfoAdminController {
 			// 獲取文件名，包括其後綴
 			// 應當在此處驗證文件格式是否圖片在進行後續動作
 			String picName = file.getOriginalFilename();
-			System.out.println(picName);
+			//System.out.println(picName);
 			// 獲取路徑
 			String path = request.getSession().getServletContext().getRealPath("/") + "img/teacherIMG/";
-			System.out.println(path);
+			//System.out.println(path);
 			// 開始上傳
 			File dirPath = new File(path);
 			if (!dirPath.exists()) {
@@ -225,10 +220,10 @@ public class TeacherInfoAdminController {
 					String key = it.next();
 					// System.out.println(key + ":" + map.get(key));
 					// 把這些值封裝到list中
-					if (key == "teaSort") {
+					if (key.equals("teaSort")) {
 						info.setSort(map.get(key).toString());
 					}
-					if (key == "teaCode") {
+					if (key.equals("teaCode")) {
 						info.setTeaCode(map.get(key).toString());
 					}
 				}
@@ -396,28 +391,28 @@ public class TeacherInfoAdminController {
 	// 期刊論文
 	@RequestMapping(value = "/admin/newIssuePaper", method = RequestMethod.POST)
 	public ModelAndView newIssuePaper(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
-			@ModelAttribute TeacherOtherInfo IssuePaperInfo) {
+			@ModelAttribute TeacherOtherInfo issuePaperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.newIssuePaper(teaInfo, IssuePaperInfo);
+		teacherInfoAdminDAO.newIssuePaper(teaInfo, issuePaperInfo);
 		return model;
 	}
 
 	@RequestMapping(value = "/admin/updateIssuePaper", method = RequestMethod.POST)
 	public ModelAndView updateIssuePaper(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
-			@ModelAttribute TeacherOtherInfo IssuePaperInfo) {
+			@ModelAttribute TeacherOtherInfo issuePaperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.updateIssuePaper(teaInfo, IssuePaperInfo);
+		teacherInfoAdminDAO.updateIssuePaper(teaInfo, issuePaperInfo);
 		return model;
 	}
 
 	@RequestMapping(value = "/admin/deleteIssuePaper", method = RequestMethod.POST)
 	public ModelAndView deleteIssuePaper(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
-			@ModelAttribute TeacherOtherInfo IssuePaperInfo) {
+			@ModelAttribute TeacherOtherInfo issuePaperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.deleteIssuePaper(teaInfo, IssuePaperInfo);
+		teacherInfoAdminDAO.deleteIssuePaper(teaInfo, issuePaperInfo);
 		return model;
 	}
 
@@ -433,19 +428,19 @@ public class TeacherInfoAdminController {
 
 	@RequestMapping(value = "/admin/updateMeetingPaper", method = RequestMethod.POST)
 	public ModelAndView updateMeetingPaper(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
-			@ModelAttribute TeacherOtherInfo MeetingPaperInfo) {
+			@ModelAttribute TeacherOtherInfo meetingPaperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.updateMeetingPaper(teaInfo, MeetingPaperInfo);
+		teacherInfoAdminDAO.updateMeetingPaper(teaInfo, meetingPaperInfo);
 		return model;
 	}
 
 	@RequestMapping(value = "/admin/deleteMeetingPaper", method = RequestMethod.POST)
 	public ModelAndView deleteMeetingPaper(@ModelAttribute TeacherBasicInfoAdmin teaInfo,
-			@ModelAttribute TeacherOtherInfo MeetingPaperInfo) {
+			@ModelAttribute TeacherOtherInfo meetingPaperInfo) {
 		ModelAndView model = new ModelAndView("redirect:/admin/updateTeacherDetail?teaCode=" + teaInfo.getTeaCode());
 		TeacherInfoAdminDAO teacherInfoAdminDAO = (TeacherInfoAdminDAO) context.getBean("teacherInfoAdminDAO");
-		teacherInfoAdminDAO.deleteMeetingPaper(teaInfo, MeetingPaperInfo);
+		teacherInfoAdminDAO.deleteMeetingPaper(teaInfo, meetingPaperInfo);
 		return model;
 	}
 
