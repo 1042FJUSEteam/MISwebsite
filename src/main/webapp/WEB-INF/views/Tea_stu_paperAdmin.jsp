@@ -55,7 +55,7 @@
 								onChange="selectMasterCategory()">
 									<option value="0">請選擇部別</option>
 									<c:forEach items="${masterCategory}" var="masterCategory">
-										<option value="${masterCategory.DCcode}">${masterCategory.DCclass}</option>
+										<option value="${masterCategory.dcCode}">${masterCategory.dcClass}</option>
 									</c:forEach>
 							</select></td>
 							<td width="30%"><select class="form-control"
