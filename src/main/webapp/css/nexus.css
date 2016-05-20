@@ -721,15 +721,15 @@ h1.logo-text a {
 /*-----------------------------------------------------------------------------------*/
 .sidebar-nav {
   border-radius: 5px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #af0c4c;
 }
 .sidebar-nav li {
   padding: 0;
   /*Sidebar Sub Navigation*/
 }
 .sidebar-nav li a {
-  background: #e8e5df;
-  border-bottom: 1px solid #d8d6d0;
+  background: #ffffff;
+  border-bottom: 1px solid #af0c4c;
   display: block;
   padding: 10px 20px;
   outline: none;
@@ -1659,7 +1659,7 @@ i.fa.center {
 }
 .tabs .nav-tabs li a:hover {
   border-bottom-color: transparent;
-  border-top: 3px solid #CCC;
+  border-top: 3px solid #af0c4c;
   box-shadow: none;
 }
 .tabs .nav-tabs li a:active,
@@ -1672,7 +1672,7 @@ i.fa.center {
   background: #FFF;
   border-left-color: #EEE;
   border-right-color: #EEE;
-  border-top: 3px solid #363539;
+  border-top: 3px solid #af0c4c;
   color: #333333;
   outline: none;
 }
